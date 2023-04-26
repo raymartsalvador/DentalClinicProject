@@ -5,21 +5,21 @@
     </div>
     <nav>
       <div class="nav-mobile">
-        <a id="nav-toggle" href="javascript:void(0);"><span></span></a>
+        <a id="nav-toggle" routerLink="{{routerLink[0]}}"><span></span></a>
       </div>
       <ul class="nav-list">
-        <li><a href="/home">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a routerLink= {{routerLink[0]}}>Home</a></li>
+        <li><a routerLink="{{routerLink[1]}}">Contact</a></li>
         <li>
-          <a href="#!" (click)="toggleDropdown()">Services</a>
+          <a routerLink="#!" (click)="toggleDropdown()">Services</a>
           <ul class="nav-dropdown">
-            <li><a href="#!">Service 1</a></li>
-            <li><a href="#!">Service 2</a></li>
-            <li><a href="#!">Service 3</a></li>
+            <li><a routerLink="{{routerLink[2]}}">Service 1</a></li>
+            <li><a routerLink="{{routerLink[2]}}">Service 2</a></li>
+            <li><a routerLink="{{routerLink[2]}}">Service 3</a></li>
           </ul>
         </li>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="#!">Sign In</a></li>
+        <li><a routerLink="{{routerLink[3]}}">About Us</a></li>
+        <li><a routerLink="{{routerLink[4]}}">Sign In</a></li>
       </ul>
     </nav>
   </div>

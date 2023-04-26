@@ -1,0 +1,64 @@
+// Define custom color variables
+$hover: #00b2bf;
+$black:#18191f;
+$background-color_1: rgba(64, 226, 221, 0.5);
+
+
+// Footer styles
+.footer {
+  background-color: $background-color_1;
+  padding: 20px;
+  color: $black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.footer__item--title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.footer__item--social {
+  justify-content: center;
+  p{
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+  a{
+    margin-right: 0.7rem;
+    margin-left: 0.2rem;
+    margin-top: 0.3rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    background-color: $hover;
+    border-radius: 5px;
+    font-size: large;
+    color: #18191f;
+    transition: all 0.3s ease;
+
+  }
+  a:hover{
+    color: $hover;
+    background-color: $black;
+  }
+  i:hover{
+    transition: all 0.3s ease;
+  }
+}
+
+.footer__social-icon {
+  margin: 10px;
+}
+
+.about {
+width: 20rem;
+}
+
+p
+{
+  font-size: small;
+}
