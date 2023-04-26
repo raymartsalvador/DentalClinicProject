@@ -37,15 +37,15 @@ $background-color_1: rgba(64, 226, 221, 0.5);
     background-color: $hover;
     border-radius: 5px;
     font-size: large;
+    color: #18191f;
+    transition: all 0.3s ease;
 
   }
   a:hover{
     color: $hover;
     background-color: $black;
-    transition: all 0.3s ease;
   }
   i:hover{
-    font-size: 1.5rem;
     transition: all 0.3s ease;
   }
 }
