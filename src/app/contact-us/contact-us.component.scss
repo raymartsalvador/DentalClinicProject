@@ -10,20 +10,17 @@
 
 
   .image-container {
-
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      overflow: hidden;
-
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
+    margin-right: 30px;
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
   }
+
+  .image-container img {
+    width: 100%;
+    height: auto;
+  }
+
 
   .text-container {
     width: 100%;
@@ -42,17 +39,16 @@
     }
 
     h3 {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       color: #00b2bf;
-      margin-bottom: 0px;
       flex-shrink: 1;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight: bold;
       color: #18191f;
-      margin-bottom: 10px;
+      margin-top: 0px;
       white-space: nowrap;
     }
 
@@ -159,4 +155,56 @@
   color:
  rgb(255, 255, 255);
   margin: 0;
+}
+
+
+.contact {
+  text-align: center;
+  padding: 10px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact h2 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.contact h3 {
+  color: black;
+  font-size: 2rem;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.service {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  background-color: transparent;
+  width: 250px;
+  padding: 1px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.contact h4 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.contact p {
+  text-align: center;
+  color: black;
+  font-size: 1rem;
+  margin-bottom: 30px;
 }
