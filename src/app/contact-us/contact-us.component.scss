@@ -1,18 +1,24 @@
 .wrapper {
+  background-color: rgb(240, 240, 240);
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
+  width: 100%;
   height: 60vh;
   margin: 0 auto;
-  max-width: 1365px;
+
 
   .image-container {
+
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 
     img {
+      overflow: hidden;
+
       max-width: 100%;
       height: auto;
       object-fit: contain;
@@ -21,17 +27,25 @@
 
   .text-container {
     width: 100%;
-
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-shrink: 1;
+
+    .text{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
 
     h3 {
       font-size: 1.5rem;
       color: #00b2bf;
       margin-bottom: 0px;
+      flex-shrink: 1;
     }
 
     h1 {
@@ -49,19 +63,38 @@
       width: 80%;
 
       label {
-        font-size: 1.1rem;
+        font-size: 0.8rem;
         color: #18191f;
         margin-bottom: 10px;
         display: block;
+        width: 100%;
       }
 
-      input,
-      textarea {
-        width: 100%;
+      input[type="text"] {
+        display: inline-block;
+        width: calc(50% - 2.5px);
         padding: 10px;
         border-radius: 5px;
         border: 1px solid #d8d8d8;
         margin-bottom: 20px;
+        box-sizing: border-box;
+      }
+
+      input[type="email"] {
+        display: inline-block;
+        width: calc(50% - 2.5px);
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #d8d8d8;
+        margin-bottom: 20px;
+        margin-left: 5px;
+        box-sizing: border-box;
+      }
+
+      &:after {
+        content: "";
+        display: table;
+        clear: both;
       }
 
       button {
@@ -83,13 +116,14 @@
 
   .image-container {
     width: 50%;
+    flex-shrink: 1;
   }
 
   .text-container {
     width: 50%;
+    flex-shrink: 1;
   }
 }
-
 .band {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -104,7 +138,6 @@
   text-transform: uppercase;
   width: 100%;
 }
-
 .band-content {
   display: flex;
   flex-direction: column;
@@ -123,6 +156,7 @@
 .band p {
   font-size: 0.8rem;
 
-  color: black;
+  color:
+ rgb(255, 255, 255);
   margin: 0;
 }

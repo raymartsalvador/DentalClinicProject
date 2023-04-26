@@ -5,26 +5,28 @@
   </div>
 </div>
 
-
 <div class="wrapper">
   <div class="image-container">
     <div class="image">
-      <img src="../../../assets/images/graphic-pedeatric-dentistry.png" alt="home page image">
+      <img src="../../../assets/images/map.png" alt="home page image">
     </div>
   </div>
   <div class="text-container">
     <div class="text">
       <h3>Don't be shy</h3>
-      <h1>Contact Us</h1>
+      <h1>Get in Touch</h1>
       <form (submit)="onSubmit()">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" [(ngModel)]="name">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" [(ngModel)]="email">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name" maxlength="50">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email"maxlength="50">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" [(ngModel)]="subject">
         <label for="message">Message:</label>
         <textarea id="message" name="message" [(ngModel)]="message"></textarea>
         <button type="submit">Submit</button>
       </form>
+
     </div>
   </div>
 </div>
