@@ -1,0 +1,128 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  margin: 0 auto;
+  max-width: 1365px;
+
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  .text-container {
+    width: 100%;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+      font-size: 1.5rem;
+      color: #00b2bf;
+      margin-bottom: 0px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #18191f;
+      margin-bottom: 10px;
+      white-space: nowrap;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 80%;
+
+      label {
+        font-size: 1.1rem;
+        color: #18191f;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #d8d8d8;
+        margin-bottom: 20px;
+      }
+
+      button {
+        background-color: #40e2dd;
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 15px 30px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #00b2bf;
+      }
+    }
+  }
+
+  .image-container {
+    width: 50%;
+  }
+
+  .text-container {
+    width: 50%;
+  }
+}
+
+.band {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 100px;
+  background-color: #00b2bf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: thin;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.band-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.band h3 {
+  font-size: 1rem;
+
+  color: white;
+  margin: 0;
+}
+
+.band p {
+  font-size: 0.8rem;
+
+  color: black;
+  margin: 0;
+}
