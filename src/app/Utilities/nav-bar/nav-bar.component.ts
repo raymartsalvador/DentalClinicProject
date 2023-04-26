@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
+  showDropdown = false;
+  mobile = false;
+  mobilenav() {
+    this.mobile = !this.mobile;
+  }
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
 
 }
