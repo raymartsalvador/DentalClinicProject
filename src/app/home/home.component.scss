@@ -109,6 +109,7 @@
 
 .band {
   margin-top: 50px;
+  margin-bottom: 50px;
   height: 150px;
   background-color: #00b2bf;
   color: white;
@@ -169,4 +170,143 @@
       object-fit: contain;
     }
   }
+}
+
+.service-offerings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: white;
+  padding: 50px 0;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.offering {
+  flex-basis: 23%;
+  background-color: #00b2bf;
+  padding: 20px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  margin-bottom: 30px;
+}
+
+.offering:not(:first-child)::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -30px;
+  height: 100%;
+  width: 30px;
+  background-color: transparent;
+}
+
+.offering:not(:last-child)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: -30px;
+  height: 100%;
+  width: 30px;
+  background-color: transparent;
+}
+
+.icon {
+  position: absolute;
+  margin-top: 0;
+  margin-bottom: 0;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, 10%);
+  font-size: 3rem;
+  color: #fff;
+}
+
+h3 {
+  margin-top: 45px;
+  margin-bottom: 2px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+p {
+  color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+  .offering {
+    flex-basis: 45%;
+    margin-bottom: 30px;
+  }
+}
+
+.services-section {
+  text-align: center;
+  padding: 10px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-section h2 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.services-section h3 {
+  color: black;
+  font-size: 2rem;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.service {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  background-color: transparent;
+  width: 250px;
+  padding: 1px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.service h4 {
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.service p {
+  text-align: left;
+  color: black;
+  font-size: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #00b2bf;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.btn:hover {
+  background-color: #008f9c;
 }
