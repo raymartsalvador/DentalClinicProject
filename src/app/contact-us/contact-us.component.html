@@ -1,1 +1,70 @@
-<p>contact-us does not work!</p>
+
+<div class="band">
+  <div class="band-content">
+    <h3>Contact Page</h3>
+    <p>If you need to reach us</p>
+  </div>
+</div>
+
+<div class="contact">
+  <div class="contact-grid">
+    <div class="contact">
+      <i class="fas fa-map-marker-alt"></i>
+      <h4>Address</h4>
+      <p>123 Main Street, City, State</p>
+    </div>
+    <div class="contact">
+      <i class="fas fa-phone"></i>
+
+      <h4>Contact Info</h4>
+      <p>Phone: +123456789<br>
+
+        Email: info@dentist.com<br>
+
+        </p>
+    </div>
+    <div class="contact">
+      <i class="fas fa-clock"></i>
+
+      <h4>Hours</h4>
+      <p>Mon - Fri: 9am - 6pm <br>
+
+        Sat: 9am - 1pm<br>
+
+        Sun: Closed</p>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="wrapper">
+  <div class="image-container">
+    <div class="image">
+      <img src="../../../assets/images/map.png" alt="home page image">
+    </div>
+  </div>
+  <div class="text-container">
+    <div class="text">
+      <h3>Don't be shy</h3>
+      <h1>Get in Touch</h1>
+      <form (submit)="onSubmit()">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name" maxlength="50">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email"maxlength="50">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" [(ngModel)]="subject">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" [(ngModel)]="message"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
