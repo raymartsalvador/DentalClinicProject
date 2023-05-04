@@ -1,0 +1,144 @@
+$color_1: royalblue;
+$color_2: rgba(88, 87, 87, 0.822);
+$color_3: grey;
+$color_4: green;
+$color_5: #fff;
+$background-color_1: #fff;
+$background-color_2: royalblue;
+$background-color_3: rgb(56, 90, 194);
+
+@keyframes pulse {
+	from {
+		transform: scale(0.9);
+		opacity: 1;
+	}
+	to {
+		transform: scale(1.8);
+		opacity: 0;
+	}
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 350px;
+	background-color: $background-color_1;
+	padding: 20px;
+	border-radius: 20px;
+	position: relative;
+	label {
+		position: relative;
+		.input {
+			width: 100%;
+			padding: 10px 10px 20px 10px;
+			outline: 0;
+			border: 1px solid rgba(105, 105, 105, 0.397);
+			border-radius: 10px;
+			+ {
+				span {
+					position: absolute;
+					left: 10px;
+					top: 15px;
+					color: $color_3;
+					font-size: 0.9em;
+					cursor: text;
+					transition: 0.3s ease;
+				}
+			}
+			&:placeholder-shown {
+				+ {
+					span {
+						top: 15px;
+						font-size: 0.9em;
+					}
+				}
+			}
+			&:focus {
+				+ {
+					span {
+						top: 30px;
+						font-size: 0.7em;
+						font-weight: 600;
+					}
+				}
+			}
+			&:valid {
+				+ {
+					span {
+						top: 30px;
+						font-size: 0.7em;
+						font-weight: 600;
+						color: $color_4;
+					}
+				}
+			}
+		}
+	}
+}
+.title {
+	font-size: 28px;
+	color: $color_1;
+	font-weight: 600;
+	letter-spacing: -1px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding-left: 30px;
+	&::before {
+		position: absolute;
+		content: "";
+		height: 16px;
+		width: 16px;
+		border-radius: 50%;
+		left: 0px;
+		background-color: $background-color_2;
+		width: 18px;
+		height: 18px;
+		background-color: $background-color_2;
+	}
+	&::after {
+		position: absolute;
+		content: "";
+		height: 16px;
+		width: 16px;
+		border-radius: 50%;
+		left: 0px;
+		background-color: $background-color_2;
+		width: 18px;
+		height: 18px;
+		animation: pulse 1s linear infinite;
+	}
+}
+.message {
+	color: $color_2;
+	font-size: 14px;
+}
+.signin {
+	color: $color_2;
+	font-size: 14px;
+	text-align: center;
+	a {
+		color: $color_1;
+		&:hover {
+			text-decoration: underline royalblue;
+		}
+	}
+}
+.flex {
+	display: flex;
+	width: 100%;
+	gap: 6px;
+}
+.submit {
+	border: none;
+	outline: none;
+	background-color: $background-color_2;
+	padding: 10px;
+	border-radius: 10px;
+	color: $color_5;
+	font-size: 16px;
+	transform: .3s ease;
+	&:hover {
+		background-color: $background-color_3;
+	}
+}

@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="signIn" class="container">
   <form class="form">
     <div class="header">Sign In</div>
     <div class="inputs">
@@ -11,8 +11,14 @@
         <label for="checkbox" class="checkbox-text">Remember me</label>
       </div>
       <button class="sigin-btn">Submit</button>
-      <a class="forget" href="#">Forget password ?</a>
-      <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+      <a class="forget" (click)="onPressingForgotPassword()">Forgot password ?</a>
+      <p class="signup-link">Don't have an account? <a routerLink="signIn" (click)="onPressingSignUp()">Sign up</a></p>
     </div>
   </form>
+</div>
+<div *ngIf="forgotPassword">
+  <app-forgot-password ></app-forgot-password>
+</div>
+<div *ngIf="signUp">
+  <app-register></app-register>
 </div>
