@@ -1,1 +1,24 @@
-<p>sign-in works!</p>
+<div *ngIf="signIn" class="container">
+  <form class="form">
+    <div class="header">Sign In</div>
+    <div class="inputs">
+      <input placeholder="Email" class="input" type="text">
+      <input placeholder="Password" class="input" type="password">
+      <div class="checkbox-container">
+        <label class="checkbox">
+          <input type="checkbox" id="checkbox">
+        </label>
+        <label for="checkbox" class="checkbox-text">Remember me</label>
+      </div>
+      <button class="sigin-btn">Submit</button>
+      <a class="forget" (click)="onPressingForgotPassword()">Forgot password ?</a>
+      <p class="signup-link">Don't have an account? <a routerLink="signIn" (click)="onPressingSignUp()">Sign up</a></p>
+    </div>
+  </form>
+</div>
+<div *ngIf="forgotPassword">
+  <app-forgot-password ></app-forgot-password>
+</div>
+<div *ngIf="signUp">
+  <app-register></app-register>
+</div>

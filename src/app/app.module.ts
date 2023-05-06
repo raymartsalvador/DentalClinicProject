@@ -11,6 +11,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SignInComponent } from './Utilities/sign-in/sign-in.component';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './Utilities/footer/footer.component';
+import { OurServicesComponent } from './our-services/our-services.component';
+import { RegisterComponent } from './Utilities/register/register.component';
+import { ForgotPasswordComponent } from './Utilities/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { FooterComponent } from './Utilities/footer/footer.component';
     ContactUsComponent,
     SignInComponent,
     AboutComponent,
-    FooterComponent
+    FooterComponent,
+    OurServicesComponent,
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
