@@ -1,14 +1,19 @@
 <section class="navigation">
   <div class="nav-container">
     <div class="brand">
-      <img src="../../../assets/images/clinicLogo.png" alt="">
+      <a routerLink="{{routerLink[0]}}">
+        <span><i class="fa-solid fa-tooth"></i></span>
+        <span class="lcc">
+          LCC
+        </span>
+      </a>
     </div>
     <nav>
       <div class="nav-mobile">
-        <a id="nav-toggle" routerLink="{{routerLink[0]}}"><span></span></a>
+        <a id="nav-toggle" rouer="home"><span></span></a>
       </div>
       <ul class="nav-list">
-        <li><a routerLink= {{routerLink[0]}}>Home</a></li>
+        <li><a routerLink={{routerLink[0]}}>Home</a></li>
         <li><a routerLink="{{routerLink[1]}}">Contact</a></li>
         <li>
           <a routerLink="#!" (click)="toggleDropdown()">Services</a>
@@ -24,3 +29,6 @@
     </nav>
   </div>
 </section>
+<div class="hr">
+  <hr>
+</div>

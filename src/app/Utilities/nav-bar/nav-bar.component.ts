@@ -6,11 +6,13 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
+
   showDropdown = false;
   mobile = false;
 
   @Input() routerLink:string[] = [];
 
+  
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }

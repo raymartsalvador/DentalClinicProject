@@ -4,6 +4,7 @@ $nav-height: 70px;
 $nav-background: #fff;
 $nav-font-color: #0c0c0c;
 $link-hover-color: #00b2bf;
+$darkblue: #0d63a0;
 
 
 .navigation {
@@ -23,14 +24,23 @@ $link-hover-color: #00b2bf;
   line-height: $nav-height;
   text-transform: uppercase;
   font-size: 1.4em;
-
+  margin: 0.5rem;
+  i{
+    font-size: 2.7rem;
+    color: $darkblue ;
+    margin-right: -0.8rem;
+  }
+  .lcc{
+    font-size: 3rem;
+    color: $darkblue;
+  }
   a,
   a:visited {
     color: $nav-font-color;
     text-decoration: none;
+    font-weight: 600;
   }
 }
-
 nav {
   float: right;
   ul {
@@ -79,12 +89,6 @@ nav {
 }
 
 
-.nav-dropdown {
-  display: none;
-  position: absolute;
-  z-index: 1;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-}
 
 $color_1: #0c0c0c;
 $color_2: #fff;
@@ -216,4 +220,8 @@ li {
       }
     }
   }
+}
+.hr hr {
+background-color: $link-hover-color;
+height: 1px;
 }
