@@ -15,6 +15,8 @@ import { OurServicesComponent } from './our-services/our-services.component';
 import { ForgotPasswordComponent } from './Utilities/forgot-password/forgot-password.component';
 import { SignUpComponent } from './Utilities/sign-up/sign-up.component';
 import { AuthService } from './services/auth.service';
+import { SpecialEventComponent } from './Utilities/special-event/special-event.component';
+import { EventsComponent } from './Utilities/events/events.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AuthService } from './services/auth.service';
     FooterComponent,
     OurServicesComponent,
     ForgotPasswordComponent,
-    SignUpComponent
+    SignUpComponent,
+    SpecialEventComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
