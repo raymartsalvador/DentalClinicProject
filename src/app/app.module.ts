@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './Utilities/nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
-import { OurStaffComponent } from './our-staff/our-staff.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SignInComponent } from './Utilities/sign-in/sign-in.component';
 import { AboutComponent } from './about/about.component';
@@ -20,7 +19,6 @@ import { ForgotPasswordComponent } from './Utilities/forgot-password/forgot-pass
     AppComponent,
     NavBarComponent,
     HomeComponent,
-    OurStaffComponent,
     ContactUsComponent,
     SignInComponent,
     AboutComponent,
