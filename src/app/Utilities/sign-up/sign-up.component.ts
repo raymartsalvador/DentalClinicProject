@@ -19,6 +19,7 @@ export class SignUpComponent implements OnInit {
       (res) => {
         console.log(res)
         localStorage.setItem('token', res.token)
+        this._router.navigate(['/specialEvent'])
       },
       (err) => console.log(err)
     );

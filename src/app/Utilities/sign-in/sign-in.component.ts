@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,13 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignInComponent implements OnInit {
   loginUserData = { email: '', password: '' };
-  constructor(private _auth: AuthService) {}
+  constructor(private _auth: AuthService, private _router: Router) {}
 
   loginUser() {
     this._auth.loginUser(this.loginUserData).subscribe(
       (res) => {
         console.log(res);
         localStorage.setItem('token', res.token);
+        this._router.navigate(['/specialEvent'])
       },
       (err) => console.log(err)
     );

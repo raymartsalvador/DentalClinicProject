@@ -1,7 +1,7 @@
 <section class="navigation">
   <div class="nav-container">
     <div class="brand">
-      <a routerLink="{{routerLink[0]}}">
+      <a routerLink="{{routerLink.home}}">
         <span><i class="fa-solid fa-tooth"></i></span>
         <span class="lcc">
           LCC
@@ -13,19 +13,14 @@
         <a id="nav-toggle" rouer="home"><span></span></a>
       </div>
       <ul class="nav-list">
-        <li><a routerLink={{routerLink[0]}}>Home</a></li>
-        <li><a routerLink="{{routerLink[1]}}">Contact</a></li>
-        <li>
-          <a routerLink="#!" (click)="toggleDropdown()">Services</a>
-          <ul class="nav-dropdown">
-            <li><a routerLink="{{routerLink[2]}}">Service 1</a></li>
-            <li><a routerLink="{{routerLink[2]}}">Service 2</a></li>
-            <li><a routerLink="{{routerLink[2]}}">Service 3</a></li>
-          </ul>
+        <li><a [routerLink]="routerLink.home">Home</a></li>
+        <li><a [routerLink]="routerLink.contact">Contact</a></li>
+        <li><a [routerLink]="routerLink.services" routerLinkActive="router-link-active"
+            (click)="toggleDropdown()">Services</a>
         </li>
-        <li><a routerLink="{{routerLink[3]}}">About Us</a></li>
-        <li><a routerLink="{{routerLink[4]}}">Sign In</a></li>
-        <li><a routerLink="{{routerLink[5]}}">Sign Up</a></li>
+        <li><a [routerLink]="routerLink.aboutUs">About Us</a></li>
+        <li><a [routerLink]="routerLink.signIn">Sign In</a></li>
+        <li><a [routerLink]="routerLink.signUp">Sign Up</a></li>
       </ul>
     </nav>
   </div>

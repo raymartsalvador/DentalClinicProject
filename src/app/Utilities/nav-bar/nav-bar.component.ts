@@ -10,9 +10,16 @@ export class NavBarComponent {
   showDropdown = false;
   mobile = false;
 
-  @Input() routerLink:string[] = [];
+  @Input() routerLink:any = {
+    home:'',
+    contact:'',
+    aboutUs:'',
+    services:'',
+    signIn:'',
+    signUp: ''
+  };
 
-  
+
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
