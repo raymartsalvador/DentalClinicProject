@@ -7,5 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'LCC Dental Clinic';
-      routerLink = ['home', 'contact', 'aboutUs', 'services', 'signIn']
+  routes: any = [
+    { name: 'Home', path: 'home' },
+    { name: 'Contact', path: 'contact' },
+    { name: 'About Us', path: 'aboutUs' },
+    { name: 'Services', path: 'services' },
+  ];
+
+  signIn: any = { name: 'Sign In', path: 'signIn' };
+  signUp: any = {
+    name: 'Sign Up',
+    path: 'signUp',
+  };
 }

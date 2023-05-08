@@ -1,34 +1,35 @@
 <section class="navigation">
   <div class="nav-container">
     <div class="brand">
-      <a routerLink="{{routerLink[0]}}">
-        <span><i class="fa-solid fa-tooth"></i></span>
-        <span class="lcc">
-          LCC
-        </span>
+      <a><span><img src="../../../assets/images/logo.png" alt=""></span>
       </a>
     </div>
     <nav>
-      <div class="nav-mobile">
-        <a id="nav-toggle" rouer="home"><span></span></a>
-      </div>
       <ul class="nav-list">
-        <li><a routerLink={{routerLink[0]}}>Home</a></li>
-        <li><a routerLink="{{routerLink[1]}}">Contact</a></li>
         <li>
-          <a routerLink="#!" (click)="toggleDropdown()">Services</a>
-          <ul class="nav-dropdown">
-            <li><a routerLink="{{routerLink[2]}}">Service 1</a></li>
-            <li><a routerLink="{{routerLink[2]}}">Service 2</a></li>
-            <li><a routerLink="{{routerLink[2]}}">Service 3</a></li>
-          </ul>
+          <a routerLink="{{signUp.path}}" *ngIf="_authService.loggedIn()"> Dashboard </a>
         </li>
-        <li><a routerLink="{{routerLink[3]}}">About Us</a></li>
-        <li><a routerLink="{{routerLink[4]}}">Sign In</a></li>
+        <li *ngFor="let route of routes">
+          <a routerLink="{{ route.path }}" routerLinkActive="router-link-active">{{ route.name }}</a>
+        </li>
+        <li>
+          <a routerLink="{{signIn.path}}" (click)="onToggleSignUp()"
+            *ngIf="!_authService.loggedIn()&&!toggleSignUp">{{signIn.name}}</a>
+        </li>
+        <li>
+          <a routerLink="{{signUp.path}}" (click)="onToggleSignUp()"
+            *ngIf="!_authService.loggedIn()&&toggleSignUp">{{signUp.name}}</a>
+        </li>
+        <li>
+          <a style="cursor: pointer;" (click)="_authService.logoutUser()" *ngIf="_authService.loggedIn()">Logout</a>
+        </li>
+
+        <li>
+          <a routerLink="{{signUp.path}}" *ngIf="_authService.loggedIn()"> <span class="user-icon"><i
+                class="fas fa-user"></i></span><span>Profile</span> </a>
+        </li>
       </ul>
+
     </nav>
   </div>
 </section>
-<div class="hr">
-  <hr>
-</div>
