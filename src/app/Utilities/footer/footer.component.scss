@@ -13,7 +13,9 @@ $background-color_1: rgba(64, 226, 221, 0.5);
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
+.footer__item{
+  max-width: 20rem;
+}
 
 .footer__item--title {
   font-weight: bold;

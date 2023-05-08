@@ -4,18 +4,55 @@ $green: #00b2bf;
 $darkblue: #0d63a0;
 $light-green: #9ff0ee;
 
+
+.band {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 6rem;
+  background-color: #00b2bf;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: thin;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  width: 100%;
+}
+.band-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.band h3 {
+  font-size: 1rem;
+
+  color: white;
+  margin: 0;
+}
+
+.band p {
+  font-size: 0.8rem;
+
+  color: rgb(255, 255, 255);
+  margin: 0;
+}
+
 .contain {
   display: grid;
   gap: 2rem;
   height: auto;
-  margin: 4rem 5rem 2rem 5rem;
+  margin: 3rem 5rem 2rem 5rem;
   align-content: center;
   grid-template-columns: 1fr 1fr 1fr;
   .item {
-    max-height: 20rem;
-    min-height: 20rem;
-    max-width: 20rem;
-    min-width: 20rem;
+    height: auto;
+    max-width: 18rem;
+    min-width: 18rem;
     background-color: $green;
     border-radius: 10%;
     display: flex;
@@ -46,19 +83,5 @@ $light-green: #9ff0ee;
       transition: ease-in-out 0.3s;
     }
   }
-  .item:nth-of-type(1) {
-    max-height: auto;
-    min-height: auto;
-    max-width: auto;
-    min-width: auto;
-    width: 100%;
-    grid-column: 1/4;
-    height: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    color: $black;
-    box-shadow:none;
-  }
+ 
 }

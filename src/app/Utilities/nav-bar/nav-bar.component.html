@@ -1,15 +1,14 @@
 <section class="navigation">
   <div class="nav-container">
     <div class="brand">
-      <a>
-        <span><i class="fa-solid fa-tooth"></i></span>
-        <span class="lcc">
-          LCC
-        </span>
+      <a><span><img src="../../../assets/images/logo.png" alt=""></span>
       </a>
     </div>
     <nav>
       <ul class="nav-list">
+        <li>
+          <a routerLink="{{signUp.path}}" *ngIf="_authService.loggedIn()"> Dashboard </a>
+        </li>
         <li *ngFor="let route of routes">
           <a routerLink="{{ route.path }}" routerLinkActive="router-link-active">{{ route.name }}</a>
         </li>

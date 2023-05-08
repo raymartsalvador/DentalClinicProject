@@ -16,36 +16,26 @@ $darkblue: #0d63a0;
 .navigation {
   height: $nav-height;
   background: $nav-background;
+  margin-bottom: 3rem;
+  flex: auto;
+
 }
 
 .nav-container {
-  max-width: $content-width;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0 1rem;
+
 }
 
 .brand {
   position: absolute;
-  padding-left: 20px;
+  padding-left: 0px;
   float: left;
   line-height: $nav-height;
   text-transform: uppercase;
   font-size: 1.4em;
-  margin: 0.5rem;
-  i {
-    font-size: 2.7rem;
-    color: $darkblue;
-    margin-right: -0.8rem;
-  }
-  .lcc {
-    font-size: 3rem;
-    color: $darkblue;
-  }
-  a,
-  a:visited {
-    color: $nav-font-color;
-    text-decoration: none;
-    font-weight: 600;
-  }
+  margin:0;
+
 }
 nav {
   float: right;
@@ -58,7 +48,7 @@ nav {
       position: relative;
       a {
         display: block;
-        padding: 10px 20px 0 20px;
+        padding: 10px 20px 0 10px;
         line-height: 50px;
         background: $nav-background;
         color: $nav-font-color;
