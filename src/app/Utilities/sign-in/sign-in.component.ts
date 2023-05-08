@@ -16,11 +16,15 @@ export class SignInComponent implements OnInit {
       (res) => {
         console.log(res);
         localStorage.setItem('token', res.token);
-        this._router.navigate(['/specialEvent'])
+        // Redirect to home page if login is successful
+        this._router.navigate(['/home']);
       },
       (err) => console.log(err)
     );
   }
+
+
+
 
   onPressingForgotPassword() {}
   onPressingSignUp() {}

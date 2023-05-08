@@ -6,7 +6,13 @@ $nav-font-color: #0c0c0c;
 $link-hover-color: #00b2bf;
 $darkblue: #0d63a0;
 
-
+.user-icon {
+  color: $link-hover-color;
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: 50%;
+  font-size: 1rem;
+}
 .navigation {
   height: $nav-height;
   background: $nav-background;
@@ -25,12 +31,12 @@ $darkblue: #0d63a0;
   text-transform: uppercase;
   font-size: 1.4em;
   margin: 0.5rem;
-  i{
+  i {
     font-size: 2.7rem;
-    color: $darkblue ;
+    color: $darkblue;
     margin-right: -0.8rem;
   }
-  .lcc{
+  .lcc {
     font-size: 3rem;
     color: $darkblue;
   }
@@ -44,9 +50,9 @@ $darkblue: #0d63a0;
 nav {
   float: right;
   ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
     li {
       float: left;
       position: relative;
@@ -58,23 +64,22 @@ nav {
         color: $nav-font-color;
         text-decoration: none;
 
-
-         &::before {
-           transition: 300ms;
-           height: 5px;
-           content: "";
-           position: absolute;
-           background-color: $link-hover-color;
-           width: 0%;
-           bottom: 0px;
+        &::before {
+          transition: 300ms;
+          height: 5px;
+          content: "";
+          position: absolute;
+          background-color: $link-hover-color;
+          width: 0%;
+          bottom: 0px;
         }
 
-        &:hover::before{
+        &:hover::before {
           width: 70%;
         }
         &:not(:only-child):after {
           padding-left: 4px;
-          content: ' ▾';
+          content: " ▾";
         }
       } // Dropdown list
       ul li {
@@ -88,140 +93,32 @@ nav {
   }
 }
 
-
-
 $color_1: #0c0c0c;
 $color_2: #fff;
 $background-color_1: #fff;
 $background-color_2: #00b2bf;
 
 .nav-dropdown {
-	display: none;
-	position: absolute;
-	z-index: 1;
-	background-color: $background-color_1;
-	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-	li {
-		display: block;
-		a {
-			padding: 10px;
-			color: $color_1;
-			text-decoration: none;
-			&:hover {
-				background-color: $background-color_2;
-				color: $color_2;
-			}
-		}
-	}
-}
-li {
-	&:hover {
-		>.nav-dropdown {
-			display: block;
-		}
-	}
-}
-
-
-@media only screen and (max-width: $breakpoint) {
-  .nav-mobile {
-    display: block;
-  }
-  nav {
-      width: 100%;
-      padding: $nav-height 0 15px;
-    ul {
-      display: none;
-
-      li{
-        float: none;
-
-        a {
-          padding: 15px;
-          line-height: 20px;
-
-          &:hover::before{
-            width: 20%;
-          }
-        }
-        ul li a {
-          padding-left: 30px;
-        }
-      }
-    }
-  }
-  .nav-dropdown {
-    position: static;
-  }
-}
-
-#nav-toggle {
+  display: none;
   position: absolute;
-  left: 18px;
-  top: 22px;
-  cursor: pointer;
-  padding: 10px 35px 16px 0px;
-  span,
-  span:before,
-  span:after {
-    cursor: pointer;
-    border-radius: 1px;
-    height: 5px;
-    width: 35px;
-    background: $link-hover-color;
-    position: absolute;
+  z-index: 1;
+  background-color: $background-color_1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  li {
     display: block;
-    content: '';
-    transition: all 300ms ease-in-out;
-  }
-  span:before {
-    top: -10px;
-  }
-  span:after {
-    bottom: -10px;
-  }
-  &.active span {
-    background-color: transparent;
-    &:before,
-    &:after {
-      top: 0;
-    }
-    &:before {
-      transform: rotate(45deg);
-    }
-    &:after {
-      transform: rotate(-45deg);
+    a {
+      padding: 10px;
+      color: $color_1;
+      text-decoration: none;
+      &:hover {
+        background-color: $background-color_2;
+        color: $color_2;
+      }
     }
   }
 }
 
-@media only screen and (max-width: $breakpoint) {
-  .nav-mobile {
-    display: block;
-  }
-  nav {
-    width: 100%;
-    padding: $nav-height 0 15px;
-    ul {
-      display: none;
-      li {
-        float: none;
-        a {
-          padding: 15px;
-          line-height: 20px;
-        }
-        ul li a {
-          padding-left: 30px;
-        }
-      }
-      .nav-dropdown {
-        display: block;
-        position: static;
-      }
-    }
-  }
-}
 .hr hr {
-background-color: $link-hover-color;
-height: 1px;
+  background-color: $link-hover-color;
+  height: 1px;
 }

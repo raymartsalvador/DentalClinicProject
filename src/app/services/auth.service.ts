@@ -1,38 +1,32 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-interface User {
-  email: string;
-  password: string;
-}
-
-interface AuthResponse {
-  success: boolean;
-  token: string;
-}
-
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
-  private _registerUrl = "http://localhost:3000/api/register";
-  private _loginUrl = "http://localhost:3000/api/login";
+  private _registerUrl = 'http://localhost:3000/api/register';
+  private _loginUrl = 'http://localhost:3000/api/login';
 
-  constructor(private _http: HttpClient) {}
+  constructor(private http: HttpClient, private _router: Router) {}
 
-  registerUser(user: User): Observable<AuthResponse> {
-    return this._http.post<AuthResponse>(this._registerUrl, user);
+  registerUser(user: any) {
+    return this.http.post<any>(this._registerUrl, user);
   }
 
-  loginUser(user: User): Observable<AuthResponse> {
-     return this._http.post<AuthResponse>(this._loginUrl, user);
+  loginUser(user: any) {
+    return this.http.post<any>(this._loginUrl, user);
   }
 
-  isLoggedIn(): boolean {
-    // Check if user is logged in by checking the presence of token in local storage
-    const token = localStorage.getItem('token');
-    return !!token;
+  logoutUser() {
+    localStorage.removeItem('token');
+    this._router.navigate(['/home']);
   }
 
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
 }

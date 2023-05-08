@@ -5,21 +5,35 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutComponent } from './about/about.component';
 import { SignInComponent } from './Utilities/sign-in/sign-in.component';
 import { SignUpComponent } from './Utilities/sign-up/sign-up.component';
-import { SpecialEventComponent } from './Utilities/special-event/special-event.component';
+import { AuthGuard } from './auth.guard';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { AuthService } from './services/auth.service';
+import { OurServicesComponent } from './our-services/our-services.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'contact', component: ContactUsComponent },
-  { path: 'services', component: HomeComponent },
+  { path: 'services', component: OurServicesComponent },
   { path: 'aboutUs', component: AboutComponent },
   { path: 'signIn', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
-  { path: 'specialEvent', component: SpecialEventComponent }
+  {
+    path: 'adminDashboard',
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'userDashboard',
+    component: UserDashboardComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers:[AuthGuard, AuthService]
 })
 export class AppRoutingModule {}

@@ -14,9 +14,12 @@ import { FooterComponent } from './Utilities/footer/footer.component';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { ForgotPasswordComponent } from './Utilities/forgot-password/forgot-password.component';
 import { SignUpComponent } from './Utilities/sign-up/sign-up.component';
-import { AuthService } from './services/auth.service';
 import { SpecialEventComponent } from './Utilities/special-event/special-event.component';
 import { EventsComponent } from './Utilities/events/events.component';
+import { AuthGuard } from './auth.guard';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { EventsComponent } from './Utilities/events/events.component';
     ForgotPasswordComponent,
     SignUpComponent,
     SpecialEventComponent,
-    EventsComponent
+    EventsComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,7 @@ import { EventsComponent } from './Utilities/events/events.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
