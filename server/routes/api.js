@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/user");
 const mongoose = require("mongoose");
 const db =
-  "mongodb+srv://user:E1l79iXG86enMmyL@cluster0.yuik2c0.mongodb.net/DentalClinic";
+  "mongodb+srv://user:rm@cluster0.yuik2c0.mongodb.net/DentalClinic";
 
 async function connect() {
   try {
@@ -23,16 +23,26 @@ router.get("/", (req, res) => {
 
 router.post("/register", async (req, res) => {
   let userData = req.body;
+
+  // Check if username and password match the condition for admin role
+  if (userData.email === "admin@admin.com" && userData.password === "admin1234") {
+    userData.roles = ["admin"];
+  } else {
+    userData.roles = ["user"];
+  }
+
   let user = new User(userData);
   try {
     const registeredUser = await user.save();
-    let payload = {subject: registeredUser._id}
-    let token = jwt.sign(payload, 'secretKey')
-    res.status(200).send({token});
+    let payload = { subject: registeredUser._id };
+    let token = jwt.sign(payload, 'secretKey');
+    res.status(200).send({ token });
   } catch (error) {
     console.log(error);
+    res.status(500).send("Server error");
   }
 });
+
 
 router.post("/login", async (req, res) => {
   let userData = req.body;

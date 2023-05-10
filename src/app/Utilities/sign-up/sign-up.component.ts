@@ -9,7 +9,7 @@
   })
   export class SignUpComponent implements OnInit {
 
-    registerUserData = {firstName:'',lastName:'', email:'', password: '',  isAdmin:false };
+    registerUserData = {firstName:'',lastName:'', email:'', password: '' };
 
     constructor(private _auth: AuthService, private _router: Router) {}
 
