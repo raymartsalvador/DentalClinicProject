@@ -7,7 +7,7 @@
     <nav>
       <ul class="nav-list">
         <li>
-          <a routerLink="{{signUp.path}}" *ngIf="_authService.loggedIn()"> Dashboard </a>
+          <a routerLink="{{dashBoard.path}}" *ngIf="_authService.loggedIn()"> {{dashBoard.name}} </a>
         </li>
         <li *ngFor="let route of routes">
           <a routerLink="{{ route.path }}" routerLinkActive="router-link-active">{{ route.name }}</a>

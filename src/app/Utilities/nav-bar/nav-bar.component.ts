@@ -15,6 +15,7 @@ export class NavBarComponent {
   @Input() routes: any = [{ name: '', path: '' }];
   @Input() signIn: any = [{ name: '', path: '' }];
   @Input() signUp: any = [{ name: '', path: '' }];
+  @Input() dashBoard: any = [{ name: '', path: '' }];
 
   onToggleSignUp() {
     this.i++;

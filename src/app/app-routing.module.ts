@@ -11,6 +11,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { AuthService } from './services/auth.service';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { AdminGuard } from './admin.guard';
+import { DashBoardComponent } from './Utilities/dash-board/dash-board.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'aboutUs', component: AboutComponent },
   { path: 'signIn', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
+  { path: 'dashBoard', component: DashBoardComponent },
   {
     path: 'adminDashboard',
     component: AdminDashboardComponent,

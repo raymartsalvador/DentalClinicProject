@@ -20,6 +20,9 @@ import { AuthGuard } from './auth.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DashBoardComponent } from './Utilities/dash-board/dash-board.component';
+import { AuthService } from './services/auth.service';
+import { AdminGuard } from './admin.guard';
 
 @NgModule({
   declarations: [
@@ -33,11 +36,10 @@ import { ProfileComponent } from './profile/profile.component';
     OurServicesComponent,
     ForgotPasswordComponent,
     SignUpComponent,
-    SpecialEventComponent,
-    EventsComponent,
     AdminDashboardComponent,
     UserDashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    DashBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,7 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,AuthService,AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
