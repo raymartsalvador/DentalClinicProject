@@ -10,6 +10,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AuthService } from './services/auth.service';
 import { OurServicesComponent } from './our-services/our-services.component';
+import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,7 +23,7 @@ const routes: Routes = [
   {
     path: 'adminDashboard',
     component: AdminDashboardComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'userDashboard',
@@ -34,6 +35,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers:[AuthGuard, AuthService]
+  providers:[AuthGuard, AuthService,AdminGuard]
 })
 export class AppRoutingModule {}

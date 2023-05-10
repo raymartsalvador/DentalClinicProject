@@ -53,16 +53,19 @@ router.post("/login", async (req, res) => {
     } else if (user.password !== userData.password) {
       res.status(401).send("invalid password");
     } else {
-
-    let payload = {subject: user._id}
-    let token = jwt.sign(payload, 'secretKey')
-      res.status(200).send({token});
+      let payload = {
+        subject: user._id,
+        role: user.roles // Include the role in the payload
+      };
+      let token = jwt.sign(payload, 'secretKey');
+      res.status(200).send({ token });
     }
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
   }
 });
+
 
 function verifyToken(req, res, next) {
   if(!req.headers.authorization) {
