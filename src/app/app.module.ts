@@ -23,6 +23,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { DashBoardComponent } from './Utilities/dash-board/dash-board.component';
 import { AuthService } from './services/auth.service';
 import { AdminGuard } from './admin.guard';
+import { ManageServicesComponent } from './admin-exclusive/manage-services/manage-services.component';
+import { ManageUsersComponent } from './admin-exclusive/manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { AdminGuard } from './admin.guard';
     AdminDashboardComponent,
     UserDashboardComponent,
     ProfileComponent,
-    DashBoardComponent
+    DashBoardComponent,
+    ManageServicesComponent,
+    ManageUsersComponent
   ],
   imports: [
     BrowserModule,
