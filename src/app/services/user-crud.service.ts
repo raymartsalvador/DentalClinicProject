@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserCrudService {
@@ -18,14 +19,16 @@ export class UserCrudService {
   }
 
   createUser(user: any) {
-    return this.http.post<any>(`${this.apiUrl}/register`, user);
+    return this.http.post<any>(`${this.apiUrl}/users`, user);
   }
 
-  updateUser(userId: string, user: any) {
-    return this.http.put<any>(`${this.apiUrl}/users/${userId}`, user);
+  updateUser(userId: string, user: any, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.apiUrl}/users/${userId}`, user, { headers });
   }
 
-  deleteUser(userId: string) {
-    return this.http.delete<any>(`${this.apiUrl}/users/${userId}`);
+
+  deleteUser(userId: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/deleteuser/${userId}`);
   }
 }

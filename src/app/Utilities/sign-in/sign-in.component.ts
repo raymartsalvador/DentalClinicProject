@@ -17,7 +17,7 @@ export class SignInComponent implements OnInit {
         console.log(res);
         localStorage.setItem('token', res.token);
         // Redirect to home page if login is successful
-        this._router.navigate(['/home']);
+        this._router.navigate(['/dashBoard']);
       },
       (err) => console.log(err)
     );
