@@ -1,29 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
-export class UserCrud {
-  private apiUrl = 'http://localhost:3000/api/users';
+export class UserCrudService {
+  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {}
 
-  getUsers() {
-    return this.http.get<any[]>(this.apiUrl);
+  getUsers(token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.apiUrl}/getusers`, { headers });
   }
 
-  getUserById(userId: string) {
-    return this.http.get<any>(`${this.apiUrl}/${userId}`);
+  getUserById(userId: string, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiUrl}/users/${userId}`, { headers });
   }
 
   createUser(user: any) {
-    return this.http.post<any>(this.apiUrl, user);
+    return this.http.post<any>(`${this.apiUrl}/register`, user);
   }
 
   updateUser(userId: string, user: any) {
-    return this.http.put<any>(`${this.apiUrl}/${userId}`, user);
+    return this.http.put<any>(`${this.apiUrl}/users/${userId}`, user);
   }
 
   deleteUser(userId: string) {
-    return this.http.delete<any>(`${this.apiUrl}/${userId}`);
+    return this.http.delete<any>(`${this.apiUrl}/users/${userId}`);
   }
 }

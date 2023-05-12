@@ -14,8 +14,6 @@ import { FooterComponent } from './Utilities/footer/footer.component';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { ForgotPasswordComponent } from './Utilities/forgot-password/forgot-password.component';
 import { SignUpComponent } from './Utilities/sign-up/sign-up.component';
-import { SpecialEventComponent } from './Utilities/special-event/special-event.component';
-import { EventsComponent } from './Utilities/events/events.component';
 import { AuthGuard } from './auth.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
@@ -28,6 +26,8 @@ import { ManageUsersComponent } from './admin-exclusive/manage-users/manage-user
 import { ManageScheduleComponent } from './admin-exclusive/manage-schedule/manage-schedule.component';
 import { ManagePatientsComponent } from './admin-exclusive/manage-patients/manage-patients.component';
 import { AppointmentsComponent } from './user-exclusive/appointments/appointments.component';
+import { DatePipe } from '@angular/common';
+import { UserCrudService } from './services/user-crud.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,7 @@ import { AppointmentsComponent } from './user-exclusive/appointments/appointment
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthGuard,AuthService,AdminGuard],
+  providers: [AuthGuard,AuthService,AdminGuard,DatePipe,UserCrudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

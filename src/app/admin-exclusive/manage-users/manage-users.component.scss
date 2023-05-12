@@ -1,0 +1,23 @@
+$white: #fff;
+$black: #0c0c0c;
+$green: #00b2bf;
+$darkblue: #0d63a0;
+$light-green: #9ff0ee;
+.container{
+  border: 1px solid $black;
+  margin: 1rem;
+  border-radius: 1rem;
+  .content ul{
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(4,1fr);
+    border-bottom: 1px solid $green;
+    border-radius: 1rem;
+    li{
+      text-decoration: none;
+      list-style: none;
+      border-radius: 10px;
+      text-align: center;
+    }
+  }
+}

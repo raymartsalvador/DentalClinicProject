@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,11 +12,18 @@ export class SignUpComponent implements OnInit {
   OnSignIn() {
     this._router.navigate(['/signIn']);
   }
-
-  registerUserData = { firstName: '', lastName: '', email: '', password: '' };
-
-  constructor(private _auth: AuthService, private _router: Router) {}
-
+  constructor(
+    private _auth: AuthService,
+    private _router: Router,
+    private datePipe: DatePipe
+  ) {}
+  registerUserData = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    dateAdded: this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss')
+  };
   registerUser() {
     this._auth.registerUser(this.registerUserData).subscribe(
       (res) => {

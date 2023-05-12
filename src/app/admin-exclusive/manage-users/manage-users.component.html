@@ -1,1 +1,30 @@
-<div>admin Users works</div>
+<div class="container">
+  <div class="head">
+    <div class="content">
+      <ul>
+        <li>EMAIL</li>
+        <li>NAME</li>
+        <li>DATE ADDED</li>
+        <input type="text" placeholder="search" name="" id="">
+      </ul>
+    </div>
+  </div>
+  <div class="table">
+    <div class="content">
+      <ul>
+        <li>lemon@grass.com</li>
+        <li>Lemon Grass</li>
+        <li>June 13, 2000</li>
+        <li><a href="#">UPDATE</a></li>
+      </ul>
+      <div *ngFor="let user of users">
+        <ul>
+          <li>{{ user.email }}</li>
+          <li>{{ user.firstName }} {{ user.lastName }}</li>
+          <li>{{ user.dateAdded | date }}</li> <!-- Assuming dateAdded is a valid date field in the user object -->
+          <li><a href="#">UPDATE</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

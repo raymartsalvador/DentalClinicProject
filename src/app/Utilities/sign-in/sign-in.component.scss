@@ -115,7 +115,6 @@ body {
   width: auto;
 }
 .box-form .right button {
-  float: right;
   color: #fff;
   font-size: 16px;
   padding: 12px 35px;
@@ -128,7 +127,6 @@ body {
 }
 
 .box-form .right button:hover {
-  float: right;
   color: #fff;
   font-size: 16px;
   padding: 12px 35px;
@@ -148,7 +146,6 @@ label {
 label::before {
   content: ' \f00c';
   position: absolute;
-  font-family: FontAwesome;
   background: transparent;
   border: 3px solid $green;
   border-radius: 4px;
@@ -158,7 +155,6 @@ label::before {
 }
 
 label:hover::before {
-  font-family: FontAwesome;
   content: ' \f00c';
   color: #fff;
   cursor: pointer;

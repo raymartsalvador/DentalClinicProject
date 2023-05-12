@@ -1,10 +1,9 @@
 const express = require("express");
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 const User = require("../models/user");
 const mongoose = require("mongoose");
-const db =
-  "mongodb+srv://user:rm@cluster0.yuik2c0.mongodb.net/DentalClinic";
+const db = "mongodb+srv://user:rm@cluster0.yuik2c0.mongodb.net/DentalClinic";
 
 async function connect() {
   try {
@@ -25,7 +24,10 @@ router.post("/register", async (req, res) => {
   let userData = req.body;
 
   // Check if username and password match the condition for admin role
-  if (userData.email === "admin@admin.com" && userData.password === "admin1234") {
+  if (
+    userData.email === "admin@admin.com" &&
+    userData.password === "admin1234"
+  ) {
     userData.roles = ["admin"];
   } else {
     userData.roles = ["user"];
@@ -35,14 +37,13 @@ router.post("/register", async (req, res) => {
   try {
     const registeredUser = await user.save();
     let payload = { subject: registeredUser._id };
-    let token = jwt.sign(payload, 'secretKey');
+    let token = jwt.sign(payload, "secretKey");
     res.status(200).send({ token });
   } catch (error) {
     console.log(error);
     res.status(500).send("Server error");
   }
 });
-
 
 router.post("/login", async (req, res) => {
   let userData = req.body;
@@ -55,9 +56,9 @@ router.post("/login", async (req, res) => {
     } else {
       let payload = {
         subject: user._id,
-        role: user.roles // Include the role in the payload
+        role: user.roles, // Include the role in the payload
       };
-      let token = jwt.sign(payload, 'secretKey');
+      let token = jwt.sign(payload, "secretKey");
       res.status(200).send({ token });
     }
   } catch (error) {
@@ -67,21 +68,15 @@ router.post("/login", async (req, res) => {
 });
 
 
-function verifyToken(req, res, next) {
-  if(!req.headers.authorization) {
-    return res.status(401).send('Unauthorized request')
+router.get("/getusers", async (req, res) => {
+  try {
+    const users = await User.find({}, { password: 0 }); // Exclude the password field from the returned users
+    res.status(200).json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
   }
-  let token = req.headers.authorization.split(' ')[1]
-  if(token === 'null') {
-    return res.status(401).send('Unauthorized request')
-  }
-  let payload = jwt.verify(token, 'secretKey')
-  if(!payload) {
-    return res.status(401).send('Unauthorized request')
-  }
-  req.userId = payload.subject
-  next()
-}
+});
 
 
 
