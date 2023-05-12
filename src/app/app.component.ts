@@ -15,6 +15,7 @@ export class AppComponent {
   ];
 
   signIn: any = { name: 'Sign In', path: 'signIn' };
+  dashBoard: any = { name: 'Dashboard', path: 'dashBoard' };
   signUp: any = {
     name: 'Sign Up',
     path: 'signUp',
