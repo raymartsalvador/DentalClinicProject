@@ -25,6 +25,9 @@ import { AuthService } from './services/auth.service';
 import { AdminGuard } from './admin.guard';
 import { ManageServicesComponent } from './admin-exclusive/manage-services/manage-services.component';
 import { ManageUsersComponent } from './admin-exclusive/manage-users/manage-users.component';
+import { ManageScheduleComponent } from './admin-exclusive/manage-schedule/manage-schedule.component';
+import { ManagePatientsComponent } from './admin-exclusive/manage-patients/manage-patients.component';
+import { AppointmentsComponent } from './user-exclusive/appointments/appointments.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { ManageUsersComponent } from './admin-exclusive/manage-users/manage-user
     ProfileComponent,
     DashBoardComponent,
     ManageServicesComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    ManageScheduleComponent,
+    ManagePatientsComponent,
+    AppointmentsComponent
   ],
   imports: [
     BrowserModule,

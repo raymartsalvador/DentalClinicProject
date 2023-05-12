@@ -15,7 +15,12 @@ export class NavBarComponent {
   @Input() routes: any = [{ name: '', path: '' }];
   @Input() signIn: any = [{ name: '', path: '' }];
   @Input() signUp: any = [{ name: '', path: '' }];
-  @Input() dashBoard: any = [{ name: '', path: '' }];
+  @Input() dashBoard: any = { name: '', path: '' };
+  @Input() adminAccessPatient: any = { name: '', path: '' };
+  @Input() adminAccessSchedule: any = { name: '', path: '' };
+  @Input() adminAccessService: any = { name: '', path: '' };
+  @Input() adminAccessUser: any = { name: '', path: '' };
+  @Input() userAccessAppointments: any = { name: '', path: '' };
 
   onToggleSignUp() {
     this.i++;

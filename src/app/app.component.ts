@@ -16,8 +16,15 @@ export class AppComponent {
 
   signIn: any = { name: 'Sign In', path: 'signIn' };
   dashBoard: any = { name: 'Dashboard', path: 'dashBoard' };
+  adminAccessUser: any = { name: 'User', path: 'manage-users' };
+  adminAccessPatient: any = { name: 'Patient', path: 'manage-patients' };
+  adminAccessSchedule: any = { name: 'Schedule', path: 'manage-schedule' };
+  adminAccessService: any = { name: 'Services', path: 'manage-services' };
+  userAccessAppointments: any = { name: 'Appointments', path: 'appointments' };
   signUp: any = {
     name: 'Sign Up',
     path: 'signUp',
   };
+
 }
+
