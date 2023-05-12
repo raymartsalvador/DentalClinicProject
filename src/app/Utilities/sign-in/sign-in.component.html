@@ -1,18 +1,31 @@
-<div class="container">
-  <form class="form">
-    <div class="header">Sign In</div>
-    <div class="inputs">
-      <input placeholder="Email" [(ngModel)]="loginUserData.email" name="email" class="input" type="text" ngModel>
-      <input placeholder="Password"[(ngModel)]="loginUserData.password" name="password" class="input" type="password">
-      <div class="checkbox-container">
-        <label class="checkbox">
-          <input type="checkbox" id="checkbox">
-        </label>
-        <label for="checkbox" class="checkbox-text">Remember me</label>
-      </div>
-      <button class="sigin-btn" (click)="loginUser()">Submit</button>
-      <a class="forget" (click)="onPressingForgotPassword()">Forgot password ?</a>
-      <p class="signup-link">Don't have an account? <a routerLink="signIn" (click)="onPressingSignUp()">Sign up</a></p>
-    </div>
-  </form>
+<div class="box-form">
+	<div class="left">
+		<div class="overlay">
+		<h1>Log <br> In.</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		Curabitur et est sed felis aliquet sollicitudin</p>
+		</div>
+	</div>
+		<div class="right">
+		<h5>Login</h5>
+		<p>Don't have an account? <a href="#">Create An Account</a></p>
+		<div class="inputs">
+			<input placeholder="Email" [(ngModel)]="loginUserData.email" name="email" class="input" type="text" ngModel>
+			<br>
+			<input placeholder="Password"[(ngModel)]="loginUserData.password" name="password" class="input" type="password">
+		</div>
+			<br><br>
+		<div class="remember-me--forget-password">
+	<label>
+		<input type="checkbox" name="item" checked/>
+		<span class="text-checkbox">Remember Me</span>
+	</label>
+			<p><a href="#">Forgot Password</a></p>
+		</div>
+			<br>
+			<button>Login</button>
+	</div>
+
 </div>
+<br>
+<br><br>

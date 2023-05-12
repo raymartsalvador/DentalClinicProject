@@ -77,19 +77,20 @@ $light-green: #9ff0ee;
 }
 
 .button {
+  border-radius: 10px;
   border: none;
   outline: 0;
   display: f;
   padding: 8px;
   color: white;
-  background-color: #000;
+  background-color: $green;
   text-align: center;
   cursor: pointer;
   width: 100%;
 }
 
 .button:hover {
-  background-color: #555;
+  background-color: $darkblue;
 }
 
 @media screen and (max-width: 650px) {
