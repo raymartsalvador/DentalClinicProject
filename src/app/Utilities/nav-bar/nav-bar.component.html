@@ -9,8 +9,30 @@
         <li>
           <a routerLink="{{dashBoard.path}}" *ngIf="_authService.loggedIn()"> {{dashBoard.name}} </a>
         </li>
+        <li>
+          <a routerLink="{{adminAccessUser.path}}"
+            *ngIf="_authService.loggedIn()&&_authService.isAdmin()">{{adminAccessUser.name}}</a>
+        </li>
+        <li>
+          <a routerLink="{{adminAccessSchedule.path}}"
+            *ngIf="_authService.loggedIn()&&_authService.isAdmin()">{{adminAccessSchedule.name}}</a>
+        </li>
+        <li>
+          <a routerLink="{{adminAccessService.path}}"
+            *ngIf="_authService.loggedIn()&&_authService.isAdmin()">{{adminAccessService.name}}</a>
+        </li>
+        <li>
+          <a routerLink="{{adminAccessPatient.path}}"
+            *ngIf="_authService.loggedIn()&&_authService.isAdmin()">{{adminAccessPatient.name}}</a>
+        </li>
+        <li>
+          <a routerLink="{{userAccessAppointments.path}}"
+            *ngIf="_authService.loggedIn()&&!_authService.isAdmin()">{{userAccessAppointments.name}}</a>
+        </li>
         <li *ngFor="let route of routes">
-          <a routerLink="{{ route.path }}" routerLinkActive="router-link-active">{{ route.name }}</a>
+          <a routerLink="{{ route.path }}"
+            *ngIf="!_authService.loggedIn()||(_authService.loggedIn()&&!_authService.isAdmin())"
+            routerLinkActive="router-link-active">{{ route.name }}</a>
         </li>
         <li>
           <a routerLink="{{signIn.path}}" (click)="onToggleSignUp()"
@@ -24,10 +46,6 @@
           <a style="cursor: pointer;" (click)="_authService.logoutUser()" *ngIf="_authService.loggedIn()">Logout</a>
         </li>
 
-        <li>
-          <a routerLink="{{signUp.path}}" *ngIf="_authService.loggedIn()"> <span class="user-icon"><i
-                class="fas fa-user"></i></span><span>Profile</span> </a>
-        </li>
       </ul>
 
     </nav>
