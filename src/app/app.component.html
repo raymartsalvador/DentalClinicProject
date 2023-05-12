@@ -1,6 +1,8 @@
 <div>
   <div>
-    <app-nav-bar [routes]="routes" [signIn]="signIn" [signUp]="signUp" [dashBoard]="dashBoard"></app-nav-bar>
+    <app-nav-bar [adminAccessSchedule]="adminAccessSchedule" [adminAccessPatient]="adminAccessPatient"
+      [adminAccessService]="adminAccessService" [adminAccessUser]="adminAccessUser" [routes]="routes" [signIn]="signIn" [signUp]="signUp"
+      [dashBoard]="dashBoard" [userAccessAppointments]="userAccessAppointments"></app-nav-bar>
   </div>
   <router-outlet></router-outlet>
   <div>
