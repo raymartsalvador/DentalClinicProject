@@ -23,9 +23,6 @@ export class SignInComponent implements OnInit {
     );
   }
 
-
-
-
   onPressingForgotPassword() {}
   onPressingSignUp() {}
 
