@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'LCC Dental Clinic';
+  title = 'LCL Dental Clinic';
   routes: any = [
     { name: 'Home', path: 'home' },
     { name: 'Contact', path: 'contact' },
@@ -16,7 +16,7 @@ export class AppComponent {
 
   signIn: any = { name: 'Sign In', path: 'signIn' };
   dashBoard: any = { name: 'Dashboard', path: 'dashBoard' };
-  adminAccessUser: any = { name: 'User', path: 'manage-users' };
+  adminAccessUser: any = { name: 'Patients', path: 'manage-users' };
   adminAccessPatient: any = { name: 'Patient', path: 'manage-patients' };
   adminAccessSchedule: any = { name: 'Schedule', path: 'manage-schedule' };
   adminAccessService: any = { name: 'Services', path: 'manage-services' };

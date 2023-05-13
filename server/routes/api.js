@@ -2,9 +2,10 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const User = require("../models/user");
+const Service = require("../models/service");
 const mongoose = require("mongoose");
 const db = "mongodb+srv://user:rm@cluster0.yuik2c0.mongodb.net/DentalClinic";
-
+//Connect to DB
 async function connect() {
   try {
     await mongoose.connect(db);
@@ -13,13 +14,14 @@ async function connect() {
     console.error("Error connecting to mongodb", err);
   }
 }
-
 connect();
 
+// get request to API route
 router.get("/", (req, res) => {
   res.send("From API route");
 });
 
+// edit user
 router.put("/users/:id", async (req, res) => {
   const userId = req.params.id;
   const updatedUser = req.body;
@@ -33,7 +35,7 @@ router.put("/users/:id", async (req, res) => {
   }
 });
 
-
+//register user
 router.post("/register", async (req, res) => {
   let userData = req.body;
 
@@ -59,6 +61,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+//login authentication
 router.post("/login", async (req, res) => {
   let userData = req.body;
   try {
@@ -81,7 +84,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-
+//fetching users
 router.get("/getusers", async (req, res) => {
   try {
     const users = await User.find({}, { password: 0 }); // Exclude the password field from the returned users
@@ -92,6 +95,7 @@ router.get("/getusers", async (req, res) => {
   }
 });
 
+//deleting users
 router.delete("/deleteuser/:id", async (req, res) => {
   try {
     const userId = req.params.id;
@@ -100,6 +104,59 @@ router.delete("/deleteuser/:id", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
+  }
+});
+
+//==================services
+// Fetch all services
+router.get('/services', async (req, res) => {
+  try {
+    const services = await Service.find();
+    res.status(200).json(services);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+// Update a service
+router.put('/services/:id', async (req, res) => {
+  try {
+    const serviceId = req.params.id;
+    const updatedService = req.body;
+    const service = await Service.findByIdAndUpdate(serviceId, updatedService, {
+      new: true,
+    });
+    res.status(200).json(service);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+// Create a service
+router.post('/services', async (req, res) => {
+  try {
+    const serviceData = req.body;
+    const service = new Service(serviceData);
+    const savedService = await service.save();
+    res.status(200).json(savedService);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+// Delete a service
+router.delete('/services/:id', async (req, res) => {
+  try {
+    const serviceId = req.params.id;
+    const deletedService = await Service.findByIdAndDelete(serviceId);
+    if (!deletedService) {
+      return res.status(404).json({ error: 'Service not found' });
+    }
+    res.status(200).json(deletedService);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
   }
 });
 

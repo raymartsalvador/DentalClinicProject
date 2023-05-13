@@ -4,6 +4,49 @@ $green: #00b2bf;
 $darkblue: #0d63a0;
 $light-green: #9ff0ee;
 
+.add-service-block {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .form {
+    background-color: $white;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 30rem;
+    button {
+      border-radius: 2rem;
+      background-color: $darkblue;
+      border-style: none;
+      color: $white;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem 0.25rem;
+      cursor: pointer;
+      width: 20rem;
+      justify-self: center;
+
+    }
+    button:hover {
+      background-color: $light-green;
+      color: $darkblue;
+      transition: ease-in-out 0.3s;
+    }
+  }
+}
+.input {
+  border-radius: 0.2rem;
+  border: 1px solid $darkblue;
+  padding: 0.3rem 1rem;
+  margin: 0.25rem;
+}
 
 .band {
   margin-top: 50px;
@@ -41,44 +84,52 @@ $light-green: #9ff0ee;
   margin: 0;
 }
 
-section{
+section {
   display: grid;
   margin: 1rem;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  .content{
+  gap: 2rem;
+  padding: 2rem;
+  .content {
     border-radius: 0.5rem;
     background-color: $green;
     color: $white;
     text-align: center;
 
-    .icon-contain{
+    .icon-contain {
       justify-content: center;
       display: flex;
       align-items: center;
       flex-direction: column;
-      i{
+      height: 100%;
+      min-height: 20rem;
+      i {
         font-size: 3rem;
+      }
+      .text p {
+        font-size: 2rem;
       }
     }
 
-    .title{
+    .title {
       margin-top: 1rem;
       font-size: large;
     }
-    .image{
-      background-color: #0d63a0;
+    .image {
+      background-color: $green;
       height: 10rem;
       margin: 0px;
       border-radius: 0.5rem;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
     }
-    .description p{
+    .description p {
       padding: 0rem 1rem;
-      text-align: justify;
+      text-align: center;
       font-style: italic;
-
     }
-    i{
+    i {
       align-self: center;
       background-color: $light-green;
       color: $darkblue;
@@ -87,11 +138,10 @@ section{
       margin: 0rem 0.5rem 1rem 0.5rem;
       cursor: pointer;
     }
-    i:hover{
+    i:hover {
       color: $white;
       background-color: $darkblue;
-      transition: ease-in-out  0.3s;
+      transition: ease-in-out 0.3s;
     }
   }
-
 }

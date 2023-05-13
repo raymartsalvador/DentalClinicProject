@@ -9,9 +9,32 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignInComponent implements OnInit {
   loginUserData = { email: '', password: '' };
+  rememberMeChecked: boolean = false;
+
   constructor(private _auth: AuthService, private _router: Router) {}
 
-  loginUser() {
+  ngOnInit(): void {
+    const rememberedUser = localStorage.getItem('rememberedUser');
+    if (rememberedUser) {
+      // If found, populate the login form with the remembered user credentials
+      this.loginUserData = JSON.parse(rememberedUser);
+      this.rememberMeChecked = true;
+    }
+  }
+
+  storeUserCredentials(): void {
+    if (this.rememberMeChecked) {
+      // If Remember Me is checked, store the user credentials in local storage
+      localStorage.setItem('rememberedUser', JSON.stringify(this.loginUserData));
+    } else {
+      // If Remember Me is not checked, remove any previously stored user credentials
+      localStorage.removeItem('rememberedUser');
+    }
+  }
+
+  loginUser(): void {
+    this.storeUserCredentials();
+
     this._auth.loginUser(this.loginUserData).subscribe(
       (res) => {
         console.log(res);
@@ -24,9 +47,12 @@ export class SignInComponent implements OnInit {
   }
 
   onPressingForgotPassword() {}
+
   onPressingSignUp() {
     this._router.navigate(['/signUp']);
   }
 
-  ngOnInit(): void {}
+  toggleRememberMe(): void {
+    this.rememberMeChecked = !this.rememberMeChecked;
+  }
 }

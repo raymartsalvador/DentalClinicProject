@@ -28,6 +28,7 @@ import { ManagePatientsComponent } from './admin-exclusive/manage-patients/manag
 import { AppointmentsComponent } from './user-exclusive/appointments/appointments.component';
 import { DatePipe } from '@angular/common';
 import { UserCrudService } from './services/user-crud.service';
+import { ServiceCrudService } from './services/service-crud.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { UserCrudService } from './services/user-crud.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthGuard,AuthService,AdminGuard,DatePipe,UserCrudService],
+  providers: [AuthGuard,AuthService,AdminGuard,DatePipe,UserCrudService,ServiceCrudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
