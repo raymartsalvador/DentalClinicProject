@@ -1,0 +1,6 @@
+<div class="" *ngIf="_authService.isAdmin()">
+  <app-admin-dashboard></app-admin-dashboard>
+</div>
+<div class="" *ngIf="!_authService.isAdmin()">
+  <app-user-dashboard></app-user-dashboard>
+</div>

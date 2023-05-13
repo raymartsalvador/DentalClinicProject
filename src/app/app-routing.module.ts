@@ -10,6 +10,13 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AuthService } from './services/auth.service';
 import { OurServicesComponent } from './our-services/our-services.component';
+import { AdminGuard } from './admin.guard';
+import { DashBoardComponent } from './Utilities/dash-board/dash-board.component';
+import { ManageServicesComponent } from './admin-exclusive/manage-services/manage-services.component';
+import { ManageUsersComponent } from './admin-exclusive/manage-users/manage-users.component';
+import { ManageScheduleComponent } from './admin-exclusive/manage-schedule/manage-schedule.component';
+import { ManagePatientsComponent } from './admin-exclusive/manage-patients/manage-patients.component';
+import { AppointmentsComponent } from './user-exclusive/appointments/appointments.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,14 +26,40 @@ const routes: Routes = [
   { path: 'aboutUs', component: AboutComponent },
   { path: 'signIn', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
+  { path: 'dashBoard', component: DashBoardComponent },
+  {
+    path: 'manage-services',
+    component: ManageServicesComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'manage-users',
+    component: ManageUsersComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'manage-schedule',
+    component: ManageScheduleComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'manage-patients',
+    component: ManagePatientsComponent,
+    canActivate: [AdminGuard],
+  },
   {
     path: 'adminDashboard',
     component: AdminDashboardComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'userDashboard',
     component: UserDashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'appointments',
+    component: AppointmentsComponent,
     canActivate: [AuthGuard],
   },
 ];
@@ -34,6 +67,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers:[AuthGuard, AuthService]
+  providers: [AuthGuard, AuthService, AdminGuard],
 })
 export class AppRoutingModule {}

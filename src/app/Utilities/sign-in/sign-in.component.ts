@@ -1,4 +1,4 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -17,17 +17,16 @@ export class SignInComponent implements OnInit {
         console.log(res);
         localStorage.setItem('token', res.token);
         // Redirect to home page if login is successful
-        this._router.navigate(['/home']);
+        this._router.navigate(['/dashBoard']);
       },
       (err) => console.log(err)
     );
   }
 
-
-
-
   onPressingForgotPassword() {}
-  onPressingSignUp() {}
+  onPressingSignUp() {
+    this._router.navigate(['/signUp']);
+  }
 
   ngOnInit(): void {}
 }

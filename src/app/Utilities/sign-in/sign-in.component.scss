@@ -1,144 +1,178 @@
-$color_1: rgb(97 97 97);
-$color_2: #fff;
-$color_3: rgb(69 90 100);
-$color_4: #00b2bf;
-$font-family_1: Roboto, sans-serif;
-$background-color_1: #fff;
-$background-color_2: #40e2dd;
-$background-color_3: transparent;
-$background-color_4: rgba(0, 0, 0, 0.027);
+$white: #fff;
+$black: #0c0c0c;
+$green: #00b2bf;
+$darkblue: #0d63a0;
+$light-green: #9ff0ee;
 
-.container{
+body {
+  background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Open Sans", sans-serif;
+  color: #333333;
+}
+
+.box-form {
+  margin: 0 auto;
+  width: 80%;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
   display: flex;
-  justify-content: center;
+  flex: 1 1 100%;
+  align-items: stretch;
+  justify-content: space-between;
+  box-shadow: 0 0 20px 6px #090b6f85;
 }
-.form {
-	position: relative;
-	display: flex;
-  padding: 20px;
-	flex-direction: column;
-	border-radius: 0.75rem;
-	background-color: $background-color_1;
-	color: $color_1;
-	box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
-	width: 22rem;
-	background-clip: border-box;
-  border: 1px solid black;
-  margin: 2rem 0px 2rem 0px;
+@media (max-width: 980px) {
+  .box-form {
+    flex-flow: wrap;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+  }
+}
+.box-form div {
+  height: auto;
+}
+.box-form .left {
+  color: #FFFFFF;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://images.pexels.com/photos/3762453/pexels-photo-3762453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+  overflow: hidden;
+}
+.box-form .left .overlay {
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  background: #00b2bfad;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.box-form .left .overlay h1 {
+  font-size: 10vmax;
+  line-height: 1;
+  font-weight: 900;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.box-form .left .overlay span p {
+  margin-top: 30px;
+  font-weight: 900;
+}
+.box-form .left .overlay span a {
+  background: #3b5998;
+  color: #FFFFFF;
+  margin-top: 10px;
+  padding: 14px 50px;
+  border-radius: 100px;
+  display: inline-block;
+  box-shadow: 0 3px 6px 1px #042d4657;
+}
+.box-form .left .overlay span a:last-child {
+  background: #1dcaff;
+  margin-left: 30px;
+}
+.box-form .right {
+  padding: 40px;
+  overflow: hidden;
+}
+@media (max-width: 980px) {
+  .box-form .right {
+    width: 100%;
+  }
+}
+.box-form .right h5 {
+  font-size: 6vmax;
+  line-height: 0;
+}
+.box-form .right p {
+  font-size: 14px;
+  color: #B0B3B9;
+}
+.box-form .right .inputs {
+  overflow: hidden;
+}
+.box-form .right input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 25px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #B0B3B9;
+}
+.box-form .right .remember-me--forget-password {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box-form .right .remember-me--forget-password input {
+  margin: 0;
+  margin-right: 7px;
+  width: auto;
+}
+.box-form .right button {
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 35px;
+  border-radius: 50px;
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  box-shadow: 0px 4px 20px 0px $light-green;
+  background-image: linear-gradient(135deg, $green 10%, $light-green 100%);
+}
 
+.box-form .right button:hover {
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 35px;
+  border-radius: 50px;
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  box-shadow: 0px 4px 20px 0px $darkblue;
+  background-image: linear-gradient(135deg, $darkblue 10%, $light-green 100%);
 }
-.header {
-	position: relative;
-	background-clip: border-box;
-	background-color: $background-color_2;
-	background-image: linear-gradient(to top right,#40e2dd,#42a5f5);
-	margin: 10px;
-	border-radius: 0.75rem;
-	overflow: hidden;
-	color: $color_2;
-	box-shadow: 0 0 #0000,0 0 #0000,0 0 #0000,0 0 #0000,rgba(33,150,243,.4);
-	height: 7rem;
-	letter-spacing: 0;
-	line-height: 1.375;
-	font-weight: 600;
-	font-size: 1.9rem;
-	font-family: $font-family_1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+label {
+  display: block;
+  position: relative;
+  margin-left: 30px;
 }
-.inputs {
-	padding: 1.5rem;
-	gap: 1rem;
-	display: flex;
-	flex-direction: column;
+
+label::before {
+  content: ' \f00c';
+  position: absolute;
+  background: transparent;
+  border: 3px solid $green;
+  border-radius: 4px;
+  color: transparent;
+  left: -30px;
+  transition: all 0.2s linear;
 }
-.input-container {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	min-width: 200px;
-	width: 100%;
-	height: 2.75rem;
-	position: relative;
+
+label:hover::before {
+  content: ' \f00c';
+  color: #fff;
+  cursor: pointer;
+  background: $green;
 }
-.input {
-	border: 1px solid rgba(128, 128, 128, 0.61);
-	outline: 0;
-	color: $color_3;
-	font-weight: 400;
-	font-size: .9rem;
-	line-height: 1.25rem;
-	padding: 0.75rem;
-	background-color: $background-color_3;
-	border-radius: .375rem;
-	width: 90%;
-	height: 100%;
-	&:focus {
-		border: 1px solid #1e88e5;
-	}
+
+label:hover::before .text-checkbox {
+  background: $green;
 }
-.checkbox-container {
-	margin-left: -0.625rem;
-	display: inline-flex;
-	align-items: center;
+
+label span.text-checkbox {
+  display: inline-block;
+  height: auto;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s linear;
 }
-.checkbox {
-	position: relative;
-	overflow: hidden;
-	padding: .55rem;
-	border-radius: 999px;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	justify-content: center;
-	background-color: $background-color_4;
-	height: 35px;
-	width: 35px;
-	input {
-		width: 100%;
-		height: 100%;
-		cursor: pointer;
-	}
-}
-.checkbox-text {
-	cursor: pointer;
-}
-.sigin-btn {
-	text-transform: uppercase;
-	font-weight: 700;
-	font-size: .75rem;
-	line-height: 1rem;
-	text-align: center;
-	padding: .75rem 1.5rem;
-	background-color: $background-color_2;
-	background-image: linear-gradient(to top right,#40e2dd,#42a5f5);
-	border-radius: .5rem;
-	width: 100%;
-	outline: 0;
-	border: 0;
-	color: $color_2;
-}
-.signup-link {
-	line-height: 1.5;
-	font-weight: 300;
-	font-size: 0.875rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	a {
-		line-height: 1.5;
-		font-weight: 700;
-		font-size: .875rem;
-		margin-left: .25rem;
-		color: $color_4;
-	}
-}
-.forget {
-	line-height: 1.5;
-	font-weight: 700;
-	font-size: .875rem;
-	margin-left: .25rem;
-	color: $color_4;
-	text-align: right;
+
+label input[type="checkbox"] {
+  display: none;
 }

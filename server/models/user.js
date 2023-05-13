@@ -6,7 +6,9 @@ const userSchema = new Schema({
   lastName: String,
   email: String,
   password: String,
-  isAdmin:Boolean,
+  roles: [{ type: String }],
+  dateAdded: { type: Date, default: Date.now }
 })
+
 module.exports = mongoose.model('user', userSchema, 'users')
 console.log();
