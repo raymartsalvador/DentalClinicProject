@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'LCC Dental Clinic';
+  title = 'LCL Dental Clinic';
   routes: any = [
     { name: 'Home', path: 'home' },
     { name: 'Contact', path: 'contact' },

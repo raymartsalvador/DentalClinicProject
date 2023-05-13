@@ -57,8 +57,12 @@ section{
       display: flex;
       align-items: center;
       flex-direction: column;
+      height: 100%;
       i{
         font-size: 3rem;
+      }
+      .text p{
+        font-size: 2rem;
       }
     }
 
