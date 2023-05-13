@@ -20,6 +20,20 @@ router.get("/", (req, res) => {
   res.send("From API route");
 });
 
+router.put("/users/:id", async (req, res) => {
+  const userId = req.params.id;
+  const updatedUser = req.body;
+
+  try {
+    const user = await User.findByIdAndUpdate(userId, updatedUser, { new: true });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+});
+
+
 router.post("/register", async (req, res) => {
   let userData = req.body;
 

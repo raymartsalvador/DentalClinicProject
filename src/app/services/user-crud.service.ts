@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable()
 export class UserCrudService {
@@ -29,6 +29,14 @@ export class UserCrudService {
 
 
   deleteUser(userId: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/deleteuser/${userId}`);
+    return this.http.delete(`${this.apiUrl}/deleteuser/${userId}`, { responseType: 'text' })
+      .pipe(
+        catchError((error: any) => {
+          console.error('Error deleting user:', error);
+          // Handle error, show an error message, etc.
+          return throwError(error);
+        })
+      );
   }
+
 }

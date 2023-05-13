@@ -4,7 +4,7 @@
   </div>
 </div>
 <div class="add">
-  <span><i class="fa-solid fa-plus"></i></span>
+  <span><a (click)="openAddUserPopup()"><i class="fa-solid fa-plus"></i></a></span>
   <span>
     <h4>ADD USERS</h4>
   </span>
@@ -29,10 +29,9 @@
           <li>{{ user.dateAdded | date }}</li> <!-- Assuming dateAdded is a valid date field in the user object -->
           <li>
             <a (click)="viewUserDetails(user)"><i class="fa-solid fa-eye"></i></a>
-            <a (click)="editUserDetails(user)"><i
-                class="fas fa-edit"></i></a>
-            <a><i class="fa-solid fa-delete-left"></i></a>
-            <a><i class="fa-solid fa-download"></i></a>
+            <a (click)="editUser(user)"><i class="fas fa-edit"></i></a>
+            <a (click)="confirmDelete(user)"><i class="fa-solid fa-delete-left"></i></a>
+            <a (click)="downloadPDF(user)"><i class="fa-solid fa-download"></i></a>
           </li>
         </ul>
       </div>
@@ -54,5 +53,52 @@
       <button class="close-button" (click)="closePopup()">Close</button>
     </div>
   </div>
+  <div class="popup-overlay" *ngIf="editMode">
+    <div class="popup-content">
+      <h4>Edit User</h4>
+      <form (submit)="updateUser()">
+        <input [(ngModel)]="editSelectedUser.email" name="email" placeholder="Email" required>
+        <input [(ngModel)]="editSelectedUser.firstName" name="firstName" placeholder="First Name" required>
+        <input [(ngModel)]="editSelectedUser.lastName" name="lastName" placeholder="Last Name" required>
+        <input [(ngModel)]="editSelectedUser.password" type="password" name="password" placeholder="password" required>
+        <!-- Add more input fields as needed -->
+
+        <div class="button-container">
+          <button class="close-button" type="submit">Save</button>
+          <button class="close-button" type="button" (click)="cancelEdit()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="popup-overlay" *ngIf="showAddUserPopup">
+    <div class="popup-content">
+      <h4>Add User</h4>
+      <form (submit)="addUser()">
+        <input [(ngModel)]="newUser.email" name="email" placeholder="Email" required>
+        <input [(ngModel)]="newUser.firstName" name="firstName" placeholder="First Name" required>
+        <input [(ngModel)]="newUser.lastName" name="lastName" placeholder="Last Name" required>
+        <input [(ngModel)]="newUser.password" type="password" name="password" placeholder="Password" required>
+        <!-- Add more input fields as needed -->
+        <p *ngIf="isDuplicateEmail" class="error-message">Duplicate/invalid email or name. Please enter a valid email.
+        </p>
+
+        <div class="button-container">
+          <button class="close-button" type="submit">Save</button>
+          <button class="close-button" type="button" (click)="closeAddUserPopup()">Close</button>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+  <div class="popup-overlay" *ngIf="showConfirmationPopup">
+    <div class="popup-content">
+      <p>Are you sure you want to delete this user?</p>
+      <button class="close-button" (click)="deleteUser()">Yes</button>
+      <button class="close-button" (click)="cancelDelete()">No</button>
+    </div>
+  </div>
+
+
 
 </div>
