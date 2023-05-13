@@ -10,10 +10,38 @@ export class ManageServicesComponent implements OnInit {
   services: any[] = [];
   showAddServiceBlock: boolean = false;
   newService: any = {};
+  showEditServiceBlock: boolean = false;
+  selectedService: any = {};
   constructor(private serviceCrudService: ServiceCrudService) {}
 
   ngOnInit(): void {
     this.getServices();
+  }
+
+  //updating a service
+
+  // Function to edit a service
+  editService(service: any): void {
+    this.selectedService = { ...service };
+    this.showEditServiceBlock = true;
+  }
+
+  // Function to update a service
+  updateService(): void {
+    const { _id, ...updatedService } = this.selectedService;
+    this.serviceCrudService.updateService(_id, updatedService).subscribe(
+      (response) => {
+        // Service updated successfully
+        console.log('Service updated:', response);
+        // Hide the edit service block
+        this.showEditServiceBlock = false;
+        // Refresh the list of services
+        this.getServices();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
   //deleting a service
   deleteService(_id: string): void {
