@@ -1,3 +1,7 @@
+.contain-all{
+  display: grid;
+  grid-template-columns: 1fr;
+}
 .wrapper {
   display: flex;
   justify-content: center;
@@ -262,13 +266,10 @@ p {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 0 auto;
+  gap: 2rem;
 }
 
 .service {
-  margin-top: 20px;
-  margin-bottom: 50px;
   background-color: transparent;
   width: 250px;
   padding: 1px;

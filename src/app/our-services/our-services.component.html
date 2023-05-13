@@ -4,103 +4,26 @@
     <p>What We Offer</p>
   </div>
 </div>
-  <section>
-    <div class="row">
-      <div class="column">
-        <div class="card">
-          <div class="icon-wrapper">
-            <i class="fas fa-teeth"></i>
-          </div>
-          <h3>Service Heading</h3>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-            consequatur necessitatibus eaque.
-          </p>
-          <div class="btn">
-            <a href="#">Make An Appointment</a>
-            <a href="#">View</a>
-          </div>
+<section>
+  <div class="row">
+    <div *ngFor="let service of services" class="column">
+      <div class="card" >
+        <div class="img" [style.backgroundImage]="'url(' + service.imageLink+ ')'">
+          <div class="blend"></div>
         </div>
-      </div>
-      <div class="column">
-        <div class="card">
-          <div class="icon-wrapper">
-            <i class="fas fa-tooth"></i>
-          </div>
-          <h3>Service Heading</h3>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-            consequatur necessitatibus eaque.
-          </p>
-          <div class="btn">
-            <a href="#">Make An Appointment</a>
-            <a href="#">View</a>
-          </div>
+        <div class="icon-wrapper">
+          <i class="fas fa-teeth"></i>
         </div>
-      </div>
-      <div class="column">
-        <div class="card">
-          <div class="icon-wrapper">
-            <i class="fas fa-stethoscope"></i>
-          </div>
-          <h3>Service Heading</h3>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-            consequatur necessitatibus eaque.
-          </p>
-          <div class="btn">
-            <a href="#">Make An Appointment</a>
-            <a href="#">View</a>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="card">
-          <div class="icon-wrapper">
-            <i class="fas fa-user-doctor"></i>
-          </div>
-          <h3>Service Heading</h3>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-            consequatur necessitatibus eaque.
-          </p>
-          <div class="btn">
-            <a href="#">Make An Appointment</a>
-            <a href="#">View</a>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="card">
-          <div class="icon-wrapper">
-            <i class="fas fa-vials"></i>
-          </div>
-          <h3>Service Heading</h3>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-            consequatur necessitatibus eaque.
-          </p>
-          <div class="btn">
-            <a href="#">Make An Appointment</a>
-            <a href="#">View</a>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="card">
-          <div class="icon-wrapper">
-            <i class="fas fa-tablets"></i>
-          </div>
-          <h3>Service Heading</h3>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-            consequatur necessitatibus eaque.
-          </p>
-            <div class="btn">
-            <a href="#">Make An Appointment</a>
-            <a href="#">View</a>
-          </div>
+        <h3>{{service.title}}</h3>
+        <p>
+          {{service.description}}
+        </p>
+
+        <div class="btn">
+          <a  (click)="OnMakeAppointment()">Make An Appointment</a>
         </div>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>

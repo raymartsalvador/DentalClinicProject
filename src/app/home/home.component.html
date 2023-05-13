@@ -1,94 +1,93 @@
-<div class="wrapper">
-  <div class="image-container">
-    <div class="image">
-      <img src="../../../assets/images/graphic-pedeatric-dentistry.png" alt="home page image">
+<div class="contain-all">
+  <div class="wrapper">
+    <div class="image-container">
+      <div class="image">
+        <img src="../../../assets/images/graphic-pedeatric-dentistry.png" alt="home page image">
+      </div>
+    </div>
+    <div class="text-container">
+      <div class="text">
+        <h3>Welcome to our clinic</h3>
+        <h1>Smile brighter,<br> Live healthier. <br> One tooth at a time.</h1>
+        <p>Enhancing smiles, improving lives</p>
+        <button (click)="OnMakeAnAppointment()">Make an Appointment</button>
+      </div>
     </div>
   </div>
-  <div class="text-container">
-    <div class="text">
-      <h3>Welcome to our clinic</h3>
-      <h1>Smile brighter,<br> Live healthier. <br> One tooth at a time.</h1>
-      <p>Enhancing smiles, improving lives</p>
-      <button>Make an Appointment</button>
-    </div>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
   </div>
-</div>
-<div class="social-icons">
-  <a href="#"><i class="fab fa-facebook-f"></i></a>
-  <a href="#"><i class="fab fa-twitter"></i></a>
-  <a href="#"><i class="fab fa-instagram"></i></a>
-  <a href="#"><i class="fab fa-youtube"></i></a>
-</div>
 
-<div class="band">Get in touch with us today at +63 912 345 6789</div>
+  <div class="band">Get in touch with us today at +63 912 345 6789</div>
 
-<div class="detail-home">
-  <div class="text-container">
-    <div class="text">
-      <h3>RELAX YOUR DENTIST KNOWS THE BEST</h3><br>
-      <h4>Dental hygiene never forget!</h4>
-      <p>Lorem ipsum something.</p>
-      <h4>Dental hygiene never forget!</h4>
-      <p>Lorem ipsum something.</p>
-      <h4>Dental hygiene never forget!</h4>
-      <p>Lorem ipsum something.</p>
+  <div class="detail-home">
+    <div class="text-container">
+      <div class="text">
+        <h3>RELAX YOUR DENTIST KNOWS THE BEST</h3><br>
+        <h4>Do not forget your dental hygene!</h4>
+        <p>Dental hygiene is essential for maintaining strong and healthy teeth. Regular brushing, flossing, and routine
+          dental check-ups help prevent cavities, gum disease, and other oral health issues. Neglecting dental hygiene
+          can
+          lead to painful toothaches and expensive dental treatments in the future.</p>
+        <h4>Always consult to your dentist!</h4>
+        <p>Consulting a dentist is important because they are trained professionals who can assess and diagnose any
+          potential dental issues. Dentists can provide personalized recommendations and treatments to address specific
+          dental concerns. Regular dental check-ups also help detect problems early on, preventing them from escalating
+          into more serious conditions.</p>
+        <h4>Dental hygiene never forget!</h4>
+        <p>Lorem ipsum something.</p>
+      </div>
+    </div>
+    <div class="image-container">
+      <div class="image">
+        <img src="../../../assets/images/Illus-01B-1.png" alt="home page image">
+      </div>
     </div>
   </div>
-  <div class="image-container">
-    <div class="image">
-      <img src="../../../assets/images/Illus-01B-1.png" alt="home page image">
-    </div>
-  </div>
-</div>
 
-<div class="service-offerings">
-  <div class="offering">
-    <div class="icon">
-      <i class="fas fa-tooth"></i>
+  <div class="service-offerings">
+    <div class="offering">
+      <div class="icon">
+        <i class="fas fa-tooth"></i>
+      </div>
+      <h3>Dental Implants</h3>
+      <p>Replace missing teeth with natural-looking implants that function like real teeth.</p>
     </div>
-    <h3>Dental Implants</h3>
-    <p>Replace missing teeth with natural-looking implants that function like real teeth.</p>
-  </div>
-  <div class="offering">
-    <div class="icon">
-      <i class="fas fa-stethoscope "></i>
+    <div class="offering">
+      <div class="icon">
+        <i class="fas fa-stethoscope "></i>
+      </div>
+      <h3>Cosmetic Dentistry</h3>
+      <p>Enhance your smile and improve your self-confidence with our range of cosmetic dental treatments.</p>
     </div>
-    <h3>Cosmetic Dentistry</h3>
-    <p>Enhance your smile and improve your self-confidence with our range of cosmetic dental treatments.</p>
-  </div>
-  <div class="offering">
-    <div class="icon">
-      <i class="fas fa-smile"></i>
+    <div class="offering">
+      <div class="icon">
+        <i class="fas fa-smile"></i>
+      </div>
+      <h3>Dental Cleanings</h3>
+      <p>Maintain optimal oral health with our comprehensive dental cleaning services.</p>
     </div>
-    <h3>Dental Cleanings</h3>
-    <p>Maintain optimal oral health with our comprehensive dental cleaning services.</p>
-  </div>
-  <div class="offering">
-    <div class="icon">
-      <i class="fas fa-teeth"></i>
+    <div class="offering">
+      <div class="icon">
+        <i class="fas fa-teeth"></i>
+      </div>
+      <h3>General Dentistry</h3>
+      <p>Keep your teeth and gums healthy with our range of general dentistry services.</p>
     </div>
-    <h3>General Dentistry</h3>
-    <p>Keep your teeth and gums healthy with our range of general dentistry services.</p>
   </div>
-</div>
 
-<div class="services-section">
-  <h2>Our Services</h2>
-  <h3>Pain-free procedures in dentistry</h3>
-  <div class="services-grid">
-    <div class="service">
-      <h4>Teeth Service</h4>
-      <p>Description of Teeth Service goes here</p>
+  <div class="services-section">
+    <h2>Our Services</h2>
+    <h3>Pain-free procedures in dentistry</h3>
+    <div class="services-grid">
+      <div class="service" *ngFor="let service of services">
+        <h4>{{service.title}}</h4>
+        <p>{{service.description}}</p>
+      </div>
     </div>
-    <div class="service">
-      <h4>Teeth Service</h4>
-      <p>Description of Teeth Service goes here</p>
-    </div>
-    <div class="service">
-      <h4>Teeth Service</h4>
-      <p>Description of Teeth Service goes here</p>
-    </div>
-
+    <a (click)="OnOurServices()" class="btn">Our Services</a>
   </div>
-  <a href="#" class="btn">Our Services</a>
 </div>

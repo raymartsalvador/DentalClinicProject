@@ -14,7 +14,7 @@ $light-green: #9ff0ee;
   z-index: 999;
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   .form {
     background-color: $white;
     display: grid;
@@ -102,6 +102,7 @@ section {
       align-items: center;
       flex-direction: column;
       height: 100%;
+      min-height: 20rem;
       i {
         font-size: 3rem;
       }
