@@ -5,28 +5,25 @@
   </div>
 </div>
 <section>
-
-  <div class="content">
-
-    <div class="image">
+  <div class="content" *ngFor="let service of services">
+    <div class="image" [style.backgroundImage]="'url(' + service.imageLink + ')'">
     </div>
     <div class="title">
-      Teeth Whitening
+      {{ service.title }}
     </div>
     <div class="description">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam soluta qui maxime aliquid explicabo alias, modi
-        quam blanditiis quos minus.</p>
-
+        {{service.description}}
+      </p>
       <a class="btn"><i class="fas fa-edit"></i></a>
-      <a class="btn"><i class="fas fa-trash"></i></a>
+      <a class="btn" (click)="deleteService(service._id)"><i class="fas fa-trash"></i></a>
     </div>
   </div>
 
 
   <div class="content">
     <div class="icon-contain">
-      <a href="">
+      <a (click)="showAddService()">
         <i class="fas fa-plus"></i>
       </a>
       <div class="text">
@@ -34,5 +31,17 @@
       </div>
     </div>
   </div>
+  <div class="add-service-block" *ngIf="showAddServiceBlock">
+    <form class="form" (submit)="addService()">
+      <input class="input" type="text" name='title' placeholder="Title" [(ngModel)]="newService.title" required>
+      <input class="input" type="text" name=description placeholder="Description" [(ngModel)]="newService.description">
+      <input class="input" type="text" name="imageLink" placeholder="Image Link" [(ngModel)]="newService.imageLink"
+        required>
+        <button type="submit">ADD</button>
+        <button (click)="hideAddService()">CANCEL</button>
+    </form>
+  </div>
+
+
 
 </section>

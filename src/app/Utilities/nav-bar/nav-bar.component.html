@@ -22,10 +22,6 @@
             *ngIf="_authService.loggedIn()&&_authService.isAdmin()">{{adminAccessService.name}}</a>
         </li>
         <li>
-          <a routerLink="{{adminAccessPatient.path}}"
-            *ngIf="_authService.loggedIn()&&_authService.isAdmin()">{{adminAccessPatient.name}}</a>
-        </li>
-        <li>
           <a routerLink="{{userAccessAppointments.path}}"
             *ngIf="_authService.loggedIn()&&!_authService.isAdmin()">{{userAccessAppointments.name}}</a>
         </li>
