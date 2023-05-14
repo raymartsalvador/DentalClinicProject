@@ -1,0 +1,27 @@
+$white: #fff;
+$black: #0c0c0c;
+$green: #00b2bf;
+$darkblue: #0d63a0;
+$light-green: #9ff0ee;
+
+.contain {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 2rem;
+  margin: 1rem;
+  .calendar {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 20px #ccc;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    background-color: $light-green ;
+  }
+  .form{
+    border: 1px solid #ccc;
+    box-shadow: 0 0 20px #ccc;
+    padding: 1rem;
+    .form-group{
+      margin-bottom: 1rem;
+    }
+  }
+}

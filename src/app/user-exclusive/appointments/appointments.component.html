@@ -2,7 +2,7 @@
   <div class="calendar">
     <app-calendar></app-calendar>
   </div>
-  <form (ngSubmit)="submitForm()">
+  <form class="form" (submit)="submitForm()">
     <div>
       <label for="service">Select a service:</label>
       <select id="service" name="service" [(ngModel)]="selectedService">
@@ -11,17 +11,16 @@
         <option value="service3">Service 3</option>
       </select>
     </div>
-
     <div>
       <label for="date">Select a date:</label>
       <input type="date" id="date" name="date" [(ngModel)]="selectedDate">
     </div>
-
     <div>
-      <label for="hours">Select hours:</label>
-      <input type="number" id="hours" name="hours" min="1" max="24" [(ngModel)]="selectedHours">
+      <label for="time">Select time:</label>
+      <input type="time" id="time" name="time" [(ngModel)]="selectedTime">
     </div>
-
     <button type="submit">Submit</button>
   </form>
+
+
 </div>

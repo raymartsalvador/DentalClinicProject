@@ -1,28 +1,33 @@
-<div class="containerr">
+<div class="container">
   <div class="calendar-controls">
-    <button (click)="changeView('month')">Month</button>
-    <button (click)="changeView('week')">Week</button>
-    <button (click)="changeView('day')">Day</button>
+    <p>DENTIST'S AVAILABILITY</p>
+    <button class="calendar-buttons" (click)="prevMonth()"><i class="fa-solid fa-arrow-left"></i></button>
+    <button class="calendar-buttons" (click)="nextMonth()"><i class="fa-solid fa-arrow-right"></i></button>
+    <button class="calendar-buttons" (click)="changeView('week')">Week</button>
+    <button class="calendar-buttons" (click)="changeView('day')">Day</button>
   </div>
-   <mwl-calendar-month-view
-    *ngIf="currentView === 'month'"
-    [viewDate]="viewDate"
-    [events]="events"
-    (dayClicked)="changeView('day', $event)"
-  ></mwl-calendar-month-view>
-  <div class="week">
-    <mwl-calendar-week-view
-      *ngIf="currentView === 'week'"
+  <div class="selected-date"><p>{{ getCurrentDate() }}</p></div>
+  <div class="scrollable">
+    <mwl-calendar-month-view
+      *ngIf="currentView === 'month'"
       [viewDate]="viewDate"
       [events]="events"
       (dayClicked)="changeView('day', $event)"
-    ></mwl-calendar-week-view>
-  </div>
-  <div class="day">
-    <mwl-calendar-day-view
-      *ngIf="currentView === 'day'"
-      [viewDate]="viewDate"
-      [events]="events"
-    ></mwl-calendar-day-view>
+    ></mwl-calendar-month-view>
+    <div class="week">
+      <mwl-calendar-week-view
+        *ngIf="currentView === 'week'"
+        [viewDate]="viewDate"
+        [events]="events"
+        (dayClicked)="changeView('day', $event)"
+      ></mwl-calendar-week-view>
+    </div>
+    <div class="day">
+      <mwl-calendar-day-view
+        *ngIf="currentView === 'day'"
+        [viewDate]="viewDate"
+        [events]="events"
+      ></mwl-calendar-day-view>
+    </div>
   </div>
 </div>
