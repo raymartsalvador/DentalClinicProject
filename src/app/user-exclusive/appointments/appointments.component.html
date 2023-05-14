@@ -1,1 +1,27 @@
-<p>appointments works!</p>
+<div class="contain">
+  <div class="calendar">
+    <app-calendar></app-calendar>
+  </div>
+  <form (ngSubmit)="submitForm()">
+    <div>
+      <label for="service">Select a service:</label>
+      <select id="service" name="service" [(ngModel)]="selectedService">
+        <option value="service1">Service 1</option>
+        <option value="service2">Service 2</option>
+        <option value="service3">Service 3</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="date">Select a date:</label>
+      <input type="date" id="date" name="date" [(ngModel)]="selectedDate">
+    </div>
+
+    <div>
+      <label for="hours">Select hours:</label>
+      <input type="number" id="hours" name="hours" min="1" max="24" [(ngModel)]="selectedHours">
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>

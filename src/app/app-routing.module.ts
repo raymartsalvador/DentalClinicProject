@@ -17,6 +17,7 @@ import { ManageUsersComponent } from './admin-exclusive/manage-users/manage-user
 import { ManageScheduleComponent } from './admin-exclusive/manage-schedule/manage-schedule.component';
 import { ManagePatientsComponent } from './admin-exclusive/manage-patients/manage-patients.component';
 import { AppointmentsComponent } from './user-exclusive/appointments/appointments.component';
+import { CalendarComponent } from './Utilities/calendar/calendar.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'signIn', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
   { path: 'dashBoard', component: DashBoardComponent },
+  { path: 'calendar', component: CalendarComponent },
   {
     path: 'manage-services',
     component: ManageServicesComponent,

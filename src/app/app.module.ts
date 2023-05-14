@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
 import { HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,9 +25,16 @@ import { ManageUsersComponent } from './admin-exclusive/manage-users/manage-user
 import { ManageScheduleComponent } from './admin-exclusive/manage-schedule/manage-schedule.component';
 import { ManagePatientsComponent } from './admin-exclusive/manage-patients/manage-patients.component';
 import { AppointmentsComponent } from './user-exclusive/appointments/appointments.component';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { UserCrudService } from './services/user-crud.service';
 import { ServiceCrudService } from './services/service-crud.service';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarComponent } from './Utilities/calendar/calendar.component';
+
 
 @NgModule({
   declarations: [
@@ -50,13 +56,19 @@ import { ServiceCrudService } from './services/service-crud.service';
     ManageUsersComponent,
     ManageScheduleComponent,
     ManagePatientsComponent,
-    AppointmentsComponent
+    AppointmentsComponent,
+    CalendarComponent,
   ],
   imports: [
+    CommonModule,
+    BrowserAnimationsModule,
     BrowserModule,
+    NgbModalModule,
+     FlatpickrModule.forRoot(),
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [AuthGuard,AuthService,AdminGuard,DatePipe,UserCrudService,ServiceCrudService],
   bootstrap: [AppComponent]
