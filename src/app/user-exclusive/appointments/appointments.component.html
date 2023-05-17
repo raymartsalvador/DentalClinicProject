@@ -3,24 +3,20 @@
     <app-calendar></app-calendar>
   </div>
   <form class="form" (submit)="submitForm()">
-    <div>
-      <label for="service">Select a service:</label>
-      <select id="service" name="service" [(ngModel)]="selectedService">
-        <option value="service1">Service 1</option>
-        <option value="service2">Service 2</option>
-        <option value="service3">Service 3</option>
-      </select>
-    </div>
+    <label for="service">Select a service:</label>
+    <select id="service" name="service" [(ngModel)]="selectedService">
+      <option *ngFor="let service of services" [value]="service.title">
+        {{ service.title }}
+      </option>
+    </select>
     <div>
       <label for="date">Select a date:</label>
-      <input type="date" id="date" name="date" [(ngModel)]="selectedDate">
+      <input type="date" id="date" name="date" [(ngModel)]="selectedDate" />
     </div>
     <div>
       <label for="time">Select time:</label>
-      <input type="time" id="time" name="time" [(ngModel)]="selectedTime">
+      <input type="time" id="time" name="time" [(ngModel)]="selectedTime" />
     </div>
     <button type="submit">Submit</button>
   </form>
-
-
 </div>

@@ -9,6 +9,7 @@ $light-green: #9ff0ee;
   grid-template-columns: 2fr 1fr;
   grid-gap: 2rem;
   margin: 1rem;
+
   .calendar {
     border: 1px solid #ccc;
     box-shadow: 0 0 20px #ccc;
@@ -16,12 +17,47 @@ $light-green: #9ff0ee;
     padding: 2rem;
     background-color: $light-green ;
   }
-  .form{
+
+  .form {
     border: 1px solid #ccc;
     box-shadow: 0 0 20px #ccc;
+    border-radius: 0.5rem;
+    background-color: $light-green ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
     padding: 1rem;
-    .form-group{
-      margin-bottom: 1rem;
+
+    input {
+      border-radius: 1rem;
+      border: 1px solid $darkblue;
+      padding: 0.3rem 1rem;
+      margin: 0.25rem;
+    }
+
+    select {
+      border: 1px solid $darkblue;
+      padding: 0.3rem 1rem;
+      margin: 0.25rem;
+      height: 2rem;
+    }
+
+    button {
+      border: 1px solid $darkblue;
+      background-color: $darkblue;
+      color: white;
+      padding: 0.3rem 1rem;
+      margin: 0.25rem;
+      height: 2rem;
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: $white;
+      color: $darkblue;
+      transition: ease-in-out 0.3s;
     }
   }
 }

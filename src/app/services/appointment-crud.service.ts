@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -25,5 +25,12 @@ export class AppointmentCrudService {
 
   deleteAppointment(appointmentId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiBaseUrl}/appointments/${appointmentId}`);
+  }
+
+  checkAvailability(startTime: Date, endTime: Date): Observable<boolean> {
+    const params = new HttpParams()
+      .set('startTime', startTime.toISOString())
+      .set('endTime', endTime.toISOString());
+    return this.http.get<boolean>(`${this.apiBaseUrl}/appointments/availability`, { params });
   }
 }
