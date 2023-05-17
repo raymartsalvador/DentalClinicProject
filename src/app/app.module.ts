@@ -34,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarComponent } from './Utilities/calendar/calendar.component';
+import { MessageBlockComponent } from './Utilities/message-block/message-block.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { CalendarComponent } from './Utilities/calendar/calendar.component';
     ManagePatientsComponent,
     AppointmentsComponent,
     CalendarComponent,
+    MessageBlockComponent,
   ],
   imports: [
     CommonModule,

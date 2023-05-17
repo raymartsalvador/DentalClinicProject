@@ -31,6 +31,7 @@ export class AppointmentCrudService {
     const params = new HttpParams()
       .set('startTime', startTime.toISOString())
       .set('endTime', endTime.toISOString());
+
     return this.http.get<boolean>(`${this.apiBaseUrl}/appointments/availability`, { params });
   }
 }

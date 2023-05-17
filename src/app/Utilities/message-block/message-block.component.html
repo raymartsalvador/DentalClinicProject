@@ -1,0 +1,7 @@
+<!-- message-block.component.html -->
+<div class="popup-overlay" *ngIf="showMessageBlock">
+  <div class="popup-content">
+    <p>{{ message }}</p>
+    <button class="close-button" (click)="close()">Close</button>
+  </div>
+</div>

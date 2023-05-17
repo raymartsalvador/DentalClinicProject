@@ -213,5 +213,26 @@ router.delete("/appointments/:id", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+// Check appointment availability
+router.get("/appointments/availability", async (req, res) => {
+  try {
+    const startTime = new Date(req.query.startTime);
+    const endTime = new Date(req.query.endTime);
+
+    const overlappingAppointments = await Appointment.find({
+      $or: [
+        { start: { $lt: endTime }, end: { $gt: startTime } }, // Appointment starts before the selected end time and ends after the selected start time
+        { start: { $gte: startTime, $lte: endTime } }, // Appointment starts between the selected start and end time
+        { end: { $gte: startTime, $lte: endTime } } // Appointment ends between the selected start and end time
+      ]
+    });
+
+    const isAvailable = overlappingAppointments.length === 0;
+    res.status(200).json(isAvailable);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+});
 
 module.exports = router;
