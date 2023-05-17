@@ -1,12 +1,14 @@
 <div class="container">
   <div class="calendar-controls">
     <p>DENTIST'S AVAILABILITY</p>
-    <button class="calendar-buttons" (click)="prevMonth()"><i class="fa-solid fa-arrow-left"></i></button>
-    <button class="calendar-buttons" (click)="nextMonth()"><i class="fa-solid fa-arrow-right"></i></button>
+    <button class="calendar-buttons" (click)="prev()"><i class="fa-solid fa-arrow-left"></i></button>
+    <button class="calendar-buttons" (click)="next()"><i class="fa-solid fa-arrow-right"></i></button>
+    <button class="calendar-buttons" (click)="changeView('month')">Month</button>
     <button class="calendar-buttons" (click)="changeView('week')">Week</button>
     <button class="calendar-buttons" (click)="changeView('day')">Day</button>
   </div>
-  <div class="selected-date"><p>{{ getCurrentDate() }}</p></div>
+
+  <div class="selected-date"><p><span>Calendar Date: </span><span>{{ getCurrentDate() }}</span></p></div>
   <div class="scrollable">
     <mwl-calendar-month-view
       *ngIf="currentView === 'month'"
