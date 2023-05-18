@@ -1,0 +1,121 @@
+$white: #fff;
+$black: #0c0c0c;
+$green: #00b2bf;
+$darkblue: #0d63a0;
+$light-green: #9ff0ee;
+
+.band {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 6rem;
+  background-color: #00b2bf;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: thin;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  width: 100%;
+}
+.band-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.band h3 {
+  font-size: 1rem;
+
+  color: white;
+  margin: 0;
+}
+
+.band p {
+  font-size: 0.8rem;
+
+  color: rgb(255, 255, 255);
+  margin: 0;
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+  select{
+    width:auto;
+  }
+}
+
+.form-field label {
+  margin-right: 10px;
+}
+
+.contain {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 2rem;
+  margin: 1rem;
+
+  .calendar {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 20px #ccc;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    background-color: $light-green ;
+  }
+
+  .form {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 20px #ccc;
+    border-radius: 0.5rem;
+    background-color: $light-green ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: center;
+
+    input {
+      border-radius: 1rem;
+      border: 1px solid $darkblue;
+      padding: 0.3rem 1rem;
+      margin: 0.25rem;
+    }
+
+    select {
+      border: 1px solid $darkblue;
+      padding: 0.3rem 1rem;
+      margin: 0.25rem;
+      height: 2rem;
+    }
+
+    button {
+      border: 1px solid $darkblue;
+      background-color: $darkblue;
+      color: white;
+      padding: 0.3rem 1rem;
+      margin: 0.25rem;
+      height: 2rem;
+      border-radius: 1rem;
+      max-width: 50%;
+      width: 50%;
+      align-self: center;
+      cursor: pointer;
+      margin-top: 4rem;
+    }
+    button.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    button:hover {
+      background-color: $white;
+      color: $darkblue;
+      transition: ease-in-out 0.3s;
+    }
+  }
+}

@@ -1,1 +1,60 @@
-<p>appointments works!</p>
+<div class="band">
+  <div class="band-content">
+    <h3>MAKE APPOINTMENTS</h3>
+    <p>We will do out best to accommodate you!</p>
+  </div>
+</div>
+<div class="contain">
+  <div class="calendar">
+    <app-calendar></app-calendar>
+  </div>
+  <form class="form" (submit)="submitForm()" #appointmentForm="ngForm">
+    <div class="form-field">
+      <label for="service">SERVICE</label>
+      <select
+        id="service"
+        name="service"
+        [(ngModel)]="selectedService"
+        required
+      >
+        <option *ngFor="let service of services" [value]="service.title">
+          {{ service.title }}
+        </option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="date">DATE</label>
+      <input
+        type="date"
+        id="date"
+        name="date"
+        [(ngModel)]="selectedDate"
+        required
+      />
+    </div>
+    <div class="form-field">
+      <label for="time">TIME</label>
+      <input
+        type="time"
+        id="time"
+        name="time"
+        [(ngModel)]="selectedTime"
+        required
+      />
+    </div>
+    <button
+      type="submit"
+      [disabled]="!appointmentForm.form.valid"
+      [class.disabled]="!appointmentForm.form.valid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+<div class="messageBlock" *ngIf="showMessageBlock">
+  <app-message-block
+    [showMessageBlock]="showMessageBlock"
+    [message]="message"
+    (onClose)="onClose()"
+  ></app-message-block>
+</div>
