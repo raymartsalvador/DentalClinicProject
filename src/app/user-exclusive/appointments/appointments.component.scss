@@ -19,6 +19,7 @@ $light-green: #9ff0ee;
   text-transform: uppercase;
   width: 100%;
 }
+
 .band-content {
   display: flex;
   flex-direction: column;
@@ -44,8 +45,9 @@ $light-green: #9ff0ee;
 .form-field {
   display: flex;
   align-items: center;
-  select{
-    width:auto;
+
+  select {
+    width: auto;
   }
 }
 
@@ -79,6 +81,12 @@ $light-green: #9ff0ee;
     padding: 1rem;
     align-items: center;
 
+    p {
+      font-size: 1.5rem;
+      margin-left:1rem ;
+      text-align: center;
+    }
+
     input {
       border-radius: 1rem;
       border: 1px solid $darkblue;
@@ -107,6 +115,7 @@ $light-green: #9ff0ee;
       cursor: pointer;
       margin-top: 4rem;
     }
+
     button.disabled {
       opacity: 0.5;
       cursor: not-allowed;

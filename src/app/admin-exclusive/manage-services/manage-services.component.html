@@ -49,6 +49,7 @@
   </div>
   <div class="add-service-block" *ngIf="showAddServiceBlock">
     <form class="form" (submit)="addService()">
+      <p style="font-weight: bold">Add Service</p>
       <input
         class="input"
         type="text"
@@ -72,20 +73,24 @@
         [(ngModel)]="newService.imageLink"
         required
       />
-      <input
-        class="input"
-        type="color"
-        name="primaryColor"
-        [(ngModel)]="newService.color.primary"
-        required
-      />
-      <input
-        class="input"
-        type="color"
-        name="secondaryColor"
-        [(ngModel)]="newService.color.secondary"
-        required
-      />
+      <div class="color-select">
+        <p>Primary</p>
+        <!-- ... -->
+        <input
+          class="color"
+          type="color"
+          name="primaryColor"
+          [(ngModel)]="selectedService.color.primary"
+        />
+        <p>Secondary</p>
+        <input
+          class="color"
+          type="color"
+          name="secondaryColor"
+          [(ngModel)]="selectedService.color.secondary"
+        />
+        <!-- ... -->
+      </div>
 
       <button type="submit">ADD</button>
       <button (click)="hideAddService()">CANCEL</button>
@@ -93,6 +98,7 @@
   </div>
   <div class="add-service-block" *ngIf="showEditServiceBlock">
     <form class="form" (submit)="updateService()">
+      <p style="font-weight: bold">Edit Service</p>
       <input
         class="input"
         type="text"
@@ -116,18 +122,25 @@
         [(ngModel)]="selectedService.imageLink"
         required
       />
-      <input
-        class="input"
-        type="color"
-        name="primaryColor"
-        [(ngModel)]="newService.color.primary"
-      />
-      <input
-        class="input"
-        type="color"
-        name="secondaryColor"
-        [(ngModel)]="newService.color.secondary"
-      />
+      <div class="color-select">
+        <p>Primary</p>
+        <!-- ... -->
+        <input
+          class="color"
+          type="color"
+          name="primaryColor"
+          [(ngModel)]="selectedService.color.primary"
+        />
+        <p>Secondary</p>
+        <input
+          class="color"
+          type="color"
+          name="secondaryColor"
+          [(ngModel)]="selectedService.color.secondary"
+        />
+        <!-- ... -->
+      </div>
+
       <button type="submit">SUBMIT</button>
       <button (click)="showEditServiceBlock = false">CANCEL</button>
     </form>

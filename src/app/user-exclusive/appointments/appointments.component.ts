@@ -1,22 +1,25 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppointmentCrudService } from 'src/app/services/appointment-crud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import jwt_decode from 'jwt-decode';
 import { ServiceCrudService } from 'src/app/services/service-crud.service';
+import { CalendarComponent } from 'src/app/Utilities/calendar/calendar.component';
 
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
-  styleUrls: ['./appointments.component.scss']
+  styleUrls: ['./appointments.component.scss'],
 })
 export class AppointmentsComponent implements OnInit {
-
   selectedService: string | undefined;
   selectedDate: Date = new Date();
   selectedTime: string = '';
   services: any[] = [];
   showMessageBlock: boolean = false;
   message: string = '';
+
+  @ViewChild(CalendarComponent)
+  private calendarComponent!: CalendarComponent;
 
   constructor(
     private _APPOINTMENT: AppointmentCrudService,
@@ -27,6 +30,7 @@ export class AppointmentsComponent implements OnInit {
   ngOnInit() {
     this.getServices();
   }
+
 
   getServices(): void {
     this._SERVICECRUD.getServices().subscribe(
@@ -64,13 +68,23 @@ export class AppointmentsComponent implements OnInit {
 
     console.log('Appointment start time:', startDateTime);
 
+    // Find the selected service in the services array
+    const selectedService = this.services.find(
+      (service) => service.title === this.selectedService
+    );
+
+    if (!selectedService) {
+      console.error('Selected service not found');
+      return;
+    }
+
     const appointment: any = {
       title: this.selectedService,
       start: startDateTime,
       end: endDateTime,
       color: {
-        primary: '#008000', // Green color
-        secondary: '#00CED1', // Blue-green color
+        primary: selectedService.color.primary, // Set the primary color from the selected service
+        secondary: selectedService.color.secondary, // Set the secondary color from the selected service
       },
     };
 
@@ -86,37 +100,40 @@ export class AppointmentsComponent implements OnInit {
         appointment.user = payload.subject;
 
         // Check if the schedule is available
-        this._APPOINTMENT.checkAvailability(appointment.start, appointment.end).subscribe(
-          (response: boolean) => {
-            if (response) {
-              // Schedule is available
-              this._APPOINTMENT.createAppointment(appointment).subscribe(
-                (response: any) => {
-                  console.log('Appointment created:', response);
-                  // Perform any additional actions after successful creation
-                  this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-                  this.message = 'Appointment created successfully.';
-                },
-                (error: any) => {
-                  console.error('Error creating appointment:', error);
-                  // Handle error case if necessary
-                  this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-                  this.message = 'Error creating appointment.';
-                }
-              );
-            } else {
-              // Schedule is unavailable
+        this._APPOINTMENT
+          .checkAvailability(appointment.start, appointment.end)
+          .subscribe(
+            (response: boolean) => {
+              if (response) {
+                // Schedule is available
+                this._APPOINTMENT.createAppointment(appointment).subscribe(
+                  (response: any) => {
+                    console.log('Appointment created:', response);
+                    // Perform any additional actions after successful creation
+                    this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
+                    this.message = 'Appointment created successfully.';
+                    this.calendarComponent.refreshCalendar(); // Call the refreshCalendar method in the CalendarComponent
+                  },
+                  (error: any) => {
+                    console.error('Error creating appointment:', error);
+                    // Handle error case if necessary
+                    this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
+                    this.message = 'Error creating appointment.';
+                  }
+                );
+              } else {
+                // Schedule is unavailable
+                this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
+                this.message = 'Selected time slot is not available.';
+              }
+            },
+            (error: any) => {
+              console.error('Error checking availability:', error);
+              // Handle error case if necessary
               this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-              this.message = 'Selected time slot is not available.';
+              this.message = 'Error checking availability.';
             }
-          },
-          (error: any) => {
-            console.error('Error checking availability:', error);
-            // Handle error case if necessary
-            this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-            this.message = 'Error checking availability.';
-          }
-        );
+          );
       } else {
         console.error('User ID not found in token');
       }
@@ -124,7 +141,7 @@ export class AppointmentsComponent implements OnInit {
       console.error('Token not found');
     }
   }
-
+ 
   onClose(): void {
     this.showMessageBlock = false;
   }
