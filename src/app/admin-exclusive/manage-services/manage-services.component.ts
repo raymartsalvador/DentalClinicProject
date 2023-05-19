@@ -12,18 +12,18 @@ export class ManageServicesComponent implements OnInit {
   newService: any = {};
   showEditServiceBlock: boolean = false;
   selectedService: any = {};
+
   constructor(private serviceCrudService: ServiceCrudService) {}
 
   ngOnInit(): void {
     this.getServices();
   }
 
-  //updating a service
-
   // Function to edit a service
   editService(service: any): void {
     this.selectedService = { ...service };
     this.showEditServiceBlock = true;
+    this.selectedService.color = this.selectedService.color || {};
   }
 
   // Function to update a service
@@ -43,7 +43,8 @@ export class ManageServicesComponent implements OnInit {
       }
     );
   }
-  //deleting a service
+
+  // Function to delete a service
   deleteService(_id: string): void {
     this.serviceCrudService.deleteService(_id).subscribe(
       (response) => {
@@ -58,31 +59,39 @@ export class ManageServicesComponent implements OnInit {
     );
   }
 
-  //adding service
+  // Function to add a service
   showAddService() {
     this.showAddServiceBlock = true;
   }
+
+  // Function to hide the add service block
   hideAddService() {
     this.showAddServiceBlock = false;
   }
-  addService(): void {
-    console.log('Adding service:', this.newService);
-    this.serviceCrudService.createService(this.newService).subscribe(
-      (response) => {
-        // Service created successfully
 
-        this.showAddServiceBlock = false;
-        this.getServices();
-        console.log('New service added:', response);
-        // ...
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+  // Function to create a new service
+  // Function to create a new service
+addService(): void {
+  console.log('Adding service:', this.newService);
+  this.newService.color = {
+    primary: this.newService.primaryColor || '',
+    secondary: this.newService.secondaryColor || ''
+  };
+  this.serviceCrudService.createService(this.newService).subscribe(
+    (response) => {
+      // Service created successfully
+      console.log('New service added:', response);
+      this.newService = {}; // Reset newService object
+      this.showAddServiceBlock = false;
+      this.getServices();
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}
 
-  //fetch all service
+  // Function to fetch all services
   getServices(): void {
     this.serviceCrudService.getServices().subscribe(
       (response) => {

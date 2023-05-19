@@ -3,8 +3,19 @@ $black: #0c0c0c;
 $green: #00b2bf;
 $darkblue: #0d63a0;
 $light-green: #9ff0ee;
+.outside-business-hours {
+  background-color: red;
+}
+
 
 .container {
+  .selected-date{
+    font-weight: 500;
+    color: $darkblue;
+    background-color: $white;
+    padding: 0.5rem 1rem;
+    border-bottom:1px solid #0d63a0;
+  }
   .scrollable {
     max-height: 100%;
     height: 50vh;

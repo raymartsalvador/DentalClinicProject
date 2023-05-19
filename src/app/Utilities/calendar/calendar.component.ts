@@ -12,6 +12,7 @@ export class CalendarComponent implements OnInit {
   events: CalendarEvent[];
   currentView: 'month' | 'week' | 'day';
   availableMonths: string[];
+  businessHours: any;
 
   constructor(private appointmentService: AppointmentCrudService) {
     this.viewDate = new Date();
@@ -23,11 +24,10 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     this.fetchAppointments();
   }
-
   fetchAppointments() {
     this.appointmentService.getAppointments().subscribe(
-      (appointments: any[]) => {
-        this.events = appointments.map((appointment) => ({
+      (data: any) => {
+        this.events = data.map((appointment: any) => ({
           title: appointment.title,
           start: new Date(appointment.start),
           end: new Date(appointment.end),
@@ -36,6 +36,8 @@ export class CalendarComponent implements OnInit {
             secondary: appointment.color.secondary,
           },
         }));
+
+        this.businessHours = data.businessHours; // Store the business hours data
       },
       (error: any) => {
         console.error('Error fetching appointments:', error);
@@ -43,10 +45,32 @@ export class CalendarComponent implements OnInit {
     );
   }
 
+
+
   changeView(view: 'month' | 'week' | 'day', event?: any) {
     this.currentView = view;
     if (event && event.day) {
       this.viewDate = event.day.date;
+    }
+  }
+
+  prev() {
+    if (this.currentView === 'month') {
+      this.prevMonth();
+    } else if (this.currentView === 'week') {
+      this.prevWeek();
+    } else if (this.currentView === 'day') {
+      this.prevDay();
+    }
+  }
+
+  next() {
+    if (this.currentView === 'month') {
+      this.nextMonth();
+    } else if (this.currentView === 'week') {
+      this.nextWeek();
+    } else if (this.currentView === 'day') {
+      this.nextDay();
     }
   }
 
@@ -61,12 +85,18 @@ export class CalendarComponent implements OnInit {
     const currentYearFromCurrentDate = currentDate.getFullYear();
 
     if (
-      (prevMonthIndex >= currentMonth && prevYear === currentYearFromCurrentDate) ||
+      (prevMonthIndex >= currentMonth &&
+        prevYear === currentYearFromCurrentDate) ||
       prevYear < currentYearFromCurrentDate
     ) {
       const selectedDate = new Date(prevYear, prevMonthIndex, 1);
       this.viewDate = selectedDate;
-      console.log('Selected month:', this.getMonthName(prevMonthIndex), 'year:', prevYear);
+      console.log(
+        'Selected month:',
+        this.getMonthName(prevMonthIndex),
+        'year:',
+        prevYear
+      );
     }
   }
 
@@ -80,13 +110,51 @@ export class CalendarComponent implements OnInit {
     const currentYearFromCurrentDate = currentDate.getFullYear();
 
     if (
-      (currentYear === currentYearFromCurrentDate && nextMonthIndex > currentMonth) ||
+      (currentYear === currentYearFromCurrentDate &&
+        nextMonthIndex > currentMonth) ||
       currentYear < currentYearFromCurrentDate
     ) {
       const selectedDate = new Date(currentYear, nextMonthIndex, 1);
       this.viewDate = selectedDate;
-      console.log('Selected month:', this.getMonthName(nextMonthIndex), 'year:', currentYear);
+      console.log(
+        'Selected month:',
+        this.getMonthName(nextMonthIndex),
+        'year:',
+        currentYear
+      );
     }
+  }
+
+  prevWeek() {
+    const selectedDate = new Date(
+      this.viewDate.getTime() - 7 * 24 * 60 * 60 * 1000
+    );
+    this.viewDate = selectedDate;
+    console.log('Selected week:', selectedDate);
+  }
+
+  nextWeek() {
+    const selectedDate = new Date(
+      this.viewDate.getTime() + 7 * 24 * 60 * 60 * 1000
+    );
+    this.viewDate = selectedDate;
+    console.log('Selected week:', selectedDate);
+  }
+
+  prevDay() {
+    const selectedDate = new Date(
+      this.viewDate.getTime() - 24 * 60 * 60 * 1000
+    );
+    this.viewDate = selectedDate;
+    console.log('Selected day:', selectedDate);
+  }
+
+  nextDay() {
+    const selectedDate = new Date(
+      this.viewDate.getTime() + 24 * 60 * 60 * 1000
+    );
+    this.viewDate = selectedDate;
+    console.log('Selected day:', selectedDate);
   }
 
   getCurrentDate(): string {
@@ -94,7 +162,42 @@ export class CalendarComponent implements OnInit {
     const year = this.viewDate.getFullYear();
     const monthName = this.getMonthName(monthIndex);
 
-    return `${monthName}, ${year}`;
+    if (this.currentView === 'month') {
+      return `${monthName} ${year}`;
+    } else if (this.currentView === 'week') {
+      const startOfWeek = this.getStartOfWeek(this.viewDate);
+      const endOfWeek = this.getEndOfWeek(this.viewDate);
+      const startMonthIndex = startOfWeek.getMonth();
+      const startMonthName = this.getMonthName(startMonthIndex);
+      const endMonthIndex = endOfWeek.getMonth();
+      const endMonthName = this.getMonthName(endMonthIndex);
+      const startDate = startOfWeek.getDate();
+      const endDate = endOfWeek.getDate();
+
+      return `${startMonthName} ${startDate} - ${endMonthName} ${endDate}, ${year}`;
+    } else if (this.currentView === 'day') {
+      const day = this.viewDate.getDate();
+      return `${monthName} ${day}, ${year}`;
+    }
+
+    return '';
+  }
+
+  getStartOfWeek(date: Date): Date {
+    const dayOfWeek = date.getDay();
+    const difference = dayOfWeek >= 1 ? dayOfWeek - 1 : 6;
+    const startOfWeek = new Date(
+      date.getTime() - difference * 24 * 60 * 60 * 1000
+    );
+    startOfWeek.setHours(0, 0, 0, 0);
+    return startOfWeek;
+  }
+
+  getEndOfWeek(date: Date): Date {
+    const startOfWeek = this.getStartOfWeek(date);
+    const endOfWeek = new Date(startOfWeek.getTime() + 6 * 24 * 60 * 60 * 1000);
+    endOfWeek.setHours(23, 59, 59, 999);
+    return endOfWeek;
   }
 
   getAvailableMonths(): string[] {
@@ -132,4 +235,5 @@ export class CalendarComponent implements OnInit {
     ];
     return monthNames[monthIndex];
   }
+
 }
