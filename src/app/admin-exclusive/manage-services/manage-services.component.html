@@ -6,20 +6,36 @@
 </div>
 <section>
   <div class="content" *ngFor="let service of services">
-    <div class="image" [style.backgroundImage]="'url(' + service.imageLink + ')'">
-    </div>
+    <div
+      class="image"
+      [style.backgroundImage]="'url(' + service.imageLink + ')'"
+    ></div>
     <div class="title">
       {{ service.title }}
     </div>
     <div class="description">
       <p>
-        {{service.description}}
+        {{ service.description }}
       </p>
-      <a class="btn" (click)="editService(service)"><i class="fas fa-edit"></i></a>
-      <a class="btn" (click)="deleteService(service._id)"><i class="fas fa-trash"></i></a>
+
+      <div class="colors">
+        <div
+          class="color-circle"
+          [style.backgroundColor]="service.color?.primary"
+        ></div>
+        <div
+          class="color-circle"
+          [style.backgroundColor]="service.color?.secondary"
+        ></div>
+      </div>
+      <a class="btn" (click)="editService(service)"
+        ><i class="fas fa-edit"></i
+      ></a>
+      <a class="btn" (click)="deleteService(service._id)"
+        ><i class="fas fa-trash"></i
+      ></a>
     </div>
   </div>
-
 
   <div class="content">
     <div class="icon-contain">
@@ -33,25 +49,87 @@
   </div>
   <div class="add-service-block" *ngIf="showAddServiceBlock">
     <form class="form" (submit)="addService()">
-      <input class="input" type="text" name='title' placeholder="Title" [(ngModel)]="newService.title" required>
-      <input class="input" type="text" name=description placeholder="Description" [(ngModel)]="newService.description">
-      <input class="input" type="text" name="imageLink" placeholder="Image Link" [(ngModel)]="newService.imageLink"
-        required>
+      <input
+        class="input"
+        type="text"
+        name="title"
+        placeholder="Title"
+        [(ngModel)]="newService.title"
+        required
+      />
+      <input
+        class="input"
+        type="text"
+        name="description"
+        placeholder="Description"
+        [(ngModel)]="newService.description"
+      />
+      <input
+        class="input"
+        type="text"
+        name="imageLink"
+        placeholder="Image Link"
+        [(ngModel)]="newService.imageLink"
+        required
+      />
+      <input
+        class="input"
+        type="color"
+        name="primaryColor"
+        [(ngModel)]="newService.color.primary"
+        required
+      />
+      <input
+        class="input"
+        type="color"
+        name="secondaryColor"
+        [(ngModel)]="newService.color.secondary"
+        required
+      />
+
       <button type="submit">ADD</button>
       <button (click)="hideAddService()">CANCEL</button>
     </form>
   </div>
   <div class="add-service-block" *ngIf="showEditServiceBlock">
     <form class="form" (submit)="updateService()">
-      <input class="input" type="text" name="title" placeholder="Title" [(ngModel)]="selectedService.title" required>
-      <input class="input" type="text" name="description" placeholder="Description" [(ngModel)]="selectedService.description">
-      <input class="input" type="text" name="imageLink" placeholder="Image Link" [(ngModel)]="selectedService.imageLink" required>
+      <input
+        class="input"
+        type="text"
+        name="title"
+        placeholder="Title"
+        [(ngModel)]="selectedService.title"
+        required
+      />
+      <input
+        class="input"
+        type="text"
+        name="description"
+        placeholder="Description"
+        [(ngModel)]="selectedService.description"
+      />
+      <input
+        class="input"
+        type="text"
+        name="imageLink"
+        placeholder="Image Link"
+        [(ngModel)]="selectedService.imageLink"
+        required
+      />
+      <input
+        class="input"
+        type="color"
+        name="primaryColor"
+        [(ngModel)]="newService.color.primary"
+      />
+      <input
+        class="input"
+        type="color"
+        name="secondaryColor"
+        [(ngModel)]="newService.color.secondary"
+      />
       <button type="submit">SUBMIT</button>
       <button (click)="showEditServiceBlock = false">CANCEL</button>
     </form>
   </div>
-
-
-
-
 </section>

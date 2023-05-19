@@ -3,6 +3,21 @@ $black: #0c0c0c;
 $green: #00b2bf;
 $darkblue: #0d63a0;
 $light-green: #9ff0ee;
+.colors {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.5rem;
+
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
 
 .add-service-block {
   position: fixed;

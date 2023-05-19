@@ -24,11 +24,10 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     this.fetchAppointments();
   }
-
   fetchAppointments() {
     this.appointmentService.getAppointments().subscribe(
       (data: any) => {
-        this.events = data.appointments.map((appointment: any) => ({
+        this.events = data.map((appointment: any) => ({
           title: appointment.title,
           start: new Date(appointment.start),
           end: new Date(appointment.end),
@@ -39,14 +38,13 @@ export class CalendarComponent implements OnInit {
         }));
 
         this.businessHours = data.businessHours; // Store the business hours data
-
-        // ...
       },
       (error: any) => {
         console.error('Error fetching appointments:', error);
       }
     );
   }
+
 
 
   changeView(view: 'month' | 'week' | 'day', event?: any) {
