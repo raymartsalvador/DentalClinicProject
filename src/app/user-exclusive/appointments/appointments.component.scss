@@ -42,6 +42,51 @@ $light-green: #9ff0ee;
   margin: 0;
 }
 
+.my-schedule {
+  background-color: $white;
+  border-radius: 1rem;
+  max-height: 17rem;
+  min-height: 7rem;
+  min-width: 15rem;
+  margin-top: 2rem;
+  border-color: $darkblue;
+  border-width: 1px 0 1px 1px; /* Top, Right, Bottom, Left */
+  border-style: solid;
+  overflow: auto;
+  .contain {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    
+    .item {
+      border-bottom: 1px solid $green;
+      min-height: 2rem;
+      font-size: 0.8rem;
+      padding: 0 1rem;
+      align-self: center;
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      .icons{
+        display: flex;
+        a{
+          color: #b94a48;
+          font-size: 1.2rem;
+          margin: 0px 5px;
+          cursor: pointer;
+        }
+      }
+      .bold{
+        font-weight: bold;
+        font-size: 0.8rem;
+        margin: 0px;
+      }
+      .date-time{
+        color: #b94a48;
+      }
+    }
+  }
+}
+
 .form-field {
   display: flex;
   align-items: center;
@@ -66,24 +111,23 @@ $light-green: #9ff0ee;
     box-shadow: 0 0 20px #ccc;
     border-radius: 0.5rem;
     padding: 2rem;
-    background-color: $light-green ;
+    background-color: $light-green;
   }
 
   .form {
     border: 1px solid #ccc;
     box-shadow: 0 0 20px #ccc;
     border-radius: 0.5rem;
-    background-color: $light-green ;
+    background-color: $light-green;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 1rem;
     padding: 1rem;
     align-items: center;
 
     p {
       font-size: 1.5rem;
-      margin-left:1rem ;
+      margin-left: 1rem;
       text-align: center;
     }
 
@@ -113,7 +157,6 @@ $light-green: #9ff0ee;
       width: 50%;
       align-self: center;
       cursor: pointer;
-      margin-top: 4rem;
     }
 
     button.disabled {

@@ -17,6 +17,7 @@ export class AppointmentsComponent implements OnInit {
   services: any[] = [];
   showMessageBlock: boolean = false;
   message: string = '';
+  myAppointments: any[] = [];
 
   @ViewChild(CalendarComponent)
   private calendarComponent!: CalendarComponent;
@@ -29,6 +30,7 @@ export class AppointmentsComponent implements OnInit {
 
   ngOnInit() {
     this.getServices();
+    this.getMyAppointments();
   }
 
 
@@ -43,6 +45,8 @@ export class AppointmentsComponent implements OnInit {
       }
     );
   }
+  
+
 
   submitForm(): void {
     if (!this.selectedService || !this.selectedDate || !this.selectedTime) {
@@ -141,7 +145,37 @@ export class AppointmentsComponent implements OnInit {
       console.error('Token not found');
     }
   }
- 
+
+
+  getMyAppointments(): void {
+    // Retrieve the user's token
+    const token = this.authService.getToken();
+
+    if (token) {
+      // Decode the token to get the user's ID
+      const payload: { subject?: string } = jwt_decode(token);
+
+      if (payload.subject) {
+        // Retrieve the appointments associated with the user's ID
+        this._APPOINTMENT.getUserAppointments(payload.subject).subscribe(
+          (response: any) => {
+            console.log('My Appointments:', response);
+            this.myAppointments = response;
+          },
+          (error: any) => {
+            console.error('Error retrieving appointments:', error);
+            // Handle error case if necessary
+          }
+        );
+      } else {
+        console.error('User ID not found in token');
+      }
+    } else {
+      console.error('Token not found');
+    }
+  }
+
+
   onClose(): void {
     this.showMessageBlock = false;
   }

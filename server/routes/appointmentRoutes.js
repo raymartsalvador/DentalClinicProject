@@ -1,11 +1,23 @@
 const express = require('express');
 const router = express.Router();
+const Appointment = require('../models/appointment');
 
-//================== Appointments
-/// Fetch all appointments
+// Fetch all appointments
 router.get("/appointments", async (req, res) => {
   try {
     const appointments = await Appointment.find().populate('user', 'firstName lastName email');
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+});
+
+// Fetch user appointments
+router.get("/appointments/user/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const appointments = await Appointment.find({ user: userId });
     res.status(200).json(appointments);
   } catch (error) {
     console.error(error);
@@ -42,17 +54,27 @@ router.post("/appointments", async (req, res) => {
 // Delete an appointment
 router.delete("/appointments/:id", async (req, res) => {
   try {
+    const userId = req.user._id; // Get the authenticated user's ID
     const appointmentId = req.params.id;
-    const deletedAppointment = await Appointment.findByIdAndDelete(appointmentId);
-    if (!deletedAppointment) {
+
+    const appointment = await Appointment.findById(appointmentId);
+    if (!appointment) {
       return res.status(404).json({ error: "Appointment not found" });
     }
-    res.status(200).json(deletedAppointment);
+
+    if (appointment.user.equals(userId) || req.user.isAdmin === true) {
+      // User can delete their own appointment or admin can delete any appointment
+      const deletedAppointment = await Appointment.findByIdAndDelete(appointmentId);
+      res.status(200).json(deletedAppointment);
+    } else {
+      return res.status(403).json({ error: "Unauthorized access" });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
   }
 });
+
 // Check appointment availability
 router.get("/appointments/availability", async (req, res) => {
   try {
@@ -74,4 +96,5 @@ router.get("/appointments/availability", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
 module.exports = router;

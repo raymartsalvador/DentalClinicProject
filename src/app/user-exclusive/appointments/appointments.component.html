@@ -53,8 +53,36 @@
     >
       Submit
     </button>
+    <div class="my-schedule">
+      <p>My Appointments</p>
+      <div class="contain">
+        <div class="item" *ngFor="let myAppointment of myAppointments">
+          <div>
+            <p class="bold">{{ myAppointment.title }}</p>
+            <span class="date-time">
+              {{ myAppointment.start | date : "MMM d, y, h:mm a" }} to
+              {{ myAppointment.end | date : "h:mm a" }}
+            </span>
+          </div>
+          <div class="icons">
+            <!-- Inside the appointment list loop -->
+            <a>
+              <i class="fas fa-trash"></i>
+            </a>
+            <a>
+              <i class="fas fa-pen"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="item" *ngIf="myAppointments.length === 0">
+          <p class="bold">No Appointments</p>
+        </div>
+      </div>
+    </div>
   </form>
 </div>
+
 <div class="messageBlock" *ngIf="showMessageBlock">
   <app-message-block
     [showMessageBlock]="showMessageBlock"

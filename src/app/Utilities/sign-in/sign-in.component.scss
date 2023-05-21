@@ -122,4 +122,17 @@ body {
       background-image: linear-gradient(135deg, $green 10%, $light-green 100%);
     }
   }
+    // Media query for phone perspective
+    @media (max-width: 768px) {
+      flex-direction: column;
+
+      .left {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .right {
+        width: 100%;
+      }
+    }
 }
