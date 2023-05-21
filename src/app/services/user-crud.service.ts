@@ -4,7 +4,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable()
 export class UserCrudService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'http://localhost:3000/api/users';
 
   constructor(private http: HttpClient) {}
 
