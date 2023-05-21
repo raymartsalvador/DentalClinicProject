@@ -1,37 +1,106 @@
-<div class="container">
-  <form class="form">
-    <p class="title">Sign Up </p>
-    <p class="message">Register now and get full access to our app. </p>
-    <div class="flex">
-      <label>
-        <input [(ngModel)]="registerUserData.firstName" name='firstName' required="" placeholder="" type="text"
-          class="input">
-        <span>Firstname</span>
-      </label>
-
-      <label>
-        <input [(ngModel)]="registerUserData.lastName" name='lastName' required="" placeholder="" type="text"
-          class="input">
-        <span>Lastname</span>
-      </label>
+<div class="box-form">
+  <!-- Left Content -->
+  <div class="left">
+    <div class="overlay">
+      <h1>Sign <br />Up</h1>
+      <p>
+        Sign Up to access our services and maximize features. LCL is here to
+        provide accessibility towards our services.
+      </p>
     </div>
+  </div>
 
-    <label>
-      <input [(ngModel)]="registerUserData.email" [(ngModel)]="registerUserData.email" name="email" required=""
-        placeholder="" type="email" class="input">
-      <span>Email</span>
-    </label>
+  <!-- Right Content -->
+  <div class="right">
+    <h5>Sign Up</h5>
+    <p>
+      Already have an account?
+      <a style="cursor: pointer; color: #0d63a0" (click)="OnSignIn()">Log In</a>
+    </p>
+    <form (submit)="registerUser()">
+      <div class="inputs">
+        <br />
+        <input
+          placeholder="Email"
+          [(ngModel)]="registerUserData.email"
+          name="email"
+          class="input"
+          type="text"
+        />
+        <br/>
+        <input
+          placeholder="Password"
+          [(ngModel)]="registerUserData.password"
+          name="password"
+          class="input"
+          type="password"
+        />
+        <input
+          placeholder="Repeat Password"
+          [(ngModel)]="registerUserData.repeatPassword"
+          name="repeatPassword"
+          class="input"
+          type="password"
+        />
+        <input
+          placeholder="First Name"
+          [(ngModel)]="registerUserData.firstName"
+          name="firstName"
+          class="input"
+          type="text"
+        />
+        <br />
+        <input
+          placeholder="Middle Name"
+          [(ngModel)]="registerUserData.middleName"
+          name="middleName"
+          class="input"
+          type="text"
+        />
+        <br />
+        <input
+          placeholder="Last Name"
+          [(ngModel)]="registerUserData.lastName"
+          name="lastName"
+          class="input"
+          type="text"
+        />
+        <br />
+        <select [(ngModel)]="registerUserData.suffix" name="suffix" class="input">
+          <option value="" disabled selected>Choose a suffix</option>
+          <option value="Jr.">Jr.</option>
+          <option value="Sr.">Sr.</option>
+          <option value="II">II</option>
+          <option value="III">III</option>
+          <option value="IV">IV</option>
+        </select>
+        <br />
 
-    <label>
-      <input [(ngModel)]="registerUserData.password" name="password" required="" placeholder="" type="password"
-        class="input">
-      <span>Password</span>
-    </label>
-    <label>
-      <input required="" placeholder="" type="password" class="input">
-      <span>Confirm password</span>
-    </label>
-    <button class="submit" (click)="registerUser()">Submit</button>
-    <p class="signin">Already have an acount ? <a style="cursor: pointer;" (click)="OnSignIn()">Signin</a> </p>
-  </form>
+        <input
+          placeholder="Phone Number"
+          [(ngModel)]="registerUserData.phone"
+          name="phone"
+          class="input"
+          type="tel"
+        />
+        <input
+          placeholder="Age"
+          [(ngModel)]="registerUserData.age"
+          name="age"
+          class="input"
+          type="number"
+        />
+        <br />
+        <input
+          placeholder="Sex"
+          [(ngModel)]="registerUserData.gender"
+          name="sex"
+          class="input"
+          type="text"
+        />
+      </div>
+      <br /><br />
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
 </div>
