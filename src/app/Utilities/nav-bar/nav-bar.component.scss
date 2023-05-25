@@ -1,30 +1,48 @@
 $content-width: 1000px;
 $breakpoint: 799px;
-$nav-height: 70px;
+$nav-height: 90px;
 $nav-background: #fff;
 $nav-font-color: #0c0c0c;
 $link-hover-color: #00b2bf;
 $darkblue: #0d63a0;
-
+.profile {
+  display: flex;
+  align-items: center;
+}
 .user-icon {
-  color: $link-hover-color;
-  background-color: #fff;
+  color: #fff;
+  background-color: $link-hover-color;
+  height: 2rem;
+  width: 2rem;
   padding: 0.5rem;
   border-radius: 50%;
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i{
+    font-size: 1.5rem;
+  }
+
 }
+
+.user-name {
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
+
 .navigation {
   height: $nav-height;
   background: $nav-background;
   margin-bottom: 3rem;
-  flex: auto;
-
 }
 
 .nav-container {
   max-width: 100%;
   margin: 0 1rem;
-
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .brand {
@@ -34,18 +52,27 @@ $darkblue: #0d63a0;
   line-height: $nav-height;
   text-transform: uppercase;
   font-size: 1.4em;
-  margin:0;
+  margin: 0;
 
+  img {
+    max-width: 100%; // Adjust the value as needed
+    height: auto;
+  }
 }
+
 nav {
-  float: right;
+  display: flex;
+  justify-content: flex-end;
+
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
+
     li {
       float: left;
       position: relative;
+
       a {
         display: block;
         padding: 10px 20px 0 10px;
@@ -67,13 +94,17 @@ nav {
         &:hover::before {
           width: 70%;
         }
+
         &:not(:only-child):after {
           padding-left: 4px;
           content: " ▾";
         }
-      } // Dropdown list
+      }
+
+      /* Dropdown list */
       ul li {
         min-width: 190px;
+
         a {
           padding: 15px;
           line-height: 20px;
@@ -94,12 +125,15 @@ $background-color_2: #00b2bf;
   z-index: 1;
   background-color: $background-color_1;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+
   li {
     display: block;
+
     a {
       padding: 10px;
       color: $color_1;
       text-decoration: none;
+
       &:hover {
         background-color: $background-color_2;
         color: $color_2;
@@ -111,4 +145,71 @@ $background-color_2: #00b2bf;
 .hr hr {
   background-color: $link-hover-color;
   height: 1px;
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+@media (max-width: $breakpoint) {
+  .nav-container {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .brand {
+    position: relative;
+    text-align: right;
+    padding-right: 1rem;
+
+    img {
+      max-width: 80px; // Adjust the value as needed
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .nav-list {
+      display: none;
+    }
+
+    .hamburger-menu {
+      display: block;
+      cursor: pointer;
+      padding: 1rem;
+      background: $nav-background;
+      color: $nav-font-color;
+      border: none;
+      font-size: 1.5rem;
+
+      &:hover {
+        background: lighten($nav-background, 10%);
+      }
+    }
+
+    .hamburger-menu-open {
+      display: block;
+    }
+  }
+
+  .nav-dropdown {
+    position: static;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      text-align: center;
+
+      a {
+        padding: 10px;
+        display: block;
+        text-align: center;
+      }
+    }
+  }
 }

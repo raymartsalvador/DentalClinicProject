@@ -33,7 +33,6 @@ export class AppointmentsComponent implements OnInit {
     this.getMyAppointments();
   }
 
-
   getServices(): void {
     this._SERVICECRUD.getServices().subscribe(
       (response) => {
@@ -45,8 +44,6 @@ export class AppointmentsComponent implements OnInit {
       }
     );
   }
-  
-
 
   submitForm(): void {
     if (!this.selectedService || !this.selectedDate || !this.selectedTime) {
@@ -115,7 +112,8 @@ export class AppointmentsComponent implements OnInit {
                     console.log('Appointment created:', response);
                     // Perform any additional actions after successful creation
                     this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-                    this.message = 'Appointment created successfully.';
+                    this.message =
+                      ' You successfully request an appointment please wait for Confirmation thru your Email or Contact number';
                     this.calendarComponent.refreshCalendar(); // Call the refreshCalendar method in the CalendarComponent
                   },
                   (error: any) => {
@@ -128,7 +126,7 @@ export class AppointmentsComponent implements OnInit {
               } else {
                 // Schedule is unavailable
                 this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-                this.message = 'Selected time slot is not available.';
+                this.message = 'Time slot has been taken';
               }
             },
             (error: any) => {
@@ -145,7 +143,6 @@ export class AppointmentsComponent implements OnInit {
       console.error('Token not found');
     }
   }
-
 
   getMyAppointments(): void {
     // Retrieve the user's token
@@ -174,7 +171,6 @@ export class AppointmentsComponent implements OnInit {
       console.error('Token not found');
     }
   }
-
 
   onClose(): void {
     this.showMessageBlock = false;

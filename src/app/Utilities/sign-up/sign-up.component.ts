@@ -26,7 +26,8 @@ export class SignUpComponent implements OnInit {
     suffix: '',
     dateAdded: this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     age: null,
-    gender: ''
+    gender: '',
+    comorbidity: '',
   };
 
   OnSignIn() {

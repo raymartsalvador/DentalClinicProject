@@ -2,14 +2,6 @@ $green: #00b2bf;
 $light-green: #9ff0ee;
 
 
-body {
-  background-image: linear-gradient(135deg, #fab2ff 10%, #1904e5 100%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  font-family: "Open Sans", sans-serif;
-  color: #333333;
-}
 
 .box-form {
 
@@ -122,17 +114,26 @@ body {
       background-image: linear-gradient(135deg, $green 10%, $light-green 100%);
     }
   }
-    // Media query for phone perspective
-    @media (max-width: 768px) {
-      flex-direction: column;
+}
 
-      .left {
-        width: 100%;
-        margin-bottom: 20px;
-      }
+// Media query for phone perspective
+@media (max-width: 768px) {
+  .box-form {
+    flex-direction: column;
+    width: 100%;
 
-      .right {
+    .left {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .right {
+      width: 100%;
+      .inputs {
         width: 100%;
       }
     }
+  }
+
+
 }

@@ -5,7 +5,7 @@ const Appointment = require('../models/appointment');
 // Fetch all appointments
 router.get("/appointments", async (req, res) => {
   try {
-    const appointments = await Appointment.find().populate('user', 'firstName lastName email');
+    const appointments = await Appointment.find();
     res.status(200).json(appointments);
   } catch (error) {
     console.error(error);

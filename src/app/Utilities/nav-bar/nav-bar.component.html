@@ -1,49 +1,52 @@
-<section class="navigation">
-  <div class="nav-container">
-    <div class="brand">
-      <a><span><img src="../../../assets/images/logo.png" alt=""></span>
-      </a>
+  <!-- HTML -->
+  <section class="navigation">
+    <div class="nav-container">
+      <div class="profile" *ngIf="_authService.loggedIn()">
+        <div class="user-icon">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-name">John Doe</div>
+      </div>
+      <div class="brand-logo" *ngIf="!_authService.loggedIn()">
+        <img src="../../../assets/images/logo.png" alt="Logo" />
+      </div>
+      <nav>
+        <ul class="nav-list" [class.hamburger-menu-open]="showDropdown">
+          <li>
+            <a routerLink="{{ dashBoard.path }}" *ngIf="_authService.loggedIn()">{{ dashBoard.name }}</a>
+          </li>
+          <li>
+            <a routerLink="{{ adminAccessUser.path }}" *ngIf="_authService.loggedIn() && _authService.isAdmin()">{{ adminAccessUser.name }}</a>
+          </li>
+          <li>
+            <a routerLink="{{ adminAccessSchedule.path }}" *ngIf="_authService.loggedIn() && _authService.isAdmin()">{{ adminAccessSchedule.name }}</a>
+          </li>
+          <li>
+            <a routerLink="{{ adminAccessService.path }}" *ngIf="_authService.loggedIn() && _authService.isAdmin()">{{ adminAccessService.name }}</a>
+          </li>
+          <li>
+            <a routerLink="{{ userAccessAppointments.path }}" *ngIf="_authService.loggedIn() && !_authService.isAdmin()">{{ userAccessAppointments.name }}</a>
+          </li>
+          <li *ngFor="let route of routes">
+            <a routerLink="{{ route.path }}" *ngIf="!_authService.loggedIn() || (_authService.loggedIn() && !_authService.isAdmin())" routerLinkActive="router-link-active">{{ route.name }}</a>
+          </li>
+          <li>
+            <a routerLink="{{ signIn.path }}" (click)="onToggleSignUp()" *ngIf="!_authService.loggedIn() && !toggleSignUp">{{ signIn.name }}</a>
+          </li>
+          <li>
+            <a routerLink="{{ signUp.path }}" (click)="onToggleSignUp()" *ngIf="!_authService.loggedIn() && toggleSignUp">{{ signUp.name }}</a>
+          </li>
+          <li>
+            <a style="cursor: pointer" (click)="_authService.logoutUser()" *ngIf="_authService.loggedIn()">Logout</a>
+          </li>
+        </ul>
+        <button class="hamburger-menu" (click)="toggleDropdown()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-dropdown" *ngIf="showDropdown">
+          <!-- Dropdown items go here -->
+        </ul>
+      </nav>
     </div>
-    <nav>
-      <ul class="nav-list">
-        <li>
-          <a routerLink="{{dashBoard.path}}" *ngIf="_authService.loggedIn()"> {{dashBoard.name}} </a>
-        </li>
-        <li>
-          <a routerLink="{{adminAccessUser.path}}"
-            *ngIf="_authService.loggedIn()&&_authService.isAdmin()">{{adminAccessUser.name}}</a>
-        </li>
-        <li>
-          <a routerLink="{{adminAccessSchedule.path}}"
-            *ngIf="_authService.loggedIn()&&_authService.isAdmin()">{{adminAccessSchedule.name}}</a>
-        </li>
-        <li>
-          <a routerLink="{{adminAccessService.path}}"
-            *ngIf="_authService.loggedIn()&&_authService.isAdmin()">{{adminAccessService.name}}</a>
-        </li>
-        <li>
-          <a routerLink="{{userAccessAppointments.path}}"
-            *ngIf="_authService.loggedIn()&&!_authService.isAdmin()">{{userAccessAppointments.name}}</a>
-        </li>
-        <li *ngFor="let route of routes">
-          <a routerLink="{{ route.path }}"
-            *ngIf="!_authService.loggedIn()||(_authService.loggedIn()&&!_authService.isAdmin())"
-            routerLinkActive="router-link-active">{{ route.name }}</a>
-        </li>
-        <li>
-          <a routerLink="{{signIn.path}}" (click)="onToggleSignUp()"
-            *ngIf="!_authService.loggedIn()&&!toggleSignUp">{{signIn.name}}</a>
-        </li>
-        <li>
-          <a routerLink="{{signUp.path}}" (click)="onToggleSignUp()"
-            *ngIf="!_authService.loggedIn()&&toggleSignUp">{{signUp.name}}</a>
-        </li>
-        <li>
-          <a style="cursor: pointer;" (click)="_authService.logoutUser()" *ngIf="_authService.loggedIn()">Logout</a>
-        </li>
+  </section>
 
-      </ul>
-
-    </nav>
-  </div>
-</section>

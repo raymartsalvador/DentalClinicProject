@@ -12,6 +12,7 @@ const userSchema = new Schema({
   age: Number,
   sex: String,
   address: String,
+  comorbidity: String,
   roles: [{ type: String }],
   dateAdded: { type: Date, default: Date.now },
 });
