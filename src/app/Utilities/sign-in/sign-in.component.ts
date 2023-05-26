@@ -40,7 +40,9 @@ export class SignInComponent implements OnInit {
         console.log(res);
         localStorage.setItem('token', res.token);
         // Redirect to home page if login is successful
-        this._router.navigate(['/dashBoard']);
+        this._router.navigate(['/dashBoard']).then(() => {
+          window.location.reload(); // Reload the current route to refresh the navbar
+        });
       },
       (err) => console.log(err)
     );

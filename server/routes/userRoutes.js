@@ -31,8 +31,7 @@ router.post("/register", async (req, res) => {
 
   // Check if username and password match the condition for admin role
   if (
-    userData.email === "admin@admin.com" &&
-    userData.password === "admin1234"
+    userData.email === "admin@admin.com"
   ) {
     userData.roles = ["admin"];
   } else {
@@ -64,6 +63,8 @@ router.post('/login', async (req, res) => {
       let payload = {
         subject: user._id,
         role: user.roles,
+        firstName: user.firstName,
+        lastName: user.lastName,
       };
       let token = jwt.sign(payload, 'secretKey');
       res.status(200).send({ token });

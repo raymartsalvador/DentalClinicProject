@@ -5,7 +5,7 @@
         <div class="user-icon">
           <i class="fas fa-user"></i>
         </div>
-        <div class="user-name">John Doe</div>
+        <div class="user-name">{{ getCurrentUser() }}</div>
       </div>
       <div class="brand-logo" *ngIf="!_authService.loggedIn()">
         <img src="../../../assets/images/logo.png" alt="Logo" />
@@ -37,7 +37,7 @@
             <a routerLink="{{ signUp.path }}" (click)="onToggleSignUp()" *ngIf="!_authService.loggedIn() && toggleSignUp">{{ signUp.name }}</a>
           </li>
           <li>
-            <a style="cursor: pointer" (click)="_authService.logoutUser()" *ngIf="_authService.loggedIn()">Logout</a>
+            <a style="cursor: pointer" (click)="executeLogout()" *ngIf="_authService.loggedIn()">Logout</a>
           </li>
         </ul>
         <button class="hamburger-menu" (click)="toggleDropdown()">
