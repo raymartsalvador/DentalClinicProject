@@ -16,13 +16,13 @@ export class NavBarComponent implements OnInit {
   isLoggedIn: boolean = false;
   hamburgerMenuOpen = false;
   currentUser: string = '';
+
   constructor(public _authService: AuthService, private _router: Router) {
     this.token = localStorage.getItem('token');
     this.onCheckingUser();
   }
 
   ngOnInit(): void {
-    this.onCheckingUser();
     this.getCurrentUser();
     this.token = localStorage.getItem('token');
 
@@ -34,20 +34,23 @@ export class NavBarComponent implements OnInit {
     });
   }
 
-  @Input() routes: any = [{ name: '', path: '' }];
-  @Input() signIn: any = [{ name: '', path: '' }];
-  @Input() signUp: any = [{ name: '', path: '' }];
-  @Input() dashBoard: any = { name: '', path: '' };
-  @Input() adminAccessPatient: any = { name: '', path: '' };
-  @Input() adminAccessSchedule: any = { name: '', path: '' };
-  @Input() adminAccessService: any = { name: '', path: '' };
-  @Input() adminAccessUser: any = { name: '', path: '' };
-  @Input() userAccessAppointments: any = { name: '', path: '' };
+  @Input() routes: any = [{ name: '', path: '', fa: '' }];
+  @Input() signIn: any = [{ name: '', path: '' , fa: ''}];
+  @Input() signUp: any = [{ name: '', path: '' , fa: ''}];
+  @Input() dashBoard: any = { name: '', path: '' , fa: ''};
+  @Input() adminAccessPatient: any = { name: '', path: '' , fa: ''};
+  @Input() adminAccessSchedule: any = { name: '', path: '' , fa: ''};
+  @Input() adminAccessService: any = { name: '', path: '' , fa: ''};
+  @Input() adminAccessUser: any = { name: '', path: '' , fa: ''};
+  @Input() userAccessAppointments: any = { name: '', path: '' , fa: ''};
 
   executeLogout(): void {
     this._authService.logoutUser();
     localStorage.removeItem('token');
+    this.currentUser = ''; // Clear the currentUser immediately after logging out
+    window.location.reload(); // Reload the current route to refresh the navbar
   }
+
   getCurrentUser(): string {
     if (this.isLoggedIn && this.currentUser) {
       return this.currentUser;
@@ -60,6 +63,8 @@ export class NavBarComponent implements OnInit {
     if (this.isLoggedIn) {
       const payload: any = jwt_decode(this.token);
       this.currentUser = payload.firstName + ' ' + payload.lastName;
+    } else {
+      this.currentUser = ''; // Reset the currentUser if not logged in
     }
   }
 

@@ -4,6 +4,27 @@
     <p>We will do our best to accommodate you!</p>
   </div>
 </div>
+
+<div class="business-hours">
+  <p>
+    <span class="head">Business Hours:</span>
+    <br />
+    <span class="bold">Mon - Fri:</span>
+    <span class=""
+      >{{ businessHours?.mondayToFriday?.start }} -
+      {{ businessHours?.mondayToFriday?.end }}</span
+    ><span class="bold"> Sat:</span
+    ><span class=""
+      >{{ businessHours?.saturday?.start }} -
+      {{ businessHours?.saturday?.end }}</span
+    ><span class="bold">Sun:</span><span class="">Closed</span>
+  </p>
+</div>
+<div class="business-hours-appointment">
+  <div class="business-hours">
+    <p class="italic">Check the dentist calendar to see available slots</p>
+  </div>
+</div>
 <div class="contain">
   <div class="calendar">
     <app-calendar></app-calendar>
@@ -44,8 +65,14 @@
         name="time"
         [(ngModel)]="selectedTime"
         required
+        [min]="getStartTime(selectedDate)"
+        [max]="getEndTime(selectedDate)"
       />
     </div>
+
+
+
+
     <button
       type="submit"
       [disabled]="!appointmentForm.form.valid"
@@ -53,33 +80,6 @@
     >
       Submit
     </button>
-    <div class="my-schedule">
-      <p>My Appointments</p>
-      <div class="contain">
-        <div class="item" *ngFor="let myAppointment of myAppointments">
-          <div>
-            <p class="bold">{{ myAppointment.title }}</p>
-            <span class="date-time">
-              {{ myAppointment.start | date : "MMM d, y, h:mm a" }} to
-              {{ myAppointment.end | date : "h:mm a" }}
-            </span>
-          </div>
-          <div class="icons">
-            <!-- Inside the appointment list loop -->
-            <a>
-              <i class="fas fa-trash"></i>
-            </a>
-            <a>
-              <i class="fas fa-pen"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="item" *ngIf="myAppointments.length === 0">
-          <p class="bold">No Appointments</p>
-        </div>
-      </div>
-    </div>
   </form>
 </div>
 
@@ -87,6 +87,7 @@
   <app-message-block
     [showMessageBlock]="showMessageBlock"
     [message]="message"
+    [messageBlockType]="messageBlockType"
     (onClose)="onClose()"
   ></app-message-block>
 </div>

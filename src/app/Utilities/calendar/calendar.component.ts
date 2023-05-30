@@ -16,16 +16,15 @@ export class CalendarComponent implements OnInit {
   businessHours: any;
   services: any[] = [];
 
-  constructor(
-
-    private _SERVICE: ServiceCrudService,
-    private appointmentService: AppointmentCrudService,
-  ) {
-    this.viewDate = new Date();
-    this.currentView = 'month';
-    this.availableMonths = this.getAvailableMonths();
-    this.events = [];
-  }
+ constructor(
+  private _SERVICE: ServiceCrudService,
+  private appointmentService: AppointmentCrudService,
+) {
+  this.viewDate = new Date();
+  this.currentView = 'week'; // Set the initial view to 'week'
+  this.availableMonths = this.getAvailableMonths();
+  this.events = [];
+}
 
   ngOnInit() {
     this.fetchAppointments();

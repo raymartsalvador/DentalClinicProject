@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import jwt_decode from 'jwt-decode';
 import { ServiceCrudService } from 'src/app/services/service-crud.service';
 import { CalendarComponent } from 'src/app/Utilities/calendar/calendar.component';
+import { SettingsCrudService } from 'src/app/services/setting_crud.service';
 
 @Component({
   selector: 'app-appointments',
@@ -17,21 +18,66 @@ export class AppointmentsComponent implements OnInit {
   services: any[] = [];
   showMessageBlock: boolean = false;
   message: string = '';
+  messageBlockType: string = '';
   myAppointments: any[] = [];
 
   @ViewChild(CalendarComponent)
   private calendarComponent!: CalendarComponent;
+  businessHours: any;
 
   constructor(
     private _APPOINTMENT: AppointmentCrudService,
     private _SERVICECRUD: ServiceCrudService,
-    private authService: AuthService
+    private authService: AuthService,
+    private _SETTING: SettingsCrudService
   ) {}
 
   ngOnInit() {
     this.getServices();
     this.getMyAppointments();
+    this.getBusinessHours();
   }
+  getBusinessHours(): void {
+    this._SETTING.getSettings().subscribe(
+      (response) => {
+        console.log('Response:', response);
+        try {
+          if (typeof response.businessHours === 'string') {
+            this.businessHours = JSON.parse(response.businessHours);
+          } else {
+            this.businessHours = response.businessHours;
+          }
+        } catch (error) {
+          console.error('Error parsing business hours:', error);
+          this.businessHours = null; // Set a default value or handle the error as needed
+        }
+      },
+      (error) => {
+        console.error('Error retrieving business hours:', error);
+      }
+    );
+  }
+
+  getStartTime(date: Date): string {
+    const startTime = new Date(date);
+    startTime.setHours(8); // Set the desired start time
+    startTime.setMinutes(0);
+    return startTime.toTimeString().slice(0, 5); // Extract the time portion as "HH:mm"
+  }
+
+  getEndTime(date: Date): string {
+    const endTime = new Date(date);
+    endTime.setHours(17); // Set the desired end time
+    endTime.setMinutes(0);
+    return endTime.toTimeString().slice(0, 5); // Extract the time portion as "HH:mm"
+  }
+
+
+  private getDayFromDate(date: string): string {
+    const dayIndex = new Date(date).getDay();
+    return ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][dayIndex];
+  }
+
 
   getServices(): void {
     this._SERVICECRUD.getServices().subscribe(
@@ -61,6 +107,7 @@ export class AppointmentsComponent implements OnInit {
       // Selected date and time are in the past
       this.showMessageBlock = true;
       this.message = 'Please select a future date and time.';
+      this.messageBlockType = 'error';
       return;
     }
 
@@ -112,6 +159,7 @@ export class AppointmentsComponent implements OnInit {
                     console.log('Appointment created:', response);
                     // Perform any additional actions after successful creation
                     this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
+                    this.messageBlockType = 'success';
                     this.message =
                       ' You successfully request an appointment please wait for Confirmation thru your Email or Contact number';
                     this.calendarComponent.refreshCalendar(); // Call the refreshCalendar method in the CalendarComponent
@@ -121,12 +169,14 @@ export class AppointmentsComponent implements OnInit {
                     // Handle error case if necessary
                     this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
                     this.message = 'Error creating appointment.';
+                    this.messageBlockType = 'error';
                   }
                 );
               } else {
                 // Schedule is unavailable
                 this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
                 this.message = 'Time slot has been taken';
+                this.messageBlockType = 'error';
               }
             },
             (error: any) => {
@@ -134,6 +184,7 @@ export class AppointmentsComponent implements OnInit {
               // Handle error case if necessary
               this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
               this.message = 'Error checking availability.';
+              this.messageBlockType = 'error';
             }
           );
       } else {

@@ -13,31 +13,32 @@
       <nav>
         <ul class="nav-list" [class.hamburger-menu-open]="showDropdown">
           <li>
-            <a routerLink="{{ dashBoard.path }}" *ngIf="_authService.loggedIn()">{{ dashBoard.name }}</a>
+            <a routerLink="{{ dashBoard.path }}" *ngIf="_authService.loggedIn()">
+              <i class="{{dashBoard.fa}}"></i>{{ dashBoard.name }}</a>
           </li>
           <li>
-            <a routerLink="{{ adminAccessUser.path }}" *ngIf="_authService.loggedIn() && _authService.isAdmin()">{{ adminAccessUser.name }}</a>
+            <a routerLink="{{ adminAccessUser.path }}" *ngIf="_authService.loggedIn() && _authService.isAdmin()"><i class="{{ adminAccessUser.fa }}"></i>{{ adminAccessUser.name }}</a>
           </li>
           <li>
-            <a routerLink="{{ adminAccessSchedule.path }}" *ngIf="_authService.loggedIn() && _authService.isAdmin()">{{ adminAccessSchedule.name }}</a>
+            <a routerLink="{{ adminAccessSchedule.path }}" *ngIf="_authService.loggedIn() && _authService.isAdmin()"><i class="{{ adminAccessSchedule.fa }}"></i>{{ adminAccessSchedule.name }}</a>
           </li>
           <li>
-            <a routerLink="{{ adminAccessService.path }}" *ngIf="_authService.loggedIn() && _authService.isAdmin()">{{ adminAccessService.name }}</a>
+            <a routerLink="{{ adminAccessService.path }}" *ngIf="_authService.loggedIn() && _authService.isAdmin()"><i class="{{ adminAccessService.fa }}"></i>{{ adminAccessService.name }}</a>
           </li>
           <li>
-            <a routerLink="{{ userAccessAppointments.path }}" *ngIf="_authService.loggedIn() && !_authService.isAdmin()">{{ userAccessAppointments.name }}</a>
+            <a routerLink="{{ userAccessAppointments.path }}" *ngIf="_authService.loggedIn() && !_authService.isAdmin()"><i class="{{ userAccessAppointments.fa }}"></i>{{ userAccessAppointments.name }}</a>
           </li>
           <li *ngFor="let route of routes">
-            <a routerLink="{{ route.path }}" *ngIf="!_authService.loggedIn() || (_authService.loggedIn() && !_authService.isAdmin())" routerLinkActive="router-link-active">{{ route.name }}</a>
+            <a routerLink="{{ route.path }}" *ngIf="!_authService.loggedIn() || (_authService.loggedIn() && !_authService.isAdmin())" routerLinkActive="router-link-active"><i class="{{ route.fa }}"></i>{{ route.name }}</a>
           </li>
           <li>
-            <a routerLink="{{ signIn.path }}" (click)="onToggleSignUp()" *ngIf="!_authService.loggedIn() && !toggleSignUp">{{ signIn.name }}</a>
+            <a routerLink="{{ signIn.path }}" (click)="onToggleSignUp()" *ngIf="!_authService.loggedIn() && !toggleSignUp"><i class="{{ signIn.fa }}"></i>{{ signIn.name }}</a>
           </li>
           <li>
-            <a routerLink="{{ signUp.path }}" (click)="onToggleSignUp()" *ngIf="!_authService.loggedIn() && toggleSignUp">{{ signUp.name }}</a>
+            <a routerLink="{{ signUp.path }}" (click)="onToggleSignUp()" *ngIf="!_authService.loggedIn() && toggleSignUp"><i class="{{ signUp.fa }}"></i>{{ signUp.name }}</a>
           </li>
           <li>
-            <a style="cursor: pointer" (click)="executeLogout()" *ngIf="_authService.loggedIn()">Logout</a>
+            <a style="cursor: pointer" (click)="executeLogout()" *ngIf="_authService.loggedIn()"><i class="fa-solid fa-right-from-bracket"></i></a>
           </li>
         </ul>
         <button class="hamburger-menu" (click)="toggleDropdown()">

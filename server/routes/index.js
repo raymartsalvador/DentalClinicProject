@@ -23,14 +23,14 @@ router.get('/', (req, res) => {
 const userRoutes = require('./userRoutes');
 const serviceRoutes = require('./serviceRoutes');
 const appointmentRoutes = require('./appointmentRoutes');
-const reportRoutes = require('./reportRoutes');
+const settingRoutes = require('./settingRoutes');
 const patientInformationRoutes = require('./patientInformationRoutes');
 
 // Use the route files
 router.use('/users', userRoutes);
 router.use('/services', serviceRoutes);
 router.use('/appointments', appointmentRoutes);
-router.use('/reports', reportRoutes);
+router.use('/settings', settingRoutes);
 router.use('/patient-information', patientInformationRoutes);
 
 module.exports = router;

@@ -4,6 +4,24 @@ $green: #00b2bf;
 $darkblue: #0d63a0;
 $light-green: #9ff0ee;
 
+.business-hours{
+  margin: 0 1rem;
+  background-color: $light-green;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px #ccc;
+  .italic{
+    font-style: italic;
+  }
+  p{
+    .bold{
+      font-weight: bold;
+      margin: 1rem 0.5rem 1rem 1rem;
+    }
+  }
+}
+
 .band {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -40,51 +58,6 @@ $light-green: #9ff0ee;
 
   color: rgb(255, 255, 255);
   margin: 0;
-}
-
-.my-schedule {
-  background-color: $white;
-  border-radius: 1rem;
-  max-height: 17rem;
-  min-height: 7rem;
-  min-width: 15rem;
-  margin-top: 2rem;
-  border-color: $darkblue;
-  border-width: 1px 0 1px 1px; /* Top, Right, Bottom, Left */
-  border-style: solid;
-  overflow: auto;
-  .contain {
-    display: grid;
-    grid-template-columns: 1fr;
-
-    
-    .item {
-      border-bottom: 1px solid $green;
-      min-height: 2rem;
-      font-size: 0.8rem;
-      padding: 0 1rem;
-      align-self: center;
-      display: grid;
-      grid-template-columns: 5fr 1fr;
-      .icons{
-        display: flex;
-        a{
-          color: #b94a48;
-          font-size: 1.2rem;
-          margin: 0px 5px;
-          cursor: pointer;
-        }
-      }
-      .bold{
-        font-weight: bold;
-        font-size: 0.8rem;
-        margin: 0px;
-      }
-      .date-time{
-        color: #b94a48;
-      }
-    }
-  }
 }
 
 .form-field {
