@@ -35,6 +35,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarComponent } from './Utilities/calendar/calendar.component';
 import { MessageBlockComponent } from './Utilities/message-block/message-block.component';
+import { SettingsComponent } from './Utilities/settings/settings.component';
 
 
 @NgModule({
@@ -60,6 +61,8 @@ import { MessageBlockComponent } from './Utilities/message-block/message-block.c
     AppointmentsComponent,
     CalendarComponent,
     MessageBlockComponent,
+    SettingsComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

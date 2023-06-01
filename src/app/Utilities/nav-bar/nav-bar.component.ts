@@ -16,7 +16,17 @@ export class NavBarComponent implements OnInit {
   isLoggedIn: boolean = false;
   hamburgerMenuOpen = false;
   currentUser: string = '';
-
+  showPopup = false;
+  @Input() routes: any = [{ name: '', path: '', fa: '' }];
+  @Input() signIn: any = [{ name: '', path: '', fa: '' }];
+  @Input() signUp: any = [{ name: '', path: '', fa: '' }];
+  @Input() dashBoard: any = { name: '', path: '', fa: '' };
+  @Input() adminAccessPatient: any = { name: '', path: '', fa: '' };
+  @Input() adminAccessSchedule: any = { name: '', path: '', fa: '' };
+  @Input() adminAccessService: any = { name: '', path: '', fa: '' };
+  @Input() adminAccessUser: any = { name: '', path: '', fa: '' };
+  @Input() userAccessAppointments: any = { name: '', path: '', fa: '' };
+  @Input() profile: any = {  path: ''}
   constructor(public _authService: AuthService, private _router: Router) {
     this.token = localStorage.getItem('token');
     this.onCheckingUser();
@@ -25,7 +35,6 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrentUser();
     this.token = localStorage.getItem('token');
-
     // Listen to route changes
     this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -34,15 +43,11 @@ export class NavBarComponent implements OnInit {
     });
   }
 
-  @Input() routes: any = [{ name: '', path: '', fa: '' }];
-  @Input() signIn: any = [{ name: '', path: '' , fa: ''}];
-  @Input() signUp: any = [{ name: '', path: '' , fa: ''}];
-  @Input() dashBoard: any = { name: '', path: '' , fa: ''};
-  @Input() adminAccessPatient: any = { name: '', path: '' , fa: ''};
-  @Input() adminAccessSchedule: any = { name: '', path: '' , fa: ''};
-  @Input() adminAccessService: any = { name: '', path: '' , fa: ''};
-  @Input() adminAccessUser: any = { name: '', path: '' , fa: ''};
-  @Input() userAccessAppointments: any = { name: '', path: '' , fa: ''};
+  togglePopup() {
+    this.showPopup = !this.showPopup;
+    console.log(this.showPopup);
+
+  }
 
   executeLogout(): void {
     this._authService.logoutUser();

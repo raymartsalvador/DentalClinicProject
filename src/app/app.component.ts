@@ -11,10 +11,12 @@ export class AppComponent {
     { name: 'Home', path: 'home', fa: 'fas fa-home' },
     { name: 'Contact', path: 'contact', fa: 'fas fa-envelope' },
     { name: 'About Us', path: 'aboutUs', fa: 'fas fa-info-circle' },
-    { name: 'Services', path: 'services', fa: 'fas fa-cogs' },
+    { name: 'Services', path: 'services',
+    fa: 'fas fa-hand-holding-medical', },
   ];
 
   signIn: any = { name: 'Sign In', path: 'signIn', fa: 'fas fa-sign-in-alt' };
+  profile: any = {  path: 'profile'};
   dashBoard: any = {
     name: 'Dashboard',
     path: 'dashBoard',
