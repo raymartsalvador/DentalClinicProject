@@ -3,28 +3,43 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppointmentCrudService {
+  private apiBaseUrl = 'http://localhost:3000/api/appointments'; // Replace with your actual API base URL
 
-  private apiBaseUrl = 'http://localhost:3000/api'; // Replace with your actual API base URL
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAppointments(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiBaseUrl}/appointments`);
   }
 
-  updateAppointment(appointmentId: string, updatedAppointment: any): Observable<any> {
-    return this.http.put<any>(`${this.apiBaseUrl}/appointments/${appointmentId}`, updatedAppointment);
+  updateAppointment(
+    appointmentId: string,
+    updatedAppointment: any
+  ): Observable<any> {
+    return this.http.put<any>(
+      `${this.apiBaseUrl}/appointments/${appointmentId}`,
+      updatedAppointment
+    );
   }
 
   createAppointment(appointmentData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiBaseUrl}/appointments`, appointmentData);
+    return this.http.post<any>(
+      `${this.apiBaseUrl}/appointments`,
+      appointmentData
+    );
   }
 
+  getUserAppointments(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${this.apiBaseUrl}/appointments/user/${userId}`
+    );
+  }
   deleteAppointment(appointmentId: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiBaseUrl}/appointments/${appointmentId}`);
+    return this.http.delete<any>(
+      `${this.apiBaseUrl}/appointments/${appointmentId}`
+    );
   }
 
   checkAvailability(startTime: Date, endTime: Date): Observable<boolean> {
@@ -32,6 +47,9 @@ export class AppointmentCrudService {
       .set('startTime', startTime.toISOString())
       .set('endTime', endTime.toISOString());
 
-    return this.http.get<boolean>(`${this.apiBaseUrl}/appointments/availability`, { params });
+    return this.http.get<boolean>(
+      `${this.apiBaseUrl}/appointments/availability`,
+      { params }
+    );
   }
 }

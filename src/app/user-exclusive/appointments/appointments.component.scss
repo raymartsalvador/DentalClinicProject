@@ -4,6 +4,24 @@ $green: #00b2bf;
 $darkblue: #0d63a0;
 $light-green: #9ff0ee;
 
+.business-hours{
+  margin: 0 1rem;
+  background-color: $light-green;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px #ccc;
+  .italic{
+    font-style: italic;
+  }
+  p{
+    .bold{
+      font-weight: bold;
+      margin: 1rem 0.5rem 1rem 1rem;
+    }
+  }
+}
+
 .band {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -19,6 +37,7 @@ $light-green: #9ff0ee;
   text-transform: uppercase;
   width: 100%;
 }
+
 .band-content {
   display: flex;
   flex-direction: column;
@@ -44,8 +63,9 @@ $light-green: #9ff0ee;
 .form-field {
   display: flex;
   align-items: center;
-  select{
-    width:auto;
+
+  select {
+    width: auto;
   }
 }
 
@@ -64,20 +84,25 @@ $light-green: #9ff0ee;
     box-shadow: 0 0 20px #ccc;
     border-radius: 0.5rem;
     padding: 2rem;
-    background-color: $light-green ;
+    background-color: $light-green;
   }
 
   .form {
     border: 1px solid #ccc;
     box-shadow: 0 0 20px #ccc;
     border-radius: 0.5rem;
-    background-color: $light-green ;
+    background-color: $light-green;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 1rem;
     padding: 1rem;
     align-items: center;
+
+    p {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      text-align: center;
+    }
 
     input {
       border-radius: 1rem;
@@ -105,8 +130,8 @@ $light-green: #9ff0ee;
       width: 50%;
       align-self: center;
       cursor: pointer;
-      margin-top: 4rem;
     }
+
     button.disabled {
       opacity: 0.5;
       cursor: not-allowed;

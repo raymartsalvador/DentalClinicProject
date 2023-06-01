@@ -8,23 +8,44 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'LCL Dental Clinic';
   routes: any = [
-    { name: 'Home', path: 'home' },
-    { name: 'Contact', path: 'contact' },
-    { name: 'About Us', path: 'aboutUs' },
-    { name: 'Services', path: 'services' },
+    { name: 'Home', path: 'home', fa: 'fas fa-home' },
+    { name: 'Contact', path: 'contact', fa: 'fas fa-envelope' },
+    { name: 'About Us', path: 'aboutUs', fa: 'fas fa-info-circle' },
+    { name: 'Services', path: 'services',
+    fa: 'fas fa-hand-holding-medical', },
   ];
 
-  signIn: any = { name: 'Sign In', path: 'signIn' };
-  dashBoard: any = { name: 'Dashboard', path: 'dashBoard' };
-  adminAccessUser: any = { name: 'Patients', path: 'manage-users' };
-  adminAccessPatient: any = { name: 'Patient', path: 'manage-patients' };
-  adminAccessSchedule: any = { name: 'Schedule', path: 'manage-schedule' };
-  adminAccessService: any = { name: 'Services', path: 'manage-services' };
-  userAccessAppointments: any = { name: 'Appointments', path: 'appointments' };
-  signUp: any = {
-    name: 'Sign Up',
-    path: 'signUp',
+  signIn: any = { name: 'Sign In', path: 'signIn', fa: 'fas fa-sign-in-alt' };
+  profile: any = {  path: 'profile'};
+  dashBoard: any = {
+    name: 'Dashboard',
+    path: 'dashBoard',
+    fa: 'fas fa-rectangle-list',
   };
-
+  adminAccessUser: any = {
+    name: 'Patients',
+    path: 'manage-users',
+    fa: 'fas fa-users',
+  };
+  adminAccessPatient: any = {
+    name: 'Patient',
+    path: 'manage-patients',
+    fa: 'fas fa-user',
+  };
+  adminAccessSchedule: any = {
+    name: 'Appointments',
+    path: 'manage-schedule',
+    fa: 'fas fa-calendar-alt',
+  };
+  adminAccessService: any = {
+    name: 'Services',
+    path: 'manage-services',
+    fa: 'fas fa-hand-holding-medical',
+  };
+  userAccessAppointments: any = {
+    name: 'Appointments',
+    path: 'appointments',
+    fa: 'fas fa-calendar-check',
+  };
+  signUp: any = { name: 'Sign Up', path: 'signUp', fa: 'fas fa-user-plus' };
 }
-

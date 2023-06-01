@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
 import { AppointmentCrudService } from 'src/app/services/appointment-crud.service';
+import { ServiceCrudService } from 'src/app/services/service-crud.service';
 
 @Component({
   selector: 'app-calendar',
@@ -13,15 +14,36 @@ export class CalendarComponent implements OnInit {
   currentView: 'month' | 'week' | 'day';
   availableMonths: string[];
   businessHours: any;
+  services: any[] = [];
 
-  constructor(private appointmentService: AppointmentCrudService) {
-    this.viewDate = new Date();
-    this.currentView = 'month';
-    this.availableMonths = this.getAvailableMonths();
-    this.events = [];
-  }
+ constructor(
+  private _SERVICE: ServiceCrudService,
+  private appointmentService: AppointmentCrudService,
+) {
+  this.viewDate = new Date();
+  this.currentView = 'week'; // Set the initial view to 'week'
+  this.availableMonths = this.getAvailableMonths();
+  this.events = [];
+}
 
   ngOnInit() {
+    this.fetchAppointments();
+    this.getServices();
+  }
+
+  getServices(): void {
+    this._SERVICE.getServices().subscribe(
+      (response) => {
+        this.services = response;
+        console.log('Services:', this.services);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  refreshCalendar(): void {
     this.fetchAppointments();
   }
   fetchAppointments() {
@@ -44,8 +66,6 @@ export class CalendarComponent implements OnInit {
       }
     );
   }
-
-
 
   changeView(view: 'month' | 'week' | 'day', event?: any) {
     this.currentView = view;
@@ -235,5 +255,4 @@ export class CalendarComponent implements OnInit {
     ];
     return monthNames[monthIndex];
   }
-
 }

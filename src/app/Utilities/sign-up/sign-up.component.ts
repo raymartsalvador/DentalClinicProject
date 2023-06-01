@@ -9,22 +9,37 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  OnSignIn() {
-    this._router.navigate(['/signIn']);
-  }
   constructor(
     private _auth: AuthService,
     private _router: Router,
     private datePipe: DatePipe
   ) {}
+
   registerUserData = {
-    firstName: '',
-    lastName: '',
     email: '',
     password: '',
-    dateAdded: this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss')
+    repeatPassword: '',
+    phone:'',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    suffix: '',
+    dateAdded: this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    age: null,
+    gender: '',
+    comorbidity: '',
   };
+
+  OnSignIn() {
+    this._router.navigate(['/signIn']);
+  }
+
   registerUser() {
+    if (this.registerUserData.password !== this.registerUserData.repeatPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
     this._auth.registerUser(this.registerUserData).subscribe(
       (res) => {
         console.log(res);

@@ -3,9 +3,34 @@ $black: #0c0c0c;
 $green: #00b2bf;
 $darkblue: #0d63a0;
 $light-green: #9ff0ee;
-.outside-business-hours {
-  background-color: red;
+
+
+.legend {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  justify-content: center;
+  padding-top: 0.5rem;
+  gap: 0.3rem;
 }
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  font-weight: 100;
+  font-size: 0.7rem;
+}
+
+.color-circle {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
 
 
 .container {
@@ -18,7 +43,7 @@ $light-green: #9ff0ee;
   }
   .scrollable {
     max-height: 100%;
-    height: 50vh;
+    height: 60vh;
     overflow: auto;
   }
 

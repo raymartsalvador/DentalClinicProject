@@ -22,29 +22,44 @@ $light-green: #9ff0ee;
   background-color: #fff;
   padding: 2rem;
   border-radius: 5px;
-  input{
-    border-radius: 1rem;
-    border: 1px solid $darkblue;
-    padding: 0.3rem 1rem;
-    margin: 0.25rem;
+  max-width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 12fr;
+
+  .x {
+    align-self: center;
+    color: red;
+    grid-column: 1;
   }
-  p{
+
+  .check {
+    align-self: center;
+    color: green;
+    grid-column: 1;
+  }
+
+  p {
     width: 100%;
     border-bottom: 1px solid $darkblue;
 
   }
-  .close-button{
-    border-radius: 2rem;
-    background-color: $darkblue;
-    border-style: none;
-    color: $white;
-    padding:0.5rem 1rem;
-    margin:1rem 0.25rem;
-    cursor: pointer;
-  }
-  .close-button:hover{
-    background-color: $light-green;
-    color: $darkblue;
-    transition: ease-in-out 0.3s;
+
+  .button {
+    grid-column: 2;
+    .close-button {
+      border-radius: 2rem;
+      background-color: $darkblue;
+      border-style: none;
+      color: $white;
+      padding: 0.5rem 1rem;
+      margin: 1rem 0.25rem;
+      cursor: pointer;
+    }
+
+    .close-button:hover {
+      background-color: $light-green;
+      color: $darkblue;
+      transition: ease-in-out 0.3s;
+    }
   }
 }

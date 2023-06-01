@@ -18,6 +18,7 @@ import { ManageScheduleComponent } from './admin-exclusive/manage-schedule/manag
 import { ManagePatientsComponent } from './admin-exclusive/manage-patients/manage-patients.component';
 import { AppointmentsComponent } from './user-exclusive/appointments/appointments.component';
 import { CalendarComponent } from './Utilities/calendar/calendar.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,7 +28,6 @@ const routes: Routes = [
   { path: 'aboutUs', component: AboutComponent },
   { path: 'signIn', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
-  { path: 'dashBoard', component: DashBoardComponent },
   { path: 'calendar', component: CalendarComponent },
   {
     path: 'manage-services',
@@ -60,8 +60,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'dashBoard',
+    component: DashBoardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'appointments',
     component: AppointmentsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
     canActivate: [AuthGuard],
   },
 ];

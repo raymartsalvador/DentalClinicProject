@@ -12,7 +12,6 @@ export class ManageServicesComponent implements OnInit {
   newService: any = {};
   showEditServiceBlock: boolean = false;
   selectedService: any = {};
-
   constructor(private serviceCrudService: ServiceCrudService) {}
 
   ngOnInit(): void {
@@ -97,10 +96,20 @@ addService(): void {
       (response) => {
         this.services = response;
         console.log('Services:', this.services);
+
+        // Set initial color values based on the first service
+        if (this.services.length > 0) {
+          const firstService = this.services[0];
+          this.newService.color = {
+            primary: firstService.color?.primary || '',
+            secondary: firstService.color?.secondary || '',
+          };
+        }
       },
       (error) => {
         console.error(error);
       }
     );
   }
+
 }

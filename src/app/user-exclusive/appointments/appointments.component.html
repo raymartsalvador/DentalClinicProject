@@ -1,7 +1,28 @@
 <div class="band">
   <div class="band-content">
     <h3>MAKE APPOINTMENTS</h3>
-    <p>We will do out best to accommodate you!</p>
+    <p>We will do our best to accommodate you!</p>
+  </div>
+</div>
+
+<div class="business-hours">
+  <p>
+    <span class="head">Business Hours:</span>
+    <br />
+    <span class="bold">Mon - Fri:</span>
+    <span class=""
+      >{{ businessHours?.mondayToFriday?.start }} -
+      {{ businessHours?.mondayToFriday?.end }}</span
+    ><span class="bold"> Sat:</span
+    ><span class=""
+      >{{ businessHours?.saturday?.start }} -
+      {{ businessHours?.saturday?.end }}</span
+    ><span class="bold">Sun:</span><span class="">Closed</span>
+  </p>
+</div>
+<div class="business-hours-appointment">
+  <div class="business-hours">
+    <p class="italic">Check the dentist calendar to see available slots</p>
   </div>
 </div>
 <div class="contain">
@@ -9,6 +30,7 @@
     <app-calendar></app-calendar>
   </div>
   <form class="form" (submit)="submitForm()" #appointmentForm="ngForm">
+    <p>Schedule an Appointment</p>
     <div class="form-field">
       <label for="service">SERVICE</label>
       <select
@@ -43,8 +65,14 @@
         name="time"
         [(ngModel)]="selectedTime"
         required
+        [min]="getStartTime(selectedDate)"
+        [max]="getEndTime(selectedDate)"
       />
     </div>
+
+
+
+
     <button
       type="submit"
       [disabled]="!appointmentForm.form.valid"
@@ -54,10 +82,12 @@
     </button>
   </form>
 </div>
+
 <div class="messageBlock" *ngIf="showMessageBlock">
   <app-message-block
     [showMessageBlock]="showMessageBlock"
     [message]="message"
+    [messageBlockType]="messageBlockType"
     (onClose)="onClose()"
   ></app-message-block>
 </div>

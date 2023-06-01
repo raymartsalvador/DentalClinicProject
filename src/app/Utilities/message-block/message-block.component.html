@@ -1,7 +1,14 @@
-<!-- message-block.component.html -->
 <div class="popup-overlay" *ngIf="showMessageBlock">
   <div class="popup-content">
+    <div *ngIf="isSuccessful" class="check">
+      <i class="fas fa-check"></i>
+    </div>
+    <div *ngIf="!isSuccessful" class="x">
+      <i class="fas fa-x"></i>
+    </div>
     <p>{{ message }}</p>
-    <button class="close-button" (click)="close()">Close</button>
+    <div class="button">
+      <button class="close-button" (click)="close()">Close</button>
+    </div>
   </div>
 </div>
