@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 
 @Injectable()
 export class UserCrudService {
@@ -15,8 +15,14 @@ export class UserCrudService {
 
   getUserById(userId: string, token: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<any>(`${this.apiUrl}/users/${userId}`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/users/${userId}`, { headers }).pipe(
+      tap(
+        (response: any) => console.log('getUserById response:', response),
+        (error: any) => console.error('getUserById error:', error)
+      )
+    );
   }
+
 
   createUser(user: any) {
     return this.http.post<any>(`${this.apiUrl}/users`, user);

@@ -3,34 +3,122 @@
 </div>
 <div class="container">
   <div class="info">
-    <p class="lines">
-      <span class="title">Contact: </span>
-      <span class="description"> {{ contactNumber }} </span>
-    </p>
-    <p class="lines">
-      <span class="title">Age: </span>
-      <span class="description"> {{ age }} </span>
-    </p>
-    <p class="lines">
-      <span class="title">Address: </span>
-      <span class="description"> {{ address }} </span>
-    </p>
-    <p class="lines">
-      <span class="title">Comorbidity: </span>
-      <span class="description"> {{ comorbidity }} </span>
-    </p>
+    <div class="information-text">
+      <div>Your Information</div>
+    </div>
+    <div class="lines">
+      <span class="title">Email:</span>
+      <span class="description" *ngIf="!isEditing">{{ email }}</span>
+      <input
+        class="description"
+        *ngIf="isEditing"
+        [(ngModel)]="email"
+        placeholder="Email"
+      />
+    </div>
+    <div class="lines">
+      <span class="title">Password:</span>
+      <span class="description" *ngIf="!isEditing">***********</span>
+      <input
+        class="description"
+        *ngIf="isEditing"
+        [(ngModel)]="password"
+        placeholder="Password"
+        type="password"
+      />
+    </div>
+    <div class="lines">
+      <span class="title">Contact:</span>
+      <span class="description" *ngIf="!isEditing">{{ phone }}</span>
+      <input
+        class="description"
+        *ngIf="isEditing"
+        [(ngModel)]="phone"
+        placeholder="Phone"
+      />
+    </div>
+
+    <div class="lines">
+      <span class="title">Name:</span>
+      <span class="description" *ngIf="!isEditing">{{ name }}</span>
+      <div *ngIf="isEditing">
+        <input
+          class="description"
+          [(ngModel)]="firstName"
+          placeholder="First Name"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <input
+          class="description"
+          [(ngModel)]="lastName"
+          placeholder="Last Name"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <input
+          class="description"
+          [(ngModel)]="suffix"
+          placeholder="Suffix"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+    </div>
+
+    <div class="lines">
+      <span class="title">Age:</span>
+      <span class="description" *ngIf="!isEditing">{{ age }}</span>
+      <input
+        class="description"
+        *ngIf="isEditing"
+        [(ngModel)]="age"
+        placeholder="Age"
+      />
+    </div>
+    <div class="lines">
+      <span class="title">Sex:</span>
+      <span class="description" *ngIf="!isEditing">{{ sex }}</span>
+      <div *ngIf="isEditing">
+        <label>
+          <input type="radio" name="gender" [(ngModel)]="sex" value="Male" />
+          Male
+        </label>
+        <label>
+          <input type="radio" name="gender" [(ngModel)]="sex" value="Female" />
+          Female
+        </label>
+      </div>
+    </div>
+    <div class="lines">
+      <span class="title">Address:</span>
+      <span class="description" *ngIf="!isEditing">{{ address }}</span>
+      <input
+        class="description"
+        *ngIf="isEditing"
+        [(ngModel)]="address"
+        placeholder="Address"
+      />
+    </div>
+    <div class="lines">
+      <span class="title">Comorbidity:</span>
+      <span class="description" *ngIf="!isEditing">{{ comorbidity }}</span>
+      <input
+        class="description"
+        *ngIf="isEditing"
+        [(ngModel)]="comorbidity"
+        placeholder="Comorbidity"
+      />
+    </div>
+    <button (click)="toggleEditing()">
+      {{ isEditing ? "Cancel" : "Edit Info" }}
+    </button>
+    <button *ngIf="isEditing" (click)="saveChanges()">Save Changes</button>
   </div>
   <div class="icon">
     <div class="contain-icon">
       <i class="fas fa-user"></i>
     </div>
     <div class="information">
-      <p class="name">
-        {{ name }}
-      </p>
-      <p class="email">
-        {{ email }}
-      </p>
+      <p class="name">{{ name }}</p>
+      <p class="email">{{ email }}</p>
     </div>
   </div>
 </div>

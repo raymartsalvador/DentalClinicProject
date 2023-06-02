@@ -11,6 +11,25 @@ router.get("/", (req, res) => {
 
 
 
+// Get user information
+// Get user information
+router.get('/users/:id', async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const user = await User.findById(userId).select('-roles -password -dateAdded');
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).send('User not found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+
 // edit user
 router.put("/users/:id", async (req, res) => {
   const userId = req.params.id;

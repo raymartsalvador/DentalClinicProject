@@ -72,8 +72,8 @@ $light-green: #9ff0ee;
 }
 
 .band {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 50px;
+  margin-bottom: 50px;
   height: 6rem;
   background-color: #00b2bf;
   color: white;
@@ -97,6 +97,13 @@ $light-green: #9ff0ee;
 .band h3 {
   font-size: 1rem;
   color: white;
+  margin: 0;
+}
+
+.band p {
+  font-size: 0.8rem;
+
+  color: rgb(255, 255, 255);
   margin: 0;
 }
 

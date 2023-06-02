@@ -1,6 +1,7 @@
 <div class="band">
   <div class="band-content">
     <h3>OUR USERS</h3>
+    <p>Entities that needs to be protected</p>
   </div>
 </div>
 <div class="add">
@@ -26,7 +27,7 @@
         <ul>
           <li>{{ user.email }}</li>
           <li>{{ user.firstName }} {{ user.lastName }}</li>
-          <li>{{ user.dateAdded | date }}</li> <!-- Assuming dateAdded is a valid date field in the user object -->
+          <li>{{ user.dateAdded | date }}</li>
           <li>
             <a (click)="viewUserDetails(user)"><i class="fa-solid fa-eye"></i></a>
             <a (click)="editUser(user)"><i class="fas fa-edit"></i></a>

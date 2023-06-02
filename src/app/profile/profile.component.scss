@@ -12,28 +12,49 @@ $light-green: #9ff0ee;
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   margin: 1rem 10rem;
-  height: 40rem;
 
   .info {
     grid-column: 1;
     display: flex;
     flex-direction: column;
-    background-color: gray;
+    background-color: $darkblue;
     justify-content: center;
     padding: 2rem;
     border-radius: 1rem 0 0 1rem;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     color: $white;
+    .information-text{
+      border-bottom: 1px solid $white;
+      margin-bottom: 2rem;
+      padding-top: 1rem;
+      font-weight: 600;
+    }
 
     .lines {
       justify-content: space-between;
       display: flex;
+      padding-bottom: 1rem;
 
       .title {
         font-size: 1rem;
-        font-weight: bold;
+        font-weight:500;
+      }
+      .description {
+        font-size: 1rem;
+        text-align: end;
+        width: 15rem;
+        flex-direction: column;
+        display: flex;
+        word-wrap: break-word;
+      }
+
+      .editable {
+        background-color: $white;
+        color: $black;
+        padding: 0.2rem 0.5rem;
+        border: 1px solid $black;
       }
     }
   }
@@ -50,12 +71,12 @@ $light-green: #9ff0ee;
     color: $white;
 
     .contain-icon {
-      font-size: 12rem;
-      height: 20rem;
+      font-size: 8rem;
+      height: 15rem;
       justify-content: center;
       display: flex;
       align-items: center;
-      width: 20rem;
+      width: 15rem;
       border-radius: 50%;
       background-color: gray;
     }
@@ -76,5 +97,22 @@ $light-green: #9ff0ee;
         color: $darkblue;
       }
     }
+  }
+}
+
+button {
+  margin-top: auto;
+  margin-bottom: 0.5rem;
+  background-color: $light-green;
+  color: $darkblue;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($light-green, 50%);
+    color: $white;
   }
 }
