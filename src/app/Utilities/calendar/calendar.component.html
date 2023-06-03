@@ -15,6 +15,7 @@
       *ngIf="currentView === 'month'"
       [viewDate]="viewDate"
       [events]="events"
+      [excludeDays]="[0]"
       (dayClicked)="changeView('day', $event)"
     ></mwl-calendar-month-view>
     <div class="week">
@@ -22,7 +23,10 @@
         *ngIf="currentView === 'week'"
         [viewDate]="viewDate"
         [events]="events"
+        [excludeDays]="[0]"
         (dayClicked)="changeView('day', $event)"
+        [dayStartHour]="9"
+        [dayEndHour]="16"
       ></mwl-calendar-week-view>
     </div>
     <div class="day">
@@ -30,6 +34,8 @@
         *ngIf="currentView === 'day'"
         [viewDate]="viewDate"
         [events]="events"
+        [dayStartHour]="9"
+        [dayEndHour]="16"
       ></mwl-calendar-day-view>
     </div>
   </div>

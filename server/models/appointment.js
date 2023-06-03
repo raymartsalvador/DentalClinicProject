@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const appointmentSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'user' },
+  patientName: String,
   title: String,
   start: Date,
   end: Date,

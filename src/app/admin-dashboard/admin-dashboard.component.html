@@ -4,20 +4,135 @@
   </div>
   <div class="containers">
     <div class="container">
-      <div class="Worker">
-        <p>Dentist</p>
-        <div class="member">
-          <p>Dr. Lorem Ipsum</p>
+      <div class="header">Work Force</div>
+      <div class="worker">
+        <div class="circle-icon">
+          <i class="fas fa-user-md"></i>
+        </div>
+        <div class="title">Dentists</div>
+        <div *ngFor="let dentist of dentists" class="member">
+          <p>{{ dentist.name }}</p>
         </div>
       </div>
-      <div class="Worker">
-        <p>Staffs</p>
-        <div class="member">
-          <p>Staff Number One</p>
+      <div class="worker">
+        <div class="circle-icon">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="title">Staffs</div>
+        <div *ngFor="let staff of staffs" class="member">
+          <p>{{ staff.name }}</p>
         </div>
       </div>
     </div>
-    <div class="container">Info</div>
-    <div class="container">Overview</div>
+    <div class="container">
+      <div class="header">Clinic Status</div>
+      <div class="worker">
+        <div class="circle-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="title">Business Hours</div>
+        <div class="member">
+          <p class="between">
+            <span class="left"> Mon - Fri: </span>
+            <span>
+              {{ businessHours.mondayToFriday }}
+            </span>
+          </p>
+          <p class="between">
+            <span class="left">Sat:</span>
+            <span>
+              {{ businessHours.saturday }}
+            </span>
+          </p>
+          <p class="between">
+            <span class="left"> Sun: </span>
+            <span>
+              {{ businessHours.sunday }}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="header">Overview</div>
+      <div class="worker">
+        <div class="circle-icon">
+          <i class="fas fa-sun"></i>
+        </div>
+        <div class="title">Daily</div>
+        <div class="member">
+          <div>
+            <span class="number">{{ patients.daily }}</span>
+            <span class="unit">Patients</span>
+          </div>
+          <div>
+            <span class="number">{{ appointments.daily }}</span>
+            <span class="unit">Appointments</span>
+          </div>
+        </div>
+      </div>
+      <div class="worker">
+        <div class="circle-icon">
+          <i class="fas fa-moon"></i>
+        </div>
+        <div class="title">Monthly</div>
+        <div class="member">
+          <div>
+            <span class="number">{{ patients.monthly }}</span>
+            <span class="unit">Patients</span>
+          </div>
+          <div>
+            <span class="number">{{ appointments.monthly }}</span>
+            <span class="unit">Appointments</span>
+          </div>
+        </div>
+      </div>
+      <div class="worker">
+        <div class="circle-icon">
+          <i class="fas fa-calendar"></i>
+        </div>
+        <div class="title">Weekly</div>
+        <div class="member">
+          <div>
+            <span class="number">{{ patients.weekly }}</span>
+            <span class="unit">Patients</span>
+          </div>
+          <div>
+            <span class="number">{{ appointments.weekly }}</span>
+            <span class="unit">Appointments</span>
+          </div>
+        </div>
+      </div>
+      <div class="worker">
+        <div class="circle-icon">
+          <i class="fas fa-calendar-day"></i>
+        </div>
+        <div class="title">Appointments Today</div>
+        <div class="member">
+          <div class="grid">
+            <div class="cards" *ngFor="let appointment of appointmentsToday">
+              <div class="card">
+                <div class="card-title">{{ appointment.title }}</div>
+                <div class="card-time">{{ appointment.time }}</div>
+                <div class="card-patient">{{ appointment.patient }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="worker">
+        <div class="circle-icon">
+          <i class="fas fa-calculator"></i>
+        </div>
+        <div class="title">Total</div>
+        <div class="member">
+          <div>
+            <span class="number">{{ registeredUsers }}</span>
+            <span class="unit">Patients</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

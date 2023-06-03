@@ -5,6 +5,7 @@ const servicesSchema = new Schema({
   title: String,
   description: String,
   imageLink: String,
+  timeSpan: Number,
   color: {
     primary: String,
     secondary: String

@@ -4,6 +4,10 @@ $green: #00b2bf;
 $darkblue: #0d63a0;
 $light-green: #9ff0ee;
 
+/* Hide time slots outside business hours */
+.hide-outside-business-hours {
+  display: none !important;
+}
 
 .legend {
   display: flex;
