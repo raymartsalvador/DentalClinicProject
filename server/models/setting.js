@@ -25,7 +25,8 @@ function setTime(value) {
 const settingsSchema = new Schema({
   businessHours: businessHoursSchema,
   dentalClinic: {
-    dentists: [String]
+    dentists: [String],
+    staffs: [String]
   }
 });
 

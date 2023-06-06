@@ -11,7 +11,7 @@
         </div>
         <div class="title">Dentists</div>
         <div *ngFor="let dentist of dentists" class="member">
-          <p>{{ dentist.name }}</p>
+          <p>{{ dentist }}</p>
         </div>
       </div>
       <div class="worker">
@@ -35,27 +35,30 @@
           <p class="between">
             <span class="left"> Mon - Fri: </span>
             <span>
-              {{ businessHours.mondayToFriday }}
+              {{ businessHours?.mondayToFriday?.start }} -
+              {{ businessHours?.mondayToFriday?.end }}
             </span>
           </p>
           <p class="between">
             <span class="left">Sat:</span>
             <span>
-              {{ businessHours.saturday }}
+              {{ businessHours?.saturday?.start }} -
+              {{ businessHours?.saturday?.end }}
             </span>
           </p>
           <p class="between">
             <span class="left"> Sun: </span>
-            <span>
-              {{ businessHours.sunday }}
-            </span>
+            <span> Closed </span>
           </p>
         </div>
       </div>
     </div>
 
     <div class="container">
-      <div class="header">Overview</div>
+      <div class="header">
+        <div class="title">Overview</div>
+        <div class="date">{{ date | date : "EEEE MMMM d, yyyy h:mm a" }}</div>
+      </div>
       <div class="worker">
         <div class="circle-icon">
           <i class="fas fa-sun"></i>
@@ -63,11 +66,11 @@
         <div class="title">Daily</div>
         <div class="member">
           <div>
-            <span class="number">{{ patients.daily }}</span>
+            <span class="number">{{ usersRegisteredToday }}</span>
             <span class="unit">Patients</span>
           </div>
           <div>
-            <span class="number">{{ appointments.daily }}</span>
+            <span class="number">{{ approvedAppointmentsDay }}</span>
             <span class="unit">Appointments</span>
           </div>
         </div>
@@ -79,11 +82,11 @@
         <div class="title">Monthly</div>
         <div class="member">
           <div>
-            <span class="number">{{ patients.monthly }}</span>
+            <span class="number">{{ usersRegisteredThisMonth }}</span>
             <span class="unit">Patients</span>
           </div>
           <div>
-            <span class="number">{{ appointments.monthly }}</span>
+            <span class="number">{{ approvedAppointmentsMonth }}</span>
             <span class="unit">Appointments</span>
           </div>
         </div>
@@ -95,11 +98,11 @@
         <div class="title">Weekly</div>
         <div class="member">
           <div>
-            <span class="number">{{ patients.weekly }}</span>
+            <span class="number">{{ usersRegisteredThisWeek }}</span>
             <span class="unit">Patients</span>
           </div>
           <div>
-            <span class="number">{{ appointments.weekly }}</span>
+            <span class="number">{{ approvedAppointmentsWeek }}</span>
             <span class="unit">Appointments</span>
           </div>
         </div>
@@ -113,9 +116,14 @@
           <div class="grid">
             <div class="cards" *ngFor="let appointment of appointmentsToday">
               <div class="card">
+                <div class="card-time">
+                  Time:
+                  {{ appointment.start | date : "hh:mm a" }} -
+                  {{ appointment.end | date : "hh:mm a" }}
+                </div>
                 <div class="card-title">{{ appointment.title }}</div>
-                <div class="card-time">{{ appointment.time }}</div>
-                <div class="card-patient">{{ appointment.patient }}</div>
+
+                <div class="card-patient">{{ appointment.patientName }}</div>
               </div>
             </div>
           </div>

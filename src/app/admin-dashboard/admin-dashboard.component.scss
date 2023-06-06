@@ -15,16 +15,20 @@ $light-green: #9ff0ee;
   .containers {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 2rem;
+    gap: 1rem;
     margin: 1rem;
 
     .header {
       grid-column: 1/span 2;
+      font-weight: 500;
+      margin: -0.5rem 0;
+      font-size: 1.2rem;
+      color: $darkblue;
     }
 
     .container {
       padding: 1rem;
-      background-color: #c9c9c9;
+      background-color: #d6eff6;
       border-radius: 0.5rem;
       box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
       height: fit-content;
@@ -44,8 +48,8 @@ $light-green: #9ff0ee;
         padding: 1rem;
         border-radius: 0.5rem;
         box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
-        color: white;
-        background-color: #0d63a0;
+        color: $black;
+        background-color: $light-green;
         position: relative;
         width: auto;
         height: auto;
@@ -53,12 +57,15 @@ $light-green: #9ff0ee;
         .circle-icon {
           margin-top: -0.5rem;
           font-size: large;
+          color: #0d63a0;
         }
 
         .title {
           font-size: 1rem;
           margin-top: -0.5rem;
-          border-bottom: 1px solid white;
+          border-bottom: 1px solid $black;
+          border-bottom: 1px solid $darkblue;
+          color: $darkblue;
         }
 
         .member {
@@ -67,13 +74,13 @@ $light-green: #9ff0ee;
       }
 
       .worker:nth-of-type(1) {
-        background-color: $darkblue;
+        background-color: $light-green;
         grid-column: 2;
         grid-row: 2;
       }
 
       .worker:nth-of-type(2) {
-        background-color: $darkblue;
+        background-color: $light-green;
         grid-column: 1;
         grid-row: 2;
       }
@@ -94,20 +101,23 @@ $light-green: #9ff0ee;
         padding: 1rem;
         border-radius: 0.5rem;
         box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
-        color: white;
-        background-color: #0d63a0;
+        color: $black;
+        background-color: $light-green;
         position: relative;
         width: auto;
 
         .circle-icon {
           margin-top: -0.5rem;
           font-size: large;
+          color: #0d63a0;
         }
 
         .title {
           font-size: 1rem;
           margin-top: -0.5rem;
-          border-bottom: 1px solid white;
+          border-bottom: 1px solid $black;
+          border-bottom: 1px solid $darkblue;
+          color: $darkblue;
         }
 
         .member {
@@ -127,11 +137,11 @@ $light-green: #9ff0ee;
       }
 
       .worker:nth-of-type(1) {
-        background-color: $darkblue;
+        background-color: $light-green;
       }
 
       .worker:nth-of-type(2) {
-        background-color: $darkblue;
+        background-color: $light-green;
       }
     }
 
@@ -148,7 +158,15 @@ $light-green: #9ff0ee;
       .header {
         grid-column: 1/span 4;
         height: fit-content;
-
+        display: flex;
+        justify-content: space-between;
+        .date{
+          color: $darkblue;
+          letter-spacing: 1px;
+          font-size: 0.8rem;
+          display: flex;
+          align-items: center;
+        }
       }
 
       .worker {
@@ -156,14 +174,15 @@ $light-green: #9ff0ee;
         padding: 1rem;
         border-radius: 0.5rem;
         box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
-        color: white;
-        background-color: #0d63a0;
+        color: $black;
+        background-color: $light-green;
         width: auto;
         height: stretch;
 
         .circle-icon {
           margin-top: -0.5rem;
           font-size: large;
+          color: #0d63a0;
         }
 
         .title {
@@ -173,7 +192,8 @@ $light-green: #9ff0ee;
           align-items: end;
           margin-top: -0.5rem;
           margin-bottom: 0.5rem;
-          border-bottom: 1px solid white;
+          border-bottom: 1px solid $darkblue;
+          color: $darkblue;
         }
 
         .member {
@@ -183,20 +203,33 @@ $light-green: #9ff0ee;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 1rem;
-            height: 27rem;
+            height: 17rem;
             padding-right:1rem ;
             overflow-y: scroll;
             .cards {
-              background-color: $light-green;
+              background-color: $white;
               color: $black;
               padding: 1rem;
               display: grid;
               border-radius: 1rem;
+              box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
               height: auto;
               height: fit-content;
               .card {
                 display: flex;
                 flex-direction: column;
+                font-size: 0.9rem;
+                justify-items: center;
+                .card-time{
+                  color: $white;
+                  background-color: #0d63a0;
+                  padding: 4px;
+                  margin: 0 0 0.5rem 0;
+                  border-radius: 3px;
+                }
+                .card-title{
+                  font-weight: 600;
+                }
               }
             }
           }
@@ -219,33 +252,33 @@ $light-green: #9ff0ee;
       }
 
       .worker:nth-of-type(1) {
-        background-color: $darkblue;
+        background-color: $light-green;
         grid-column: 1;
         grid-row: 2;
       }
 
       .worker:nth-of-type(2) {
-        background-color: $darkblue;
+        background-color: $light-green;
         grid-column: 2;
 
         grid-row: 2;
       }
 
       .worker:nth-of-type(3) {
-        background-color: $darkblue;
+        background-color: $light-green;
         grid-column: 3;
 
         grid-row: 2;
       }
 
       .worker:nth-of-type(4) {
-        background-color: $darkblue;
+        background-color: $light-green;
         grid-column: 4;
         grid-row: 2;
       }
 
       .worker:nth-of-type(5) {
-        background-color: $darkblue;
+        background-color: $light-green;
         grid-column: 1/span 4;
         grid-row: 3;
       }

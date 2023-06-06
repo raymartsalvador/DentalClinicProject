@@ -66,11 +66,14 @@ $light-green: #9ff0ee;
 
   select {
     width: auto;
+    display: inline-block;
+    margin-left: 10px;
   }
 }
 
 .form-field label {
   margin-right: 10px;
+  display: inline-block;
 }
 
 .contain {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 
 @Injectable()
@@ -8,6 +8,9 @@ export class UserCrudService {
 
   constructor(private http: HttpClient) {}
 
+  getUsersRegisteredWithinTimeFrame(timeFrame: string): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/getusers/registered?timeFrame=${timeFrame}`);
+  }
   getUsers(token: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any[]>(`${this.apiUrl}/getusers`, { headers });
@@ -21,6 +24,10 @@ export class UserCrudService {
         (error: any) => console.error('getUserById error:', error)
       )
     );
+  }
+  getUsersCount(token: string): Observable<number> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<number>(`${this.apiUrl}/getusers/count`, { headers });
   }
 
 

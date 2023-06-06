@@ -5,6 +5,7 @@ import jwt_decode from 'jwt-decode';
 import { ServiceCrudService } from 'src/app/services/service-crud.service';
 import { CalendarComponent } from 'src/app/Utilities/calendar/calendar.component';
 import { SettingsCrudService } from 'src/app/services/setting_crud.service';
+import { el } from 'date-fns/locale';
 
 @Component({
   selector: 'app-appointments',
@@ -12,15 +13,18 @@ import { SettingsCrudService } from 'src/app/services/setting_crud.service';
   styleUrls: ['./appointments.component.scss'],
 })
 export class AppointmentsComponent implements OnInit {
-  selectedService: string | undefined;
+  selectedServiceCount: number = 0;
+  selectedService: string[] = [];
+  showForm: boolean = false;
   selectedDate: Date = new Date();
   selectedTime: string = '';
   services: any[] = [];
+  isApproved: boolean = false;
   showMessageBlock: boolean = false;
   message: string = '';
   messageBlockType: string = '';
   myAppointments: any[] = [];
-
+  selectedServices: string[] = [];
   @ViewChild(CalendarComponent)
   private calendarComponent!: CalendarComponent;
   businessHours: any;
@@ -36,6 +40,22 @@ export class AppointmentsComponent implements OnInit {
     this.getServices();
     this.getMyAppointments();
     this.getBusinessHours();
+  }
+  onShowForm() {
+    if (this.selectedServiceCount > 0) {
+      this.showForm = true;
+    } else {
+      this.showForm = false;
+    }
+    console.log(this.selectedServiceCount);
+
+    console.log(this.showForm);
+  }
+  getCountArray(): number[] {
+    return Array.from(
+      { length: this.selectedServiceCount },
+      (_, index) => index + 1
+    );
   }
 
   getBusinessHours(): void {
@@ -73,7 +93,6 @@ export class AppointmentsComponent implements OnInit {
     return endTime.toTimeString().slice(0, 5); // Extract the time portion as "HH:mm"
   }
 
-
   getServices(): void {
     this._SERVICECRUD.getServices().subscribe(
       (response) => {
@@ -84,8 +103,14 @@ export class AppointmentsComponent implements OnInit {
         console.error(error);
       }
     );
-  }submitForm(): void {
-    if (!this.selectedService || !this.selectedDate || !this.selectedTime) {
+  }
+
+  submitForm(): void {
+    if (
+      this.selectedServices.length === 0 ||
+      !this.selectedDate ||
+      !this.selectedTime
+    ) {
       // Disable submit button if any required field is incomplete
       return;
     }
@@ -116,17 +141,23 @@ export class AppointmentsComponent implements OnInit {
     const endDateTime = new Date(startDateTime.getTime() + 2 * 60 * 60 * 1000);
     console.log('Appointment start time:', startDateTime);
 
-    const selectedService = this.services.find((service) => service.title === this.selectedService);
+    const selectedService = this.services.find(
+      (service) => service.title === this.selectedServices[0]
+    );
 
     if (!selectedService) {
       console.error('Selected service not found');
       return;
     }
 
+    const selectedServices = this.selectedServices.map((service: string) =>
+      service.trim()
+    );
     const appointment: any = {
-      title: this.selectedService,
+      title: selectedServices, // Store the array of selected services
       start: startDateTime,
       end: endDateTime,
+      isApproved: this.isApproved,
       color: {
         primary: selectedService.color.primary,
         secondary: selectedService.color.secondary,
@@ -138,7 +169,11 @@ export class AppointmentsComponent implements OnInit {
 
     if (token) {
       // Decode the token to get the user's ID and name
-      const payload: { subject?: string; firstName?: string; lastName?: string } = jwt_decode(token);
+      const payload: {
+        subject?: string;
+        firstName?: string;
+        lastName?: string;
+      } = jwt_decode(token);
 
       if (payload.subject && payload.firstName && payload.lastName) {
         // Associate the user's ID and name with the appointment
@@ -146,43 +181,45 @@ export class AppointmentsComponent implements OnInit {
         appointment.patientName = `${payload.firstName} ${payload.lastName}`;
 
         // Check if the schedule is available
-        this._APPOINTMENT.checkAvailability(appointment.start, appointment.end).subscribe(
-          (response: boolean) => {
-            if (response) {
-              // Schedule is available
-              this._APPOINTMENT.createAppointment(appointment).subscribe(
-                (response: any) => {
-                  console.log('Appointment created:', response);
-                  // Perform any additional actions after successful creation
-                  this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-                  this.messageBlockType = 'success';
-                  this.message =
-                    'You successfully requested an appointment. Please wait for confirmation through your email or contact number.';
-                  this.calendarComponent.refreshCalendar(); // Call the refreshCalendar method in the CalendarComponent
-                },
-                (error: any) => {
-                  console.error('Error creating appointment:', error);
-                  // Handle error case if necessary
-                  this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-                  this.message = 'Error creating appointment.';
-                  this.messageBlockType = 'error';
-                }
-              );
-            } else {
-              // Schedule is unavailable
-              this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-              this.message = 'Time slot has been taken';
+        this._APPOINTMENT
+          .checkAvailability(appointment.start, appointment.end)
+          .subscribe(
+            (response: boolean) => {
+              if (response) {
+                // Schedule is available
+                this._APPOINTMENT.createAppointment(appointment).subscribe(
+                  (response: any) => {
+                    console.log('Appointment created:', response);
+                    // Perform any additional actions after successful creation
+                    this.showMessageBlock = true;
+                    this.messageBlockType = 'success';
+                    this.message =
+                      'You successfully requested an appointment. Please wait for confirmation through your email or contact number.';
+                    this.calendarComponent.refreshCalendar();
+                  },
+                  (error: any) => {
+                    console.error('Error creating appointment:', error);
+                    // Handle error case if necessary
+                    this.showMessageBlock = true;
+                    this.message = 'Error creating appointment.';
+                    this.messageBlockType = 'error';
+                  }
+                );
+              } else {
+                // Schedule is unavailable
+                this.showMessageBlock = true;
+                this.message = 'Time slot has been taken';
+                this.messageBlockType = 'error';
+              }
+            },
+            (error: any) => {
+              console.error('Error checking availability:', error);
+              // Handle error case if necessary
+              this.showMessageBlock = true;
+              this.message = 'Error checking availability.';
               this.messageBlockType = 'error';
             }
-          },
-          (error: any) => {
-            console.error('Error checking availability:', error);
-            // Handle error case if necessary
-            this.showMessageBlock = true; // Set showMessageBlock to true to display the message block
-            this.message = 'Error checking availability.';
-            this.messageBlockType = 'error';
-          }
-        );
+          );
       } else {
         console.error('User ID, first name, or last name not found in token');
       }
@@ -209,7 +246,9 @@ export class AppointmentsComponent implements OnInit {
       const endDateTime = new Date(date);
       endDateTime.setHours(13);
       endDateTime.setMinutes(0);
-      return selectedDateTime >= startDateTime && selectedDateTime <= endDateTime;
+      return (
+        selectedDateTime >= startDateTime && selectedDateTime <= endDateTime
+      );
     } else {
       // Monday to Friday, check if within 9:00 am - 4:00 pm
       const startDateTime = new Date(date);
@@ -218,7 +257,9 @@ export class AppointmentsComponent implements OnInit {
       const endDateTime = new Date(date);
       endDateTime.setHours(16);
       endDateTime.setMinutes(0);
-      return selectedDateTime >= startDateTime && selectedDateTime <= endDateTime;
+      return (
+        selectedDateTime >= startDateTime && selectedDateTime <= endDateTime
+      );
     }
   }
 

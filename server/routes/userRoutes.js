@@ -10,8 +10,36 @@ router.get("/", (req, res) => {
 });
 
 
+// Fetch user count within a time frame
+router.get('/getusers/registered', async (req, res) => {
+  const timeFrame = req.query.timeFrame; // 'day', 'week', or 'month'
 
-// Get user information
+  let startDate;
+  if (timeFrame === 'day') {
+    startDate = new Date();
+    startDate.setHours(0, 0, 0, 0);
+  } else if (timeFrame === 'week') {
+    startDate = new Date();
+    startDate.setHours(0, 0, 0, 0);
+    startDate.setDate(startDate.getDate() - startDate.getDay());
+  } else if (timeFrame === 'month') {
+    startDate = new Date();
+    startDate.setHours(0, 0, 0, 0);
+    startDate.setDate(1);
+  } else {
+    return res.status(400).send('Invalid time frame');
+  }
+
+  try {
+    const userCount = await User.countDocuments({ dateAdded: { $gte: startDate } });
+    res.status(200).json(userCount);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+
 // Get user information
 router.get('/users/:id', async (req, res) => {
   const userId = req.params.id;
@@ -23,6 +51,16 @@ router.get('/users/:id', async (req, res) => {
     } else {
       res.status(404).send('User not found');
     }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+router.get('/getusers/count', async (req, res) => {
+  try {
+    const count = await User.countDocuments();
+    res.status(200).json(count);
   } catch (error) {
     console.error(error);
     res.status(500).send('Server error');
